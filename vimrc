@@ -74,7 +74,7 @@ Bundle 'gmarik/vundle'
 
 Bundle "Chiel92/vim-autoformat"
 Bundle "bling/vim-bufferline"
-Bundle "jewes/Conque-Shell"
+"Bundle "jewes/Conque-Shell"
 
 
  "
