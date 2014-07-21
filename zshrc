@@ -49,3 +49,4 @@ alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
+alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de"
