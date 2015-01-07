@@ -1,29 +1,59 @@
-PREFIX=/usr/local
-VIMDIR=$(PREFIX)/share/vim
-BINDIR=$(PREFIX)/bin
+PYMODE = $(CURDIR)/pymode
+LIBS = $(PYMODE)/libs
+PYLAMA = $(LIBS)/pylama
 
-VERSION=1.8.23
-DATE=$(shell date +%Y%m%d)
-COMMIT_COUNT=$(shell git log --oneline | wc -l)
-ABBREV_HASH=$(shell git log --oneline | head -n 1 | cut -d\  -f 1)
+.PHONY: clean
+clean:
+	find $(CURDIR) -name "*.pyc" -delete
+	rm -rf $(CURDIR)/build
+	rm -rf *.deb
 
-SNAPSHOTNAME=vim-latex-$(VERSION)-$(DATE).$(COMMIT_COUNT)-git$(ABBREV_HASH)
+# Temporary disable rope tests on Travis
+.PHONY: travis
+travis:
+	rake test
 
-snapshot:
-	git archive --prefix '$(SNAPSHOTNAME)/' HEAD | gzip > '$(SNAPSHOTNAME).tar.gz'
+.PHONY: test t
+test:
+	bundle install
+	rm -rf $(CURDIR)/.ropeproject
+	rake test
+t: test
 
-install:
-	install -d '$(DESTDIR)$(VIMDIR)/doc'
-	install -m 0644 doc/*.txt '$(DESTDIR)$(VIMDIR)/doc'
+.PHONY: pylama
+pylama:
+	rm -rf $(PYLAMA)
+	make $(PYLAMA)
+	make $(PYLAMA)/lint/pylama_pylint
 
-	install -d '$(DESTDIR)$(VIMDIR)'
-	cp -R compiler ftplugin indent plugin '$(DESTDIR)$(VIMDIR)'
-	chmod 0755 '$(DESTDIR)$(VIMDIR)/ftplugin/latex-suite/outline.py'
+$(PYLAMA):
+	cp -r ~/Dropbox/projects/pylama/pylama $(PYLAMA)
 
-	install -d '$(DESTDIR)$(BINDIR)'
-	install latextags ltags '$(DESTDIR)$(BINDIR)'
+$(PYLAMA)/lint/pylama_pylint:
+	cp -r ~/Dropbox/projects/pylama/plugins/pylama_pylint/pylama_pylint/ $(PYLAMA)/lint/pylama_pylint
 
-upload: snapshot
-	scp '$(SNAPSHOTNAME).tar.gz' frs.sourceforge.net:/home/frs/project/v/vi/vim-latex/snapshots
+$(CURDIR)/build:
+	mkdir -p $(CURDIR)/build/usr/share/vim/addons
+	mkdir -p $(CURDIR)/build/usr/share/vim/registry
+	cp -r after autoload doc ftplugin plugin pymode syntax $(CURDIR)/build/usr/share/vim/addons/.
+	cp -r python-mode.yaml $(CURDIR)/build/usr/share/vim/registry/.
 
-.PHONY: install upload
+PACKAGE_VERSION?=$(shell git describe --tags `git rev-list master --tags --max-count=1`) 
+PACKAGE_NAME="vim-python-mode"
+PACKAGE_MAINTAINER="Kirill Klenov <horneds@gmail.com>"
+PACKAGE_URL=http://github.com/klen/python-mode
+deb: clean $(CURDIR)/build
+	@fpm -s dir -t deb -a all \
+	    -n $(PACKAGE_NAME) \
+	    -v $(PACKAGE_VERSION) \
+	    -m $(PACKAGE_MAINTAINER) \
+	    --url $(PACKAGE_URL) \
+	    --license "GNU lesser general public license" \
+	    --description "Vim-Swissknife for python" \
+	    --deb-user root \
+	    --deb-group root \
+	    -C $(CURDIR)/build \
+	    -d "python2.7" \
+	    -d "vim-addon-manager" \
+	    usr
+	@mv *.deb ~/Dropbox/projects/deb/load
