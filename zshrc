@@ -35,7 +35,6 @@ alias gvim="gvim -geom 110x80"
 alias g=gvim
 
 
-
 alias py="python"
 
 alias cmake_uninstall="xargs rm < install_manifest.txt"
