@@ -31,7 +31,9 @@ alias untar="tar -zxvf"
 alias vim="vim -p"
 #alias gvim="gvim -p --remote-tab-silent -geom 110x80"
 alias gvim="gvim -geom 110x80"
-alias g="gvim --remote -geom 110x80"
+#alias g="gvim --remote-silent -geom 110x80"
+alias g=gvim
+
 
 
 alias py="python"
@@ -46,7 +48,8 @@ alias eclipse="~/vol/opt/eclipse/eclipse"
 
 alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 
-alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:2700 -L 34758:129.247.166.179:34758"
+alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl matlab_acad"
+alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
 alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
@@ -54,11 +57,18 @@ alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.
 
 alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
 alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
+alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de"
 
 alias keepass="mono ~/keepass/KeePass-2.26/KeePass.exe"
 
 alias dirsizes="du -h -d 1 | sort -h"
 
-alias rsync2extern="rsync -rLptgoD /home/seid_da/ /home_offline/seid_da/ --exclude-from=rsync_exclude.txt"
-alias rsync2intern="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/ --exclude-from=rsync_exclude.txt"
+alias rsync2offline_home="rsync -rLptgoD /home/seid_da/ /home_offline/seid_da/ --exclude-from=rsync_exclude.txt"
+alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/ --exclude-from=rsync_exclude.txt --exclude=foreign_packages/laka_do_sym --exclude=foreign_packages/make_mex --exclude=matlab_latest"
 
+#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
+alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc"
+#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
+#alias latexmake="latexmk -pdf -pdflatex=\"lualatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
+
+alias tea="py /home/seid_da/data/tea/next_tea.py"
