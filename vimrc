@@ -130,9 +130,10 @@ endfunction
 " copy also to system clipboard [needs newer vim version]
 "set clipboard=unnamed
 "set clipboard=unnamedplus
+clipboard
 
 " paste in visual mode without updating the default register:
-vnoremap p "_dP
+vnoremap <C-P> "_dP
 
 
 "remap d to delete and y to yank to unnamed
@@ -207,6 +208,14 @@ set iskeyword+=:
 
 " Okular editor command
 " gvim --remote-silent +%l %f
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => python-mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype plugin indent on
+syntax on
+"let g:pymode_rope_complete_on_dot = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
