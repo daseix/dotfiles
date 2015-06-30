@@ -59,7 +59,9 @@ alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.
 
 alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
 alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
-alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de"
+alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de -N"
+alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de -N"
+# svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
 
 alias keepass="mono ~/keepass/KeePass-2.26/KeePass.exe"
 
