@@ -1,0 +1,52 @@
+
+Host rmc-git rmc-git.robotic.dlr.de
+    #ProxyCommand ssh seid_da@donau.robotic.dlr.de nc %h %p
+    HostName rmc-git.robotic.dlr.de
+    IdentityFile ~/.ssh/id_rsa_gitrmc
+    PreferredAuthentications publickey
+    PasswordAuthentication no
+    ForwardX11 no
+    ForwardAgent yes
+    #ForwardX11Trusted no
+
+#
+# Note:
+#    pattern matching in 'host' field: first match overrides others
+#
+# host names containing dots:
+#
+Host *.robotic.dlr.de
+  ForwardAgent yes
+  ForwardX11 yes
+  Compression no
+  FallBackToRsh no
+  Protocol 2
+#
+# others are considered to be internet hosts:
+#
+Host *.*
+  ForwardAgent no
+  ForwardX11 no
+  FallBackToRsh no
+  Protocol 2
+  Compression yes
+#
+# special treatment of localhost: 
+#    -- 'NoHostAuthenticationForLocalhost' is a OpenSSH 3.x feature!
+#
+Host localhost
+  NoHostAuthenticationForLocalhost yes
+  ForwardAgent yes
+  ForwardX11 yes
+  Compression no
+  FallBackToRsh no
+  Protocol 2
+#
+# everything else which does not need a dot to be resolved:
+#
+Host *
+  ForwardAgent yes
+  ForwardX11 yes
+  FallBackToRsh no
+  Protocol 2
+  Compression no
