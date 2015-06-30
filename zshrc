@@ -76,3 +76,4 @@ alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/
 alias latexmake="latexmk -pdf -silent -pvc \`grep -l '\documentclass' *tex\`"
 
 alias tea="py /home/seid_da/data/tea/next_tea.py"
+
