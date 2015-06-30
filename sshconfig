@@ -2,7 +2,7 @@
 Host rmc-git rmc-git.robotic.dlr.de
     #ProxyCommand ssh seid_da@donau.robotic.dlr.de nc %h %p
     HostName rmc-git.robotic.dlr.de
-    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_rsa_gitrmc
     PreferredAuthentications publickey
     PasswordAuthentication no
     ForwardX11 no
