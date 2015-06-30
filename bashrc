@@ -1,3 +1,6 @@
+export SHELL=/bin/zsh
+exec /bin/zsh -l
+
 
 # file-creation mask: 
 #    (full access for group is not a problem, because
@@ -15,7 +18,7 @@ PS1SYM='\[\033[1;31m\]'
 PS1="$PS1SYM<$PS1TEXT""ds$PS1SYM@$PS1TEXT\h$PS1SYM|$PS1TEXT\t$PS1SYM> \w\[\033[0m\] $ "
 
 # no beep
-xset b off
+#xset b off
 
 # default command line editor
 export EDITOR='gvim'      
@@ -51,3 +54,7 @@ alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
+#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
+alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc"
+#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
+#alias latexmake="latexmk -pdf -pdflatex=\"lualatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
