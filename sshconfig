@@ -5,7 +5,7 @@ Host rmc-git rmc-git.robotic.dlr.de
     IdentityFile ~/.ssh/id_rsa_gitrmc
     PreferredAuthentications publickey
     PasswordAuthentication no
-    ForwardX11 no
+    ForwardX11 yes
     ForwardAgent yes
     #ForwardX11Trusted no
 

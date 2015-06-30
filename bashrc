@@ -1,5 +1,5 @@
 export SHELL=/bin/zsh
-exec /bin/zsh -l
+#exec /bin/zsh -l
 
 
 # file-creation mask: 
