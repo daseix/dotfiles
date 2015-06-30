@@ -130,7 +130,6 @@ endfunction
 " copy also to system clipboard [needs newer vim version]
 "set clipboard=unnamed
 "set clipboard=unnamedplus
-"clipboard
 
 " paste in visual mode without updating the default register:
 vnoremap <C-P> "_dP
