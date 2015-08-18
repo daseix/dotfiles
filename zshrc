@@ -61,7 +61,9 @@ alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
 #http://ubuntuforums.org/showthread.php?t=723025
 alias sshintum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
 alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
-alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de"
+alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de -N"
+alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de -N"
+# svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
 
@@ -78,3 +80,4 @@ alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/
 alias latexmake="latexmk -pdf -silent -pvc \`grep -l '\documentclass' *tex\`"
 
 alias tea="py /home/seid_da/data/tea/next_tea.py"
+
