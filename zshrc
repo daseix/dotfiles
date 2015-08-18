@@ -13,7 +13,7 @@ autoload -U colors && colors
 PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
 
 # no beep
-#xset b off
+xset b off
 
 # default command line editor
 export EDITOR='gvim'      
@@ -36,7 +36,7 @@ alias g=gvim
 
 
 
-alias mampf="/home/seth_da/usr/bin"
+alias mampf="/home/seth_da/usr/bin/mampf"
 
 alias py="python"
 
@@ -46,11 +46,11 @@ alias windows="wfica"
 
 alias svndiff="svn diff --diff-cmd='meld'"
 
-alias eclipse="~/vol/opt/eclipse/eclipse"
+alias eclipse="~/vol/opt/eclipse/$ARCH/eclipse"
 
 alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 
-alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl /opt/matlab/2012a/bin/matlab_acad"
+alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$ARCH /opt/matlab/2012a/bin/matlab_acad"
 alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
 alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
@@ -58,10 +58,12 @@ alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
 alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
+#http://ubuntuforums.org/showthread.php?t=723025
+alias sshintum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
 alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
 alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de"
 
-alias keepass="mono ~/keepass/KeePass-2.26/KeePass.exe"
+alias keepass="mono ~/keepass/program/KeePass.exe"
 
 alias dirsizes="du -h -d 1 | sort -h"
 

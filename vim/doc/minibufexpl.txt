@@ -103,7 +103,7 @@ configuration of Vim.
     Focus into the MBE window.
 
 :MBEFocusAll                                                    *:MBEFocusAll*
-    Focus into the MBE window in every tab page.:y
+    Focus into the MBE window in every tab page.
 
 :MBEOpen[!]                                                         *:MBEOpen*
     Open the Explorer.

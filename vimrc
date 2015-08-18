@@ -94,6 +94,13 @@ Bundle "bling/vim-airline"
 " => Other
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" disable beep and bell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" autochange dir to current file
+set autochdir
+
 " smaller command line
 set cmdheight=1
 
@@ -182,31 +189,31 @@ let g:airline_section_x = ''
 let g:airline_section_z = 'C%c : L%l/%L : %{WordCount()}W : %P'
 let g:airline_section_warning = ''
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-latex
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Latex suite
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => vim-latex
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Latex suite
+"" IMPORTANT: grep will sometimes skip displaying the file name if you
+"" search in a singe file. This will confuse Latex-Suite. Set your grep
+"" program to always generate a file-name.
+"set grepprg=grep\ -nH\ $*
 
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
+"" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+"" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+"" The following changes the default filetype back to 'tex':
+"let g:tex_flavor='latex'
 
-" settings
-let g:Tex_Leader=','
-let g:tex_flavor='latex'
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_ViewRule_pdf = 'okular --unique'
-"let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -synctex=-1 -file-line-error -src-specials -interaction=nonstopmode $*" -silent `grep -l "\documentclass" *tex`'
-set iskeyword+=:
+"" settings
+"let g:Tex_Leader=','
+"let g:tex_flavor='latex'
+"let g:Tex_DefaultTargetFormat = 'pdf'
+"let g:Tex_ViewRule_pdf = 'okular --unique'
+""let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
+"let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -synctex=-1 -file-line-error -src-specials -interaction=nonstopmode $*" -silent `grep -l "\documentclass" *tex`'
+"set iskeyword+=:
 
-" Okular editor command
-" gvim --remote-silent +%l %f
+"" Okular editor command
+"" gvim --remote-silent +%l %f
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -462,7 +469,30 @@ autocmd BufReadPost *
             \   exe "normal! g`\"" |
             \ endif
 " Remember info about open buffers on close
-set viminfo^=%
+"set viminfo^=%
+set viminfo=%,'100,<500,s10,h
+
+function! LucCheckIfBufferIsNew(...)
+  " check if the buffer with number a:1 is new.  That is to say, if it as
+  " no name and is empty.  If a:1 is not supplied 1 is used.
+  " find the buffer nr to check
+  let number = a:0 ? a:1 : 1
+  " save current and alternative buffer
+  let current = bufnr('%')
+  let alternative = bufnr('#')
+  let value = 0
+  " check buffer name
+  if bufexists(number) && bufname(number) == ''
+    silent! execute 'buffer' number
+    let value = line('$') == 1 && getline(1) == '' ? 1 : 0
+    silent! execute 'buffer' alternative
+    silent! execute 'buffer' current
+  endif
+  return value
+endfunction
+"autocmd VimEnter * if LucCheckIfBufferIsNew(1) | bwipeout 1 | endif 
+autocmd VimEnter * if LucCheckIfBufferIsNew(1) | bwipeout 1 | 
+\ doautocmd BufRead,BufNewFile | endif 
 
 
 " bufferline settings
