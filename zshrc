@@ -50,6 +50,8 @@ alias eclipse="~/vol/opt/eclipse/$OBJ_PATH/eclipse"
 
 alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 
+alias git="SSH_ASKPASS='' git" 
+
 alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$OBJ_PATH /opt/matlab/2012a/bin/matlab_acad"
 alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
 alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
