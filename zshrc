@@ -15,8 +15,12 @@ PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m
 # no beep
 xset b off
 
+autoload bashcompinit
+bashcompinit
+
 # default command line editor
 export EDITOR='gvim'      
+#export EDITOR='vim'      
 
 
 # -- custom aliases --
@@ -28,12 +32,11 @@ alias ...="cd ../.."
 alias untar="tar -zxvf"
 
 # vim and gvim start
-alias vim="vim -p"
+#alias vim="vim -p"
 #alias gvim="gvim -p --remote-tab-silent -geom 110x80"
 alias gvim="gvim -geom 110x80"
 #alias g="gvim --remote-silent -geom 110x80"
 alias g=gvim
-
 
 
 alias mampf="/home/seth_da/usr/bin/mampf"
@@ -52,7 +55,19 @@ alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 
 alias git="SSH_ASKPASS='' git" 
 
-alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$OBJ_PATH /opt/matlab/2012a/bin/matlab_acad"
+#if $(uname -m | grep '64'); then
+    #alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$OBJ_PATH /opt/matlab/2012b/bin/matlab_acad"
+#else
+    #alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$OBJ_PATH /opt/matlab/2012a/bin/matlab_acad"
+#fi
+
+if [ "$DLRRM_HOST_PLATFORM" "==" "sled11-x86_64-gcc4.x" ]; then
+    alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2014b/bin/matlab_acad"
+else
+    alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2012a/bin/matlab_acad"
+fi
+
+
 alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
 alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
@@ -83,3 +98,19 @@ alias latexmake="latexmk -pdf -silent -pvc \`grep -l '\documentclass' *tex\`"
 
 alias tea="py /home/seid_da/data/tea/next_tea.py"
 
+
+#openrave configuration
+#export USE_OPENRAVE_LATEST=true
+#export OPENRAVE_ROOT_DIR=/volume/USERSTORE/seid_da/openrave
+#export OPENRAVE_RESOURCES=/volume/USERSTORE/seid_da/openrave/resources
+
+#openrave settings
+#source /volume/USERSTORE/that/openrave_dependencies/openrave_dep.bash.env
+#export BOOST_INCLUDEDIR=/volume/software/common/foreign_packages/boost/latest/include
+#export BOOST_LIBRARYDIR=/volume/software/common/foreign_packages/boost/latest/lib/$OBJ_PATH
+
+#
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
+source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
+
+xrdb ~/.Xresources
