@@ -1,42 +1,43 @@
-# ssh configuration for new rmc git server
+# ssh configuration for NEW rmc git server
 Host rmc-github rmc-github.robotic.dlr.de
-    #ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-    HostName rmc-github.robotic.dlr.de
-    IdentityFile ~/.ssh/id_rsa_gitrmc
-    PreferredAuthentications publickey
-    PasswordAuthentication no
-    ForwardX11 no
-    ForwardAgent yes
+#ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+HostName rmc-github.robotic.dlr.de
+IdentityFile ~/.ssh/id_rsa_gitrmc
+PreferredAuthentications publickey
+PasswordAuthentication no
+ForwardX11 no
+ForwardAgent yes
 
 # ssh configuration for OLD rmc git server
 Host rmc-git rmc-git.robotic.dlr.de
-    ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-    HostName rmc-git.robotic.dlr.de
-    IdentityFile ~/.ssh/id_rsa_gitrmc
-    PreferredAuthentications publickey
-    PasswordAuthentication no
-    ForwardX11 no
-    ForwardAgent yes
+ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+HostName rmc-git.robotic.dlr.de
+IdentityFile ~/.ssh/id_rsa_gitrmc
+PreferredAuthentications publickey
+PasswordAuthentication no
+ForwardX11 no
+ForwardAgent yes
+
 
 # ssh configuration for rmc svn access from outside
 Host rmc-svn rmsvn01.robotic.dlr.de
-    ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-    #HostName rmc-git.robotic.dlr.de
-    #IdentityFile ~/.ssh/id_rsa
-    #PreferredAuthentications publickey
-    PasswordAuthentication yes
-    ForwardX11 no
-    ForwardAgent yes
+ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+#HostName rmc-git.robotic.dlr.de
+#IdentityFile ~/.ssh/id_rsa
+#PreferredAuthentications publickey
+PasswordAuthentication yes
+ForwardX11 no
+ForwardAgent yes
 
 
 # ssh configuration for github
 Host github github.com
-    HostName github.com
-    IdentityFile ~/.ssh/id_rsa_github
-    PreferredAuthentications publickey
-    PasswordAuthentication no
-    ForwardX11 no
-    ForwardAgent yes
+HostName github.com
+IdentityFile ~/.ssh/id_rsa_github
+PreferredAuthentications publickey
+PasswordAuthentication no
+ForwardX11 no
+ForwardAgent yes
 
 
 #
@@ -46,37 +47,38 @@ Host github github.com
 # host names containing dots:
 #
 Host *.robotic.dlr.de
-  ForwardAgent yes
-  ForwardX11 yes
-  Compression no
-  FallBackToRsh no
-  Protocol 2
+ForwardAgent yes
+ForwardX11 no
+ForwardAgent yes
+Compression yes
+FallBackToRsh no
+Protocol 2
 #
 # others are considered to be internet hosts:
 #
 Host *.*
-  ForwardAgent no
-  ForwardX11 no
-  FallBackToRsh no
-  Protocol 2
-  Compression yes
+ForwardAgent no
+ForwardX11 no
+FallBackToRsh no
+Protocol 2
+Compression yes
 #
 # special treatment of localhost: 
 #    -- 'NoHostAuthenticationForLocalhost' is a OpenSSH 3.x feature!
 #
 Host localhost
-  NoHostAuthenticationForLocalhost yes
-  ForwardAgent yes
-  ForwardX11 yes
-  Compression no
-  FallBackToRsh no
-  Protocol 2
+NoHostAuthenticationForLocalhost yes
+ForwardAgent yes
+ForwardX11 yes
+Compression no
+FallBackToRsh no
+Protocol 2
 #
 # everything else which does not need a dot to be resolved:
 #
 Host *
-  ForwardAgent yes
-  ForwardX11 yes
-  FallBackToRsh no
-  Protocol 2
-  Compression no
+ForwardAgent yes
+ForwardX11 yes
+FallBackToRsh no
+Protocol 2
+Compression no
