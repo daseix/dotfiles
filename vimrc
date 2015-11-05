@@ -76,7 +76,9 @@ Bundle "Chiel92/vim-autoformat"
 "Bundle "bling/vim-bufferline"
 Bundle "bling/vim-airline"
 "Bundle "jewes/Conque-Shell"
-
+"Bundle "scrooloose/nerdtree"
+" needs vim >= 7.3
+"Bundle  'klen/python-mode'
 
 "
 " Brief help
@@ -129,10 +131,6 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
-
-" PopupBuffer
-"setmousemodel=popup
-"set mousemodel=popup_setpos
 
 " copy also to system clipboard [needs newer vim version]
 "set clipboard=unnamed
