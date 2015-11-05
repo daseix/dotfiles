@@ -1,5 +1,6 @@
-# ssh configuration for new rmc git server
-Host rmc-github rmc-githubeid_da@donau.robotic.dlr.de nc %h %p
+# ssh configuration for NEW rmc git server
+Host rmc-github rmc-github.robotic.dlr.de
+#ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
 HostName rmc-github.robotic.dlr.de
 IdentityFile ~/.ssh/id_rsa_gitrmc
 PreferredAuthentications publickey
