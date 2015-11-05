@@ -51,7 +51,7 @@ alias windows="wfica"
 
 alias svndiff="svn diff --diff-cmd='meld'"
 
-alias eclipse="~/vol/opt/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
+alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 
@@ -87,8 +87,8 @@ alias keepass="mono ~/keepass/program/KeePass.exe"
 
 alias dirsizes="du -h -d 1 | sort -h"
 
-alias rsync2offline_home="rsync -rLptgoD /home/seid_da/ /home_offline/seid_da/ --exclude-from=rsync_exclude.txt"
-alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/ --exclude-from=rsync_exclude.txt --exclude=foreign_packages/laka_do_sym --exclude=foreign_packages/make_mex --exclude=matlab_latest"
+#alias rsync2offline_home="rsync -rLptgoD /home/seid_da/ /home_offline/seid_da/ --exclude-from=rsync_exclude.txt"
+#alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/ --exclude-from=rsync_exclude.txt --exclude=foreign_packages/laka_do_sym --exclude=foreign_packages/make_mex --exclude=matlab_latest"
 
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
