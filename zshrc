@@ -2,10 +2,14 @@
 # history size
 HISTSIZE=100000
 
+# zsh git prompt
+source ~/foreign_packages/zsh-git-prompt/zshrc.sh
+
 # shell prompt
-PS1TEXT='green'
 autoload -U colors && colors
-PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
+PS1TEXT='green'
+#PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
+PROMPT='%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ '
 
 # no beep
 xset b off
@@ -31,10 +35,9 @@ alias ...="cd ../.."
 alias untar="tar -zxvf"
 
 # vim and gvim start
-#alias vim="vim -p"
 #alias gvim="gvim -p --remote-tab-silent -geom 110x80"
-alias gvim="gvim -geom 110x80"
 #alias g="gvim --remote-silent -geom 110x80"
+alias gvim="gvim -geom 110x80"
 alias g=gvim
 
 
@@ -48,7 +51,7 @@ alias windows="wfica"
 
 alias svndiff="svn diff --diff-cmd='meld'"
 
-alias eclipse="~/vol/opt/eclipse/$OBJ_PATH/eclipse"
+alias eclipse="~/vol/opt/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 
