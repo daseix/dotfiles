@@ -1,8 +1,3 @@
-#export SHELL=/bin/zsh
-exec /bin/zsh -l
-
-
-
 # history size
 HISTSIZE=100000
 

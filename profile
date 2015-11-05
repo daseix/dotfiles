@@ -5,7 +5,7 @@
 umask 007
 
 # --- default shell ---
-export SHELL=/bin/zsh
+#export SHELL=/bin/zsh
 
 # --- fix git ESC problems for diff etc ---
 export LESS="-eirMX"
@@ -32,9 +32,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/medi
 #else
     #export OBJ_PATH=sled11-x86-gcc4.x
 #fi
-#export ARCH=$OBJ_PATH
-#export ARCH=sled11-x86-gcc4.x
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
+#export ARCH=sled11-x86-gcc4.x
 
 
 # --- RBDL 4 Matlab ---
@@ -43,3 +42,10 @@ export RBDL_BASE=/home/seid_da/foreign_packages/rbdl/$OBJ_PATH
 export RBDL_PATH=$RBDL_BASE/lib
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$RBDL_PATH
+
+
+export SHELL=/bin/zsh
+if [[ $- == *i* ]]
+then
+    exec /bin/zsh -l
+fi
