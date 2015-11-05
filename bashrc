@@ -1,12 +1,7 @@
-export SHELL=/bin/zsh
-#exec /bin/zsh -l
+#export SHELL=/bin/zsh
+exec /bin/zsh -l
 
 
-# file-creation mask: 
-#    (full access for group is not a problem, because
-#    every user has his own private group dlr_<user>_p)
-# rwxrwx0--
-umask 007
 
 # history size
 HISTSIZE=100000

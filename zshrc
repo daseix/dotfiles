@@ -1,8 +1,3 @@
-# file-creation mask: 
-#    (full access for group is not a problem, because
-#    every user has his own private group dlr_<user>_p)
-# rwxrwx0--
-umask 007
 
 # history size
 HISTSIZE=100000
@@ -15,6 +10,10 @@ PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m
 # no beep
 xset b off
 
+# java double click tim
+xrdb ~/.Xresources
+
+# zsh stuff
 autoload bashcompinit
 bashcompinit
 
@@ -56,9 +55,7 @@ alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
 alias git="SSH_ASKPASS='' git" 
 
 #if $(uname -m | grep '64'); then
-    #alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$OBJ_PATH /opt/matlab/2012b/bin/matlab_acad"
 #else
-    #alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$OBJ_PATH /opt/matlab/2012a/bin/matlab_acad"
 #fi
 
 if [ "$DLRRM_HOST_PLATFORM" "==" "sled11-x86_64-gcc4.x" ]; then
@@ -75,9 +72,10 @@ alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
 alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
+alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
+
 #http://ubuntuforums.org/showthread.php?t=723025
 alias sshintum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
-alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
 alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de -N"
 alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de -N"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
@@ -90,10 +88,8 @@ alias rsync2offline_home="rsync -rLptgoD /home/seid_da/ /home_offline/seid_da/ -
 alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/ --exclude-from=rsync_exclude.txt --exclude=foreign_packages/laka_do_sym --exclude=foreign_packages/make_mex --exclude=matlab_latest"
 
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
-#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc"
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
 #alias latexmake="latexmk -pdf -pdflatex=\"lualatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
-
 alias latexmake="latexmk -pdf -silent -pvc \`grep -l '\documentclass' *tex\`"
 
 alias tea="py /home/seid_da/data/tea/next_tea.py"
@@ -109,8 +105,5 @@ alias tea="py /home/seid_da/data/tea/next_tea.py"
 #export BOOST_INCLUDEDIR=/volume/software/common/foreign_packages/boost/latest/include
 #export BOOST_LIBRARYDIR=/volume/software/common/foreign_packages/boost/latest/lib/$OBJ_PATH
 
-#
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
-source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
+#source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
 
-xrdb ~/.Xresources
