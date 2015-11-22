@@ -75,6 +75,8 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'scrooloose/nerdtree'
 Plugin 'vim-latex/vim-latex'
+Plugin 'vim-scripts/MatlabFilesEdition'
+
 
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'bling/vim-bufferline'
