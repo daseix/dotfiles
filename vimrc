@@ -49,36 +49,39 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle required!
+Plugin 'gmarik/vundle'
 
-" My Bundles here:
+" My Plugin here:
 
 "" original repos on github
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'tpope/vim-rails.git'
 "" vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
+"Plugin 'L9'
+"Plugin 'FuzzyFinder'
 "" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
 "" git repos on your local machine (ie. when working on your own plugin)
-"Bundle 'file:///Users/gmarik/path/to/plugin'
+"Plugin 'file:///Users/gmarik/path/to/plugin'
 "" ...
 
-Bundle "Chiel92/vim-autoformat"
-"Bundle "bling/vim-bufferline"
-Bundle "bling/vim-airline"
-"Bundle "jewes/Conque-Shell"
-"Bundle "scrooloose/nerdtree"
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'vim-latex/vim-latex'
+
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'bling/vim-bufferline'
+Plugin 'bling/vim-airline'
+"Plugin 'jewes/Conque-Shell'
 " needs vim >= 7.3
-"Bundle  'klen/python-mode'
+"Plugin  'klen/python-mode'
 
 "
 " Brief help
