@@ -49,37 +49,32 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle required!
-Plugin 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " My Plugin here:
+Plugin 'L9'
 
-"" original repos on github
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Plugin 'tpope/vim-rails.git'
-"" vim-scripts repos
-"Plugin 'L9'
-"Plugin 'FuzzyFinder'
-"" non github repos
-"Plugin 'git://git.wincent.com/command-t.git'
-"" git repos on your local machine (ie. when working on your own plugin)
-"Plugin 'file:///Users/gmarik/path/to/plugin'
-"" ...
-
-Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'fholgado/minibufexpl.vim'
+"
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'scrooloose/nerdtree'
+"
 Plugin 'vim-latex/vim-latex'
+
+Plugin 'FuzzyFinder'
+"Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'vim-scripts/MatlabFilesEdition'
 
 
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'bling/vim-bufferline'
+"Plugin 'bling/vim-bufferline'
 Plugin 'bling/vim-airline'
 "Plugin 'jewes/Conque-Shell'
 " needs vim >= 7.3
@@ -222,8 +217,9 @@ let g:airline_section_warning = ''
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => python-mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on
-syntax on
+" already enabled at other place
+"filetype plugin indent on
+"syntax on
 "let g:pymode_rope_complete_on_dot = 0
 
 
@@ -618,8 +614,8 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+"map <leader>cc :botright cope<cr>
+"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 

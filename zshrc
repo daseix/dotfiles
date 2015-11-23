@@ -66,6 +66,7 @@ if [ "$DLRRM_HOST_PLATFORM" "==" "sled11-x86_64-gcc4.x" ]; then
 else
     alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2012a/bin/matlab_acad"
 fi
+alias matlab2012b="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2012b/bin/matlab_acad"
 
 
 alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
@@ -110,3 +111,4 @@ alias tea="py /home/seid_da/data/tea/next_tea.py"
 
 #source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
 
+export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH

@@ -16,6 +16,10 @@ export LC_TIME="de_DE.UTF-8"
 # --- Neo Tastaturbelegung ---
 export PATH=$PATH:~/.neo/    
 
+# vim 7.4
+export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
+
+
 # --- ln_base path ---
 export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
 source $LN_BASE/scripts/bash.rc
