@@ -59,37 +59,43 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " My Plugin here:
-Plugin 'L9'
 
-"Plugin 'fholgado/minibufexpl.vim'
-"
+Plugin 'fholgado/minibufexpl.vim'
+
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'scrooloose/nerdtree'
-"
+
 Plugin 'vim-latex/vim-latex'
 
+Plugin 'L9'
 Plugin 'FuzzyFinder'
 "Plugin 'vim-scripts/FuzzyFinder'
+
 Plugin 'vim-scripts/MatlabFilesEdition'
 
-
 Plugin 'Chiel92/vim-autoformat'
-"Plugin 'bling/vim-bufferline'
 Plugin 'bling/vim-airline'
+
+"Plugin 'bling/vim-bufferline'
 "Plugin 'jewes/Conque-Shell'
 " needs vim >= 7.3
 "Plugin  'klen/python-mode'
 
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" "filetype plugin on
+" "
+" " Brief help
+" " :PluginList       - lists configured plugins
+" " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" "
+" " see :h vundle for more details or wiki for FAQ
+" " Put your non-Plugin stuff after this line
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -107,19 +113,20 @@ set autochdir
 set cmdheight=1
 
 " set path for find
-set path=$PWD/**
+"set path=$PWD/**
 
 " map autoformat
 noremap <F3> :Autoformat<CR><CR>
 
 " tab label with tab number
-if has("gui_running")
-    set gtl=[%N]\ %t\ %M
-endif
+"if has("gui_running")
+    "set gtl=[%N]\ %t\ %M
+"endif
 
 
 " Spell Checking
 set spell
+set dictionary="/usr/dict/words"
 
 function! Tab_Or_Complete()
     if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
@@ -129,12 +136,11 @@ function! Tab_Or_Complete()
     endif
 endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-:set dictionary="/usr/dict/words"
 
 
 " copy also to system clipboard [needs newer vim version]
 "set clipboard=unnamed
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 " paste in visual mode without updating the default register:
 vnoremap <C-P> "_dP
@@ -431,10 +437,11 @@ set splitbelow
 set splitright
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+"map <leader>bd :Bclose<cr>
+map <leader>db :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+"map <leader>ba :1,1000 bd!<cr>
 
 " quick reference for all open buffers
 map <F1> :ls<cr>
@@ -443,6 +450,10 @@ map <F1> :ls<cr>
 map <F2> :ls<CR>:b<Space>
 map <leader>m :ls<CR>:b<Space>
 map gb <C-^>
+
+" Fuzzy Finder bindings
+map <leader>f :FufFile **/<CR>
+map <leader>b :FufBuffer<C-M>
 
 " Useful mappings for managing tabs
 "map <leader>tn :tabnew<cr>
@@ -455,7 +466,7 @@ map gb <C-^>
 "map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+"map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try

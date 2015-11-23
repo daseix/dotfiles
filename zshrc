@@ -3,13 +3,13 @@
 HISTSIZE=100000
 
 # zsh git prompt
-source ~/foreign_packages/zsh-git-prompt/zshrc.sh
+# source ~/foreign_packages/zsh-git-prompt/zshrc.s
 
 # shell prompt
 autoload -U colors && colors
 PS1TEXT='green'
-#PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
-PROMPT='%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ '
+PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
+#PROMPT='%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ '
 
 # no beep
 xset b off
@@ -111,4 +111,5 @@ alias tea="py /home/seid_da/data/tea/next_tea.py"
 
 #source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
 
+# only temporaryc
 export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
