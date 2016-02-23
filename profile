@@ -4,52 +4,50 @@
 # rwxrwx0--
 umask 007
 
-# --- default shell ---
-#export SHELL=/bin/zsh
-
-# --- fix git ESC problems for diff etc ---
+# --- fix git ESC problems for diff etc
 export LESS="-eirMX"
 
-# --- locale settings variable ---
+# --- locale settings variable
 export LC_TIME="de_DE.UTF-8"
 
-# --- Neo Tastaturbelegung ---
+# --- Neo Tastaturbelegung
 export PATH=$PATH:~/.neo/    
 
-# vim 7.4
+# --- rmpm/pkgtool 
+export PATH=$PATH:~/.local/bin:/volume/software/common/packages/rmpm/latest/bin/sled11-x86_64-gcc4.x/
+
+# --- vim 7.4
 export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
 
+# --- maple
+export PATH=$PATH:/opt/maple/latest/bin
 
-# --- ln_base path ---
-export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
+# --- ln_base path
+#export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
+export LN_BASE=/volume/software/common/packages/links_and_nodes/0.8
 source $LN_BASE/scripts/bash.rc
 
-# --- MediView ---
+# --- MediView
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/USERSTORE/bodenmue/packages/osg/3.0.1/lib/sled11-x86-gcc4.x
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/0.1.0/lib/sled11-x86-gcc4.x
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
 
+# --- PyBrain
+export PYTHONPATH=$PYTHONPATH:/home/seid_da/foreign_packages/pybrain
 
-# --- architecture environment variable ---
-#if $(uname -m | grep '64'); then
-    #export OBJ_PATH=sled11-x86_64-gcc4.x
-#else
-    #export OBJ_PATH=sled11-x86-gcc4.x
-#fi
+# --- additional architecture environment variables
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
-#export ARCH=sled11-x86-gcc4.x
+export ARCH=$DLRRM_HOST_PLATFORM
 
 
-# --- RBDL 4 Matlab ---
+# --- RBDL 4 Matlab
 #export RBDL_PATH=/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$ARCH
-export RBDL_BASE=/home/seid_da/foreign_packages/rbdl/$OBJ_PATH
-export RBDL_PATH=$RBDL_BASE/lib
-
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$RBDL_PATH
+#export RBDL_BASE=/home/seid_da/foreign_packages/rbdl/$OBJ_PATH
+#export RBDL_PATH=$RBDL_BASE/lib
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$RBDL_PATH
 
 
 export SHELL=/bin/zsh
-if [[ $- == *i* ]]
-then
-    exec /bin/zsh -l
-fi
+#if [[ $- == *i* ]]
+#then
+    #exec /bin/zsh -l
+#fi

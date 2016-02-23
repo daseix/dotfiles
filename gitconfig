@@ -1,0 +1,59 @@
+[user]
+    name = Daniel Seidel
+    email = daniel.seidel@dlr.de
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+    interactive = auto
+
+[alias]
+    st   = status -s
+    sts  = status --ignore-submodules
+    ci   = commit --verbose
+    br   = branch
+    co   = checkout
+    df   = diff
+    dc   = diff --cached
+    lg   = log -p
+    who  = shortlog -s --
+    ;slog = !git --no-pager log --format=oneline --abbrev-commit
+    ;clog  = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
+    ;ncclog  = log --pretty=tformat:'%h %ai %an -> %d %s'
+    ;dlog = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' --graph
+    ;dfnp = !git --no-pager diff
+    ;fuckoff = clean -fdx
+    ;see = "!f() { git show --format=fuller \"$@\" | view - -c \"set fdm=syntax\"; }; f"
+    ;fixup = commit --amend -C HEAD
+    ;econf = config --global -e
+    ;choosebranch = !git co "$(git branch --list --no-color | cut -c3- | egrep -v '^(resolved|parked)/' | fzf -x)"
+    ;cb = !git choosebranch
+    ;bs = branches
+    ;graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+    ;lasttag = describe --tags --abbrev=0
+    ;lt = describe --tags --abbrev=0
+    ;la = "!git config -l | grep alias | cut -c 7- | showaliases -a -"
+    ;meto = "!f() { : git branch ; local CURRENT=$(git rev-parse --abbrev-ref HEAD); git checkout $1; git merge $CURRENT; }; f"
+    ;# Choose files
+    ;cf = !tig status
+    gvdiff = "!f() { git diff \"$@\" | gvim - +'se ro ft=git'; }; f"
+    mtv = mergetool -t gvimdiff
+    ;pms = ci -a -m 'POOR MAN STASH'
+    ;upstream = !git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null
+    ;fchanged = !git diff --name-only $(git upstream)
+    unstash = stash pop
+
+[push]
+    default = simple
+
+
+[color "status"]
+    added = "green normal bold"
+    changed = "red normal bold"
+    untracked = "magenta normal bold"
+    header = "cyan normal dim"
+    branch = "normal normal bold"
+[merge]
+	tool = meld

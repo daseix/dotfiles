@@ -2,7 +2,7 @@
 Host rmc-github rmc-github.robotic.dlr.de
 #ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
 HostName rmc-github.robotic.dlr.de
-IdentityFile ~/.ssh/id_rsa_gitrmc
+IdentityFile ~/.ssh/id_rsa_rmc
 PreferredAuthentications publickey
 PasswordAuthentication no
 ForwardX11 no
@@ -12,7 +12,7 @@ ForwardAgent yes
 Host rmc-git rmc-git.robotic.dlr.de
 ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
 HostName rmc-git.robotic.dlr.de
-IdentityFile ~/.ssh/id_rsa_gitrmc
+IdentityFile ~/.ssh/id_rsa_rmc
 PreferredAuthentications publickey
 PasswordAuthentication no
 ForwardX11 no
@@ -27,6 +27,11 @@ ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
 PasswordAuthentication yes
 ForwardX11 no
 ForwardAgent yes
+
+Host e38 e38-dl-1 192.168.132.6
+Hostname 192.168.132.6
+User root
+IdentityFile ~/.ssh/id_rsa_rmc
 
 
 # ssh configuration for github
