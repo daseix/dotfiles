@@ -22,6 +22,9 @@ export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
 # --- maple
 export PATH=$PATH:/opt/maple/latest/bin
 
+# --- Python 2.7
+export PATH=/opt/python/python2.7/bin:$PATH
+
 # --- ln_base path
 #export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
 export LN_BASE=/volume/software/common/packages/links_and_nodes/0.8
@@ -31,8 +34,9 @@ source $LN_BASE/scripts/bash.rc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/USERSTORE/bodenmue/packages/osg/3.0.1/lib/sled11-x86-gcc4.x
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
 
-# --- PyBrain
-export PYTHONPATH=$PYTHONPATH:/home/seid_da/foreign_packages/pybrain
+# --- PyBrain / sklearn
+#export PYTHONPATH=$PYTHONPATH:/home/seid_da/foreign_packages/pybrain
+#export PYTHONPATH=$PYTHONPATH:/home/seid_da/foreign_packages/scikit-learn
 
 # --- additional architecture environment variables
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
