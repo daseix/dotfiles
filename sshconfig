@@ -22,8 +22,8 @@ ForwardAgent yes
 Host rmc-svn rmsvn01.robotic.dlr.de
 ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
 #HostName rmc-git.robotic.dlr.de
-#IdentityFile ~/.ssh/id_rsa
-#PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+PreferredAuthentications publickey
 PasswordAuthentication yes
 ForwardX11 no
 ForwardAgent yes

@@ -1,9 +1,31 @@
 
+# zsh stuff
+autoload -Uz bashcompinit
+bashcompinit
+
+# ./.. tab completion
+zstyle ':completion:*' special-dirs true
+
 # history size
 HISTSIZE=100000
 
 # zsh git prompt
 #source ~/foreign_packages/zsh-git-prompt/zshrc.sh
+
+###############################
+#fpath=($fpath $HOME/.zsh/func)
+#typeset -U fpath
+## zgitinit and prompt_wunjo_setup must be somewhere in your $fpath, see README for more.
+#setopt promptsubst
+
+## Load the prompt theme system
+#autoload -U promptinit
+#promptinit
+
+## Use the wunjo prompt theme
+#prompt wunjo
+###############################y
+
 
 # shell prompt
 autoload -U colors && colors
@@ -11,10 +33,21 @@ PS1TEXT='green'
 
 # regular prompt
 #PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
+
 PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%4~ %{$reset_color%}$ "
 
 # with git info
 #PROMPT='%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ '
+
+# arrow keys fix
+bindkey "^[[1;5C" emacs-forward-word
+bindkey "^[[1;5D" backward-word
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
+bindkey -M emacs '^[[3;5~' kill-word
+
+# change up key history behavior
+#bindkey "[[A" history-beginning-search-backward
 
 # no beep
 xset b off
@@ -22,9 +55,8 @@ xset b off
 # java double click tim
 xrdb ~/.Xresources
 
-# zsh stuff
-autoload bashcompinit
-bashcompinit
+
+
 
 # default command line editor
 export EDITOR='gvim'      
@@ -52,17 +84,24 @@ alias py="python"
 
 alias cmake_uninstall="xargs rm < install_manifest.txt"
 
-alias windows="wfica"
-
 alias svndiff="svn diff --diff-cmd='meld'"
 
 alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
-alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
+#alias blender="/volume/USERSTORE/f_moro/blender/blender"
 
-alias git="SSH_ASKPASS='' git" 
+# --- fix some git problems 
+export GIT_SSL_NO_VERIFY=1
+
+# --- fix git ESC problems for diff etc
+export LESS="-eirMX"
+#unset LESS
+#export LESS
+#alias git="SSH_ASKPASS='' git" 
 
 alias ff2="rsync -a ~/vol/profiles/firefox/ ~/vol/profiles/firefox2 && firefox -P \"2\""
+
+alias davtum=".davmail/davmail-linux-x86_64-4.7.2-2427/davmail.sh .davmail/tum.properties"
 
 #if $(uname -m | grep '64'); then
 #else
@@ -125,5 +164,3 @@ alias tea="py /home/seid_da/data/tea/next_tea.py"
 
 #source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
 
-# only temporaryc
-export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH

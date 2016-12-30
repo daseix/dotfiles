@@ -80,6 +80,7 @@ Plugin 'bling/vim-airline'
 "Plugin 'jewes/Conque-Shell'
 " needs vim >= 7.3
 "Plugin  'klen/python-mode'
+Plugin 'tmhedberg/SimpylFold'
 
 
 " All of your Plugins must be added before the following line
@@ -122,6 +123,10 @@ noremap <F3> :Autoformat<CR><CR>
 "if has("gui_running")
     "set gtl=[%N]\ %t\ %M
 "endif
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
 
 
 " Spell Checking
