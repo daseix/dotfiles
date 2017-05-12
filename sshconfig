@@ -33,6 +33,15 @@ Hostname 192.168.132.6
 User root
 IdentityFile ~/.ssh/id_rsa_rmc
 
+Host odroid odroid-dl-1 192.168.132.12
+Hostname 192.168.132.12
+User root
+IdentityFile ~/.ssh/id_rsa_rmc
+
+Host odroid2 odroid-dl-2 192.168.132.13
+Hostname 192.168.132.13
+User root
+IdentityFile ~/.ssh/id_rsa_rmc
 
 # ssh configuration for github
 Host github github.com
@@ -51,28 +60,30 @@ ForwardAgent yes
 # host names containing dots:
 #
 Host *.robotic.dlr.de
-ForwardAgent yes
+#ForwardAgent no
 ForwardX11 yes
-Compression yes
+ForwardX11Trusted yes
+Compression no
 FallBackToRsh no
 Protocol 2
 #
 # others are considered to be internet hosts:
 #
 Host *.*
-ForwardAgent no
-ForwardX11 no
+#ForwardAgent no
+ForwardX11 yes
 FallBackToRsh no
 Protocol 2
-Compression yes
+Compression no
 #
 # special treatment of localhost: 
 #    -- 'NoHostAuthenticationForLocalhost' is a OpenSSH 3.x feature!
 #
 Host localhost
 NoHostAuthenticationForLocalhost yes
-ForwardAgent yes
+#ForwardAgent no
 ForwardX11 yes
+ForwardX11Trusted yes
 Compression no
 FallBackToRsh no
 Protocol 2
@@ -80,8 +91,9 @@ Protocol 2
 # everything else which does not need a dot to be resolved:
 #
 Host *
-ForwardAgent yes
+#ForwardAgent no
 ForwardX11 yes
+ForwardX11Trusted yes
 FallBackToRsh no
 Protocol 2
 Compression no

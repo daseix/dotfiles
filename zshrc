@@ -34,7 +34,7 @@ PS1TEXT='green'
 # regular prompt
 #PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
 
-PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%4~ %{$reset_color%}$ "
+PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%3~ %{$reset_color%}$ "
 
 # with git info
 #PROMPT='%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ '
@@ -56,11 +56,31 @@ xset b off
 xrdb ~/.Xresources
 
 
+# --- fix some git problems 
+export GIT_SSL_NO_VERIFY=1
+
+# --- fix git ESC problems for diff etc
+export LESS="-eirMX"
+#unset LESS
+#export LESS
+#alias git="SSH_ASKPASS='' git" 
 
 
 # default command line editor
 export EDITOR='gvim'      
 #export EDITOR='vim'      
+
+
+# keyboard settings
+alias set_kb_rate='xset r rate 250 50'
+set_kb_rate
+# for mapping escape to caplsock: add to .xinitrc 
+#setxkbmap -option caps:escape &
+
+
+alias show_layout='setxkbmap -query | grep layout'
+alias layout_de='setxkbmap de -variant nodeadkeys'
+alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 
 
 # -- custom aliases --
@@ -90,30 +110,16 @@ alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 #alias blender="/volume/USERSTORE/f_moro/blender/blender"
 
-# --- fix some git problems 
-export GIT_SSL_NO_VERIFY=1
-
-# --- fix git ESC problems for diff etc
-export LESS="-eirMX"
-#unset LESS
-#export LESS
-#alias git="SSH_ASKPASS='' git" 
 
 alias ff2="rsync -a ~/vol/profiles/firefox/ ~/vol/profiles/firefox2 && firefox -P \"2\""
 
-alias davtum=".davmail/davmail-linux-x86_64-4.7.2-2427/davmail.sh .davmail/tum.properties"
+alias davtum="~/.davmail/davmail-linux-x86_64-4.7.2-2427/davmail.sh .davmail/tum.properties"
 
 #if $(uname -m | grep '64'); then
 #else
 #fi
 
-#if [ "$DLRRM_HOST_PLATFORM" "==" "sled11-x86_64-gcc4.x" ]; then
-    #alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2014b/bin/matlab_acad"
-#else
-    #alias matlab="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2012a/bin/matlab_acad"
-#fi
-#alias matlab2012b="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$DLRRM_HOST_PLATFORM /opt/matlab/2012b/bin/matlab_acad"
-alias matlab2012b="/opt/matlab/2014b/bin/matlab_acad"
+alias matlab2014b="/opt/matlab/2014b/bin/matlab_acad"
 alias matlab2012b="/opt/matlab/2012b/bin/matlab_acad"
 
 
@@ -124,7 +130,7 @@ alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
 alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
-alias sshdlr="ssh seid_da@donau.robotic.dlr.de -C"
+alias sshdlr="ssh seid_da@donau.robotic.dlr.de"
 
 #http://ubuntuforums.org/showthread.php?t=723025
 alias sshintum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
@@ -141,8 +147,6 @@ alias keepass="mono ~/keepass/program/KeePass.exe"
 
 alias dirsizes="du -h -d 1 | sort -h"
 
-#alias rsync2offline_home="rsync -rLptgoD /home/seid_da/ /home_offline/seid_da/ --exclude-from=rsync_exclude.txt"
-#alias rsync2intern_home="rsync -rLptgoD -K /home_offline/seid_da/ /home/seid_da/ --exclude-from=rsync_exclude.txt --exclude=foreign_packages/laka_do_sym --exclude=foreign_packages/make_mex --exclude=matlab_latest"
 
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
@@ -151,6 +155,10 @@ alias latexmake="latexmk -pdf -silent -pvc \`grep -l '\documentclass' *tex\`"
 
 alias tea="py /home/seid_da/data/tea/next_tea.py"
 
+alias pingHostDiscovery='function _pingHostDiscovery(){ time ( s=$1 ; for i in $(seq 1 254) ; do ( ping -n -c 1 -w 1 $s.$i 1>/dev/null 2>&1 && printf "%-16s %s\n" $s.$i responded ) & done ; wait ; echo ) }; _pingHostDiscovery'
+alias pingHostDiscoveryLoop='function _pingHostDiscoveryLoop(){ while true; do ( pingHostDiscovery $1; echo; sleep 1); done}; _pingHostDiscoveryLoop'
+
+alias odroidUart='/volume/software/common/foreign_packages/picocom/latest/bin/sled11-x86_64-gcc4.x/picocom -b 115200 /dev/ttyUSB0'
 
 #openrave configuration
 #export USE_OPENRAVE_LATEST=true

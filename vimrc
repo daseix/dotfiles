@@ -74,6 +74,9 @@ Plugin 'FuzzyFinder'
 Plugin 'vim-scripts/MatlabFilesEdition'
 
 Plugin 'Chiel92/vim-autoformat'
+let g:formatterpath = ['~/.local/lib/python2.7/site-packages/yapf/']
+
+
 Plugin 'bling/vim-airline'
 
 "Plugin 'bling/vim-bufferline'
