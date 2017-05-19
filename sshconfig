@@ -1,56 +1,61 @@
 # ssh configuration for NEW rmc git server
 Host rmc-github rmc-github.robotic.dlr.de
-#ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-HostName rmc-github.robotic.dlr.de
-IdentityFile ~/.ssh/id_rsa_rmc
-PreferredAuthentications publickey
-PasswordAuthentication no
-ForwardX11 no
-ForwardAgent yes
+    #ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+    HostName rmc-github.robotic.dlr.de
+    IdentityFile ~/.ssh/id_rsa_rmc
+    PreferredAuthentications publickey
+    PasswordAuthentication no
+    ForwardX11 no
+    ForwardAgent yes
 
 # ssh configuration for OLD rmc git server
 Host rmc-git rmc-git.robotic.dlr.de
-ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-HostName rmc-git.robotic.dlr.de
-IdentityFile ~/.ssh/id_rsa_rmc
-PreferredAuthentications publickey
-PasswordAuthentication no
-ForwardX11 no
-ForwardAgent yes
+    ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+    HostName rmc-git.robotic.dlr.de
+    IdentityFile ~/.ssh/id_rsa_rmc
+    PreferredAuthentications publickey
+    PasswordAuthentication no
+    ForwardX11 no
+    ForwardAgent yes
 
 # ssh configuration for rmc svn access from outside
 Host rmc-svn rmsvn01.robotic.dlr.de
-ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-#HostName rmc-git.robotic.dlr.de
-IdentityFile ~/.ssh/id_rsa
-PreferredAuthentications publickey
-PasswordAuthentication yes
-ForwardX11 no
-ForwardAgent yes
+    ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+    #HostName rmc-git.robotic.dlr.de
+    IdentityFile ~/.ssh/id_rsa
+    PreferredAuthentications publickey
+    PasswordAuthentication yes
+    ForwardX11 no
+    ForwardAgent yes
 
-Host e38 e38-dl-1 192.168.132.6
-Hostname 192.168.132.6
-User root
-IdentityFile ~/.ssh/id_rsa_rmc
+Host e38 e38-dl-1
+    Hostname 192.168.132.6
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
 
-Host odroid odroid-dl-1 192.168.132.12
-Hostname 192.168.132.12
-User root
-IdentityFile ~/.ssh/id_rsa_rmc
+Host odroid1
+    Hostname 192.168.132.11
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
 
-Host odroid2 odroid-dl-2 192.168.132.13
-Hostname 192.168.132.13
-User root
-IdentityFile ~/.ssh/id_rsa_rmc
+Host odroid2
+    Hostname 192.168.132.12
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+
+Host odroid3
+    Hostname 192.168.132.13
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
 
 # ssh configuration for github
 Host github github.com
-HostName github.com
-IdentityFile ~/.ssh/id_rsa_github
-PreferredAuthentications publickey
-PasswordAuthentication no
-ForwardX11 no
-ForwardAgent yes
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_github
+    PreferredAuthentications publickey
+    PasswordAuthentication no
+    ForwardX11 no
+    ForwardAgent yes
 
 
 #
@@ -60,40 +65,43 @@ ForwardAgent yes
 # host names containing dots:
 #
 Host *.robotic.dlr.de
-#ForwardAgent no
-ForwardX11 yes
-ForwardX11Trusted yes
-Compression no
-FallBackToRsh no
-Protocol 2
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    FallBackToRsh no
+    Protocol 2
+
 #
 # others are considered to be internet hosts:
 #
 Host *.*
-#ForwardAgent no
-ForwardX11 yes
-FallBackToRsh no
-Protocol 2
-Compression no
+    #ForwardAgent no
+    ForwardX11 yes
+    FallBackToRsh no
+    Protocol 2
+    Compression no
+
 #
 # special treatment of localhost: 
 #    -- 'NoHostAuthenticationForLocalhost' is a OpenSSH 3.x feature!
 #
 Host localhost
-NoHostAuthenticationForLocalhost yes
-#ForwardAgent no
-ForwardX11 yes
-ForwardX11Trusted yes
-Compression no
-FallBackToRsh no
-Protocol 2
+    NoHostAuthenticationForLocalhost yes
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    FallBackToRsh no
+    Protocol 2
+
 #
 # everything else which does not need a dot to be resolved:
 #
 Host *
-#ForwardAgent no
-ForwardX11 yes
-ForwardX11Trusted yes
-FallBackToRsh no
-Protocol 2
-Compression no
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    FallBackToRsh no
+    Protocol 2
+    Compression no
