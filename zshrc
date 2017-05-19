@@ -9,35 +9,34 @@ zstyle ':completion:*' special-dirs true
 # history size
 HISTSIZE=100000
 
+# vi mode and low delay
+#bindkey -v
+#export KEYTIMEOUT=1
+
 # zsh git prompt
 #source ~/foreign_packages/zsh-git-prompt/zshrc.sh
 
-###############################
-#fpath=($fpath $HOME/.zsh/func)
-#typeset -U fpath
-## zgitinit and prompt_wunjo_setup must be somewhere in your $fpath, see README for more.
-#setopt promptsubst
 
-## Load the prompt theme system
-#autoload -U promptinit
-#promptinit
-
-## Use the wunjo prompt theme
-#prompt wunjo
-###############################y
-
+# pure zsh prompt
+fpath=($fpath $HOME/foreign_packages/zsh-prompt-pure-oneline)
+autoload -U promptinit; promptinit
+prompt pure
 
 # shell prompt
 autoload -U colors && colors
 PS1TEXT='green'
 
-# regular prompt
+# prompt with time
 #PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
 
-PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%3~ %{$reset_color%}$ "
+# prompt without time
+#PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%3~ %{$reset_color%}$ "
 
-# with git info
-#PROMPT='%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ '
+# short prompt without folder
+#PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%{$reset_color%}"
+
+## with git info
+#PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ "
 
 # arrow keys fix
 bindkey "^[[1;5C" emacs-forward-word
@@ -64,6 +63,7 @@ export LESS="-eirMX"
 #unset LESS
 #export LESS
 #alias git="SSH_ASKPASS='' git" 
+unset SSH_ASKPASS
 
 
 # default command line editor
@@ -160,15 +160,8 @@ alias pingHostDiscoveryLoop='function _pingHostDiscoveryLoop(){ while true; do (
 
 alias odroidUart='/volume/software/common/foreign_packages/picocom/latest/bin/sled11-x86_64-gcc4.x/picocom -b 115200 /dev/ttyUSB0'
 
-#openrave configuration
-#export USE_OPENRAVE_LATEST=true
-#export OPENRAVE_ROOT_DIR=/volume/USERSTORE/seid_da/openrave
-#export OPENRAVE_RESOURCES=/volume/USERSTORE/seid_da/openrave/resources
+alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
+# on client: export http_proxy=http://192.168.132.2:54382
 
-#openrave settings
-#source /volume/USERSTORE/that/openrave_dependencies/openrave_dep.bash.env
-#export BOOST_INCLUDEDIR=/volume/software/common/foreign_packages/boost/latest/include
-#export BOOST_LIBRARYDIR=/volume/software/common/foreign_packages/boost/latest/lib/$OBJ_PATH
 
-#source /volume/USERSTORE/that/openrave/build/share/openrave-0.9/openrave.bash
-
+#alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
