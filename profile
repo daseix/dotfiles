@@ -18,7 +18,7 @@ export LC_TIME="de_DE.UTF-8"
 #export PATH=$PATH:~/.neo/    
 
 # --- ff/tb
-export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
+#export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
 #export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
 
 # --- vim 7.4
@@ -27,11 +27,6 @@ export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
 # --- maple
 export PATH=/opt/maple/latest/bin:$PATH
 
-# --- Python 2.7
-#if [ "$DLRRM_HOST_PLATFORM" != "osl42-x86_64" ] 
-#then
-#export PATH=/opt/python/python2.7/bin:$PATH
-#fi
 
 # --- Pip etc
 export PATH=$HOME/.local/bin:$PATH
@@ -53,15 +48,15 @@ export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 
 
 # --- rmpm/pkgtool 
-export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
+#export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
 
-# --- Links and Nodes
-if [ "$DLRRM_HOST_PLATFORM" ] 
-then
-    export LN_BASE=/volume/software/common/packages/links_and_nodes/0.11
-    source $LN_BASE/scripts/bash.rc
-    export PATH=$LN_BASE/scripts:$PATH
-fi
+## --- Links and Nodes
+#if [ "$DLRRM_HOST_PLATFORM" ] 
+#then
+    #export LN_BASE=/volume/software/common/packages/links_and_nodes/0.11
+    #source $LN_BASE/scripts/bash.rc
+    #export PATH=$LN_BASE/scripts:$PATH
+#fi
 
 
 
