@@ -109,7 +109,6 @@ alias svndiff="svn diff --diff-cmd='meld'"
 
 alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
-#alias blender="/volume/USERSTORE/f_moro/blender/blender"
 
 
 alias ff2="rsync -a ~/vol/profiles/firefox/ ~/vol/profiles/firefox2 && firefox -P \"2\""
