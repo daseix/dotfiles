@@ -109,7 +109,7 @@ alias svndiff="svn diff --diff-cmd='meld'"
 
 alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
-#alias blender="/volume/USERSTORE/f_moro/blender/blender"
+
 
 
 alias ff2="rsync -a ~/vol/profiles/firefox/ ~/vol/profiles/firefox2 && firefox -P \"2\""
@@ -135,8 +135,8 @@ alias sshdlr="ssh seid_da@donau.robotic.dlr.de"
 
 #http://ubuntuforums.org/showthread.php?t=723025
 alias sshtum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
-alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de -N"
-alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de -N"
+alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de" # -N"
+alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de" # -N"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
 alias sshdlr_git="ssh -D 5555 -N  seid_da@donau.robotic.dlr.de"
 #export https_proxy=socks5h://127.0.0.1:5555
