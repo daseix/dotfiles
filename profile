@@ -18,8 +18,8 @@ export LC_TIME="de_DE.UTF-8"
 #export PATH=$PATH:~/.neo/    
 
 # --- ff/tb
-#export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
-#export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
+export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
+export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
 
 # --- vim 7.4
 export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
@@ -48,7 +48,7 @@ export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 
 
 # --- rmpm/pkgtool 
-#export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
+export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
 
 ## --- Links and Nodes
 #if [ "$DLRRM_HOST_PLATFORM" ] 
@@ -57,6 +57,7 @@ export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
     #source $LN_BASE/scripts/bash.rc
     #export PATH=$LN_BASE/scripts:$PATH
 #fi
+#pkgtool --env links_and_nodes==0.11 --env-format embed_sh > links_and_nodes.env && source links_and_nodes.env && rm links_and_nodes.env
 
 
 

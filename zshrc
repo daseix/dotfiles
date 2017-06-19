@@ -130,11 +130,11 @@ alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@l
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
-alias sshintum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
+alias sshtum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
 alias sshdlr="ssh seid_da@donau.robotic.dlr.de"
 
 #http://ubuntuforums.org/showthread.php?t=723025
-alias sshintum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
+alias sshtum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
 alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de -N"
 alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de -N"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>

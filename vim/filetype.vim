@@ -5,4 +5,5 @@ au BufNewFile,BufRead *.iv		setf iv
 au BufNewFile,BufRead *.wikitext	setf wikipedia
 " ln_manager
 au BufNewFile,BufRead *.lnc	setf lnc
+au BufNewFile,BufRead *.rkc	setf lnc
 augroup END

@@ -10,13 +10,13 @@ endif
 
 syn keyword	lnConfTodo contained TODO FIXME XXX
 
-syn keyword	lnConfMainKnown contained instance node_map defines process group
+syn keyword	lnConfMainKnown contained instance node_map defines process group push_name_prefix pop_name_prefix process_template pipe_include include hosts network
 syn match	lnConfMain "^[a-z_]\+\( \|$\)" contains=lnConfMainKnown nextgroup=lnConfMainParam 
 syn match lnConfMainParam ".*$" contained
 
-syn match lnConfVar	"%([^)]\+)" contained
+syn match lnConfVar	"%([^)]\+)" contained 
 
-syn keyword	lnConfKeyKnown contained command environment pass_environment provides node depends_on term_signal change_directory change_dictionary ready_regex members flags gui name manager verbose2_base depends_on_restart term_timeout
+syn keyword	lnConfKeyKnown contained command environment pass_environment provides node depends_on term_signal change_directory change_dictionary ready_regex members flags gui name manager verbose2_base depends_on_restart term_timeout use_template start_before undef pipe_include include add add_message_definition_dir rk_domain rk_version rk_base rk_name rk_node rk_arguments rk_no_warnings rk_debug rk_use_template enable_auto_groups member_interfaces
 syn match	lnConfKey "^[a-z0-9_]\+:"he=e-1 contains=lnConfKeyKnown nextgroup=lnConfSubVarsB,lnConfSubVars,lnConfValue
 syn region lnConfSubVarsB start=+ *\[+ skip=+\\\]+ end=+\]+ contained contains=lnConfVar,lnConfSubKey
 syn match lnConfSubVars " *[a-zA-Z0-9_()%\$]\+=[^=]*$" contained contains=lnConfVar,lnConfSubKey
