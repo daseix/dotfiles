@@ -60,6 +60,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 " My Plugin here:
 
+" plugin to autoconvert gui colorschemes to terminal
+"Plugin 'godlygeek/csapprox'
+Plugin 'vim-scripts/csapprox'
+
 Plugin 'fholgado/minibufexpl.vim'
 
 Plugin 'scrooloose/nerdcommenter'
