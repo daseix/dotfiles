@@ -69,16 +69,17 @@ export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFOR
 
 
 
+#[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
+#shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 
-# --- RBDL 4 Matlab
-#export RBDL_PATH=/home/seid_da/foreign_packages/laka_do_sym/rbdl/lib/$ARCH
-#export RBDL_BASE=/home/seid_da/foreign_packages/rbdl/$OBJ_PATH
-#export RBDL_PATH=$RBDL_BASE/lib
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$RBDL_PATH
+#if [ ! -z ${DLRRM_HOST_PLATFORM+x} ]
+if [ "$DLRRM_HOST_PLATFORM" == "osl42-x86_64" ];
+then
+    export SHELL=/usr/bin/zsh
+    if [[ $- = *i* ]] 
+    then
+        exec /usr/bin/zsh -l
+    fi 
+fi
 
 
-export SHELL=/usr/bin/zsh
-#if [[ $- == *i* ]]
-#then
-#exec /usr/bin/zsh -l
-#fi
