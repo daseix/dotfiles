@@ -98,6 +98,8 @@ alias untar="tar -zxvf"
 alias gvim="gvim -geom 110x80"
 alias g=gvim
 
+alias xterm='xterm -bg black -fg grey'
+
 
 alias mampf="/home/seth_da/usr/bin/mampf"
 
@@ -166,3 +168,20 @@ alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 
 
 #alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
+
+# fix kde login errors
+#find ~/.cache -name "*.lock" | xargs -l rm
+#rm ~/.cache/ksycoca5*
+
+
+function start_tmux() {
+    if type tmux &> /dev/null; then
+        #if not inside a tmux session, and if no session is started, start a new session
+        #if [[ $HOST == "laptop" && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+        if [[ -z ${SSH_TTY} && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+            #(tmux -2 attach || tmux -2 new-session)
+            (tmux -2 new-session)
+        fi
+    fi
+}
+start_tmux
