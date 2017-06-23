@@ -64,6 +64,9 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'godlygeek/csapprox'
 Plugin 'vim-scripts/csapprox'
 
+" smart pane switching with awareness of tmux
+Plugin 'christoomey/vim-tmux-navigator'
+
 Plugin 'fholgado/minibufexpl.vim'
 
 Plugin 'scrooloose/nerdcommenter'
