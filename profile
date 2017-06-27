@@ -32,6 +32,10 @@ export PATH=/opt/maple/latest/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 
+# --- openjdk temporarily
+#export PATH=/automount_offline/rmnfs01/gpfs/sw/openjdk:$PATH
+export PATH=~/foreign_packages/openjdk/bin:$PATH
+
 
 # vtk python for mayavi
 #export LD_LIBRARY_PATH=/volume/software/common/foreign_packages/vtk/6.3.0/lib/:$PYTHONPATH
