@@ -21,9 +21,9 @@ keysym i = i I Delete NoSymbol NoSymbol NoSymbol
 
 ! home and end
 keysym o = o O End NoSymbol NoSymbol NoSymbol
-keysym y = y Y Home NoSymbol NoSymbol NoSymbol
+keysym y = y Y Home NoSymbol udiaeresis Udiaeresis
 !keycode 52 = z Z Home NoSymbol NoSymbol NoSymbol
-keysym z = z Z Home NoSymbol NoSymbol NoSymbol
+keysym z = z Z Home NoSymbol NoSymbol NoSymbol 
 
 ! Enter
 keysym n = n N Return NoSymbol NoSymbol NoSymbol
