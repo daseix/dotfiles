@@ -84,7 +84,7 @@ export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFOR
 #shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 
 #if [ ! -z ${DLRRM_HOST_PLATFORM+x} ]
-if [ "$DLRRM_HOST_PLATFORM" == "osl42-x86_64" ];
+if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
 then
     export SHELL=/usr/bin/zsh
     if [[ $- = *i* ]] 
