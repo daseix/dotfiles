@@ -91,6 +91,9 @@ alias la="ls -lha"
 alias ..="cd .." 
 alias ...="cd ../.."
 
+alias llg='ll | grep'
+alias lag='la | grep'
+
 alias untar="tar -zxvf"
 
 # vim and gvim start
