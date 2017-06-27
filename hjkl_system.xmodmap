@@ -1,0 +1,29 @@
+! remove Caps Lock
+clear lock
+remove Lock = Caps_Lock
+remove Shift = Caps_Lock
+remove Lock = Escape
+remove Shift = Escape
+
+! add Mode_switch
+keycode 66 = NoSymbol NoSymbol
+keycode 66 = Mode_switch
+
+! arrow keys
+keysym h = h H Left NoSymbol NoSymbol NoSymbol
+keysym j = j J Down NoSymbol NoSymbol NoSymbol
+keysym k = k K Up NoSymbol NoSymbol NoSymbol
+keysym l = l L Right NoSymbol lstroke Lstroke
+
+! delete and backspace
+keysym u = u U BackSpace NoSymbol NoSymbol NoSymbol  
+keysym i = i I Delete NoSymbol NoSymbol NoSymbol  
+
+! home and end
+keysym o = o O End NoSymbol NoSymbol NoSymbol
+keysym y = y Y Home NoSymbol udiaeresis Udiaeresis
+!keycode 52 = z Z Home NoSymbol NoSymbol NoSymbol
+keysym z = z Z Home NoSymbol NoSymbol NoSymbol 
+
+! Enter
+keysym n = n N Return NoSymbol NoSymbol NoSymbol

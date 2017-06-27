@@ -5,7 +5,9 @@
 umask 007
 
 # set keyboard layout
-setxkbmap us -variant altgr-intl -option caps:escape
+#setxkbmap us -variant altgr-intl -option caps:escape
+setxkbmap us -variant altgr-intl
+xmodmap ~/.dotfiles/hjkl_system.xmodmap
 
 # --- additional architecture environment variables
 export OBJ_PATH=$DLRRM_HOST_PLATFORM

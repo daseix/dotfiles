@@ -80,8 +80,9 @@ set_kb_rate
 
 
 alias show_layout='setxkbmap -query | grep layout'
-alias layout_de='setxkbmap de -variant nodeadkeys'
-alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
+alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
+#alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
+alias layout_us='setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
 
 
 # -- custom aliases --
@@ -184,4 +185,4 @@ function start_tmux() {
         fi
     fi
 }
-start_tmux
+#start_tmux
