@@ -5,9 +5,14 @@
 umask 007
 
 # set keyboard layout
-#setxkbmap us -variant altgr-intl -option caps:escape
-setxkbmap us -variant altgr-intl
-xmodmap ~/.dotfiles/hjkl_system.xmodmap
+#if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ]
+if [ -z ${SSH_TTY} ]
+then
+    #setxkbmap us -variant altgr-intl -option caps:escape
+    setxkbmap us -variant altgr-intl
+    xmodmap ~/.dotfiles/hjkl_system.xmodmap
+fi
+
 
 # --- additional architecture environment variables
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
