@@ -10,7 +10,7 @@ endif
 
 syn keyword	lnConfTodo contained TODO FIXME XXX
 
-syn keyword	lnConfMainKnown contained instance node_map defines process group push_name_prefix pop_name_prefix process_template pipe_include include hosts network
+syn keyword	lnConfMainKnown contained instance node_map defines process state group push_name_prefix pop_name_prefix process_template pipe_include include hosts network
 syn match	lnConfMain "^[a-z_]\+\( \|$\)" contains=lnConfMainKnown nextgroup=lnConfMainParam 
 syn match lnConfMainParam ".*$" contained
 
