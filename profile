@@ -6,12 +6,11 @@ umask 007
 
 # set keyboard layout
 #if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ]
-if [ -z ${SSH_TTY} ]
-then
-    #setxkbmap us -variant altgr-intl -option caps:escape
-    setxkbmap us -variant altgr-intl
-    xmodmap ~/.dotfiles/hjkl_system.xmodmap
-fi
+#if [ -z ${SSH_TTY} ]
+#then
+    ##setxkbmap us -variant altgr-intl -option caps:escape
+    #setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap
+#fi
 
 
 # --- additional architecture environment variables
@@ -29,7 +28,6 @@ export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
 export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
 
 # --- vim 7.4
-export PATH=~/foreign_packages/vim/$DLRRM_HOST_PLATFORM/bin:$PATH
 
 # --- maple
 export PATH=/opt/maple/latest/bin:$PATH

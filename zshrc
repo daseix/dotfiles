@@ -85,6 +85,21 @@ alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_sy
 alias layout_us='setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
 
 
+if [ -z ${SSH_TTY} ]
+then
+    #echo "no ssh connection"
+    if [[ $- != *i* ]] 
+    then
+        layout_us
+        #echo "no login shell"
+    #else
+        #echo "login shell"
+    fi 
+#else
+    #echo "ssh connection"
+fi
+
+
 # -- custom aliases --
 alias ll="ls -lh"
 alias la="ls -lha"
