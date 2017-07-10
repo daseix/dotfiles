@@ -4,13 +4,6 @@
 # rwxrwx0--
 umask 007
 
-# set keyboard layout
-#if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ]
-#if [ -z ${SSH_TTY} ]
-#then
-    ##setxkbmap us -variant altgr-intl -option caps:escape
-    #setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap
-#fi
 
 
 # --- additional architecture environment variables
@@ -76,6 +69,13 @@ export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFOR
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/common/foreign_packages/osg/latest/lib/$DLRRM_HOST_PLATFORM
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
 
+## set keyboard layout
+#if [ -z "${SSH_TTY}" ]
+#then
+    ##setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap
+    #setxkbmap us -variant altgr-intl
+    ##xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY
+#fi
 
 
 #[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
@@ -87,6 +87,10 @@ then
     export SHELL=/usr/bin/zsh
     if [[ $- = *i* ]] 
     then
+
+
+
+
         exec /usr/bin/zsh -l
     fi 
 fi

@@ -1196,7 +1196,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
     };
     key <AD11> {
         type[group1]= "FOUR_LEVEL",
-        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
+        type[group2]= "FOUR_LEVEL",
         symbols[Group1]= [     bracketleft,       braceleft,   guillemotleft, leftdoublequotemark ],
         symbols[Group2]= [     udiaeresis, Udiaeresis ]
     };
@@ -1212,7 +1212,6 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
     };
     key <AC02> {
         type[group1]= "FOUR_LEVEL",
-        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
         symbols[Group1]= [               s,               S,          ssharp,         section ],
         symbols[Group2]= [     ssharp, U1E9E ]
     };
@@ -1229,34 +1228,34 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group1]= [               g,               G,               g,               G ]
     };
     key <AC06> {
-        type[group1]= "FOUR_LEVEL_ALPHABETIC",
+        type[group1]= "FOUR_LEVEL",
         symbols[Group1]= [               h,               H,        NoSymbol,        NoSymbol ],
         symbols[Group2]= [            Left ]
     };
     key <AC07> {
-        type[group1]= "FOUR_LEVEL_ALPHABETIC",
+        type[group1]= "FOUR_LEVEL",
         symbols[Group1]= [               j,               J,               4,        NoSymbol ],
         symbols[Group2]= [            Down ]
     };
     key <AC08> {
-        type[group1]= "FOUR_LEVEL_ALPHABETIC",
+        type[group1]= "FOUR_LEVEL",
         symbols[Group1]= [               k,               K,               5,        NoSymbol ],
         symbols[Group2]= [              Up ]
     };
     key <AC09> {
-        type[group1]= "FOUR_LEVEL_ALPHABETIC",
+        type[group1]= "FOUR_LEVEL",
         symbols[Group1]= [               l,               L,               6,        NoSymbol ],
         symbols[Group2]= [           Right ]
     };
     key <AC10> {
         type[group1]= "FOUR_LEVEL",
-        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
+        type[group2]= "FOUR_LEVEL",
         symbols[Group1]= [       semicolon,           colon,       paragraph,          degree ],
         symbols[Group2]= [      odiaeresis,      Odiaeresis,     doubleacute,     doubleacute ]
     };
     key <AC11> {
         type[group1]= "FOUR_LEVEL",
-        type[group2]= "FOUR_LEVEL_SEMIALPHABETIC",
+        type[group2]= "FOUR_LEVEL",
         symbols[Group1]= [      apostrophe,        quotedbl,      dead_acute,  dead_diaeresis ],
         symbols[Group2]= [      adiaeresis,      Adiaeresis,     asciicircum,     asciicircum ]
     };
@@ -1296,7 +1295,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group2]= [          Return ]
     };
     key <AB07> {
-        type[group1]= "FOUR_LEVEL_SEMIALPHABETIC",
+        type[group1]= "FOUR_LEVEL",
         symbols[Group1]= [               m,               M,               1,        NoSymbol ],
         symbols[Group2]= [          Escape ]
     };
@@ -1322,6 +1321,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
         symbols[Group1]= [           space,           space,    0, NoSymbol ]   };
     key <CAPS> {         [     Mode_switch ] };
     key <LSGT> { [       ISO_Level3_Shift,    ISO_Level3_Shift,  ISO_Group_Shift,   ISO_Group_Shift ] };
+    //key <LWIN> { [       ISO_Level3_Shift,    ISO_Level3_Shift,  ISO_Group_Shift,   ISO_Group_Shift ] };
     key <FK01> {
         type= "CTRL+ALT",
         symbols[Group1]= [              F1,              F1,              F1,              F1, XF86Switch_VT_1 ]
@@ -1539,6 +1539,31 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
     key <I244> {         [     XF86Battery ] };
     key <I245> {         [   XF86Bluetooth ] };
     key <I246> {         [        XF86WLAN ] };
+    key <AB11> {         [     space ] };
+    key <AE13> {         [     space ] };
+    key <JPCM> {         [     space ] };
+    key <I120> {         [     space ] };
+    key <I149> {         [     space ] };
+    key <I154> {         [     space ] };
+    key <I168> {         [     space ] };
+    key <I178> {         [     space ] };
+    key <I183> {         [     space ] };
+    key <I184> {         [     space ] };
+    key <FK19> {         [     space ] };
+    key <FK24> {         [     space ] };
+    key <SUPR> {         [     space ] };
+    key <I217> {         [     space ] };
+    key <I219> {         [     space ] };
+    key <I221> {         [     space ] };
+    key <I222> {         [     space ] };
+    key <I230> {         [     space ] };
+    key <I247> {         [     space ] };
+    key <I248> {         [     space ] };
+    key <I249> {         [     space ] };
+    key <I250> {         [     space ] };
+    key <I251> {         [     space ] };
+    key <I252> {         [     space ] };
+    key <I253> {         [     space ] };
     modifier_map Control { <LCTL> };
     modifier_map Shift { <LFSH> };
     modifier_map Shift { <RTSH> };
