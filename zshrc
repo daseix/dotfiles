@@ -80,10 +80,25 @@ set_kb_rate
 
 
 alias show_layout='setxkbmap -query | grep layout'
-alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
+#alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
+alias layout_de='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
-alias layout_us='setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
+#alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
+alias layout_us='xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
 
+#if [ -z ${SSH_TTY} ] # check if not ssh session
+#then
+    ##echo "not ssh"
+    #if [[  $- = *i* ]] # check if not login shell
+    #then
+        ##echo "not login shell"
+        #setxkbmap us -variant altgr-intl
+        #layout_us
+    #fi 
+#fi
+
+#setxkbmap us -variant altgr-intl
+#xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY
 
 # -- custom aliases --
 alias ll="ls -lh"
