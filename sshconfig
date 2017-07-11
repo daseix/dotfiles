@@ -1,4 +1,4 @@
-# ssh configuration for NEW rmc git server
+# ssh configuration for rmc git server
 Host rmc-github rmc-github.robotic.dlr.de
     #ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
     HostName rmc-github.robotic.dlr.de
@@ -8,15 +8,6 @@ Host rmc-github rmc-github.robotic.dlr.de
     ForwardX11 no
     ForwardAgent yes
 
-# ssh configuration for OLD rmc git server
-Host rmc-git rmc-git.robotic.dlr.de
-    ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
-    HostName rmc-git.robotic.dlr.de
-    IdentityFile ~/.ssh/id_rsa_rmc
-    PreferredAuthentications publickey
-    PasswordAuthentication no
-    ForwardX11 no
-    ForwardAgent yes
 
 # ssh configuration for rmc svn access from outside
 Host rmc-svn rmsvn01.robotic.dlr.de
@@ -56,6 +47,7 @@ Host github github.com
     PasswordAuthentication yes
     ForwardX11 no
     ForwardAgent yes
+    UseKeychain yes
 
 
 #
