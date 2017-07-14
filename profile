@@ -85,6 +85,8 @@ export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFOR
 if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
 then
     export SHELL=/usr/bin/zsh
+
+    # this loads zsh when in a login shell [e.g. ssh]
     if [[ $- = *i* ]] 
     then
         exec /usr/bin/zsh -l
