@@ -84,7 +84,7 @@ alias show_layout='setxkbmap -query | grep layout'
 alias layout_de='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 #alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
-alias layout_us='xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+alias layout_us='xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
 
 #if [ -z ${SSH_TTY} ] # check if not ssh session
 #then
@@ -204,3 +204,6 @@ function start_tmux() {
     fi
 }
 #start_tmux
+
+
+#zenity --warning --text "I am in .xprofile and I RUN\! " &
