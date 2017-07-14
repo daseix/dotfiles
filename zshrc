@@ -61,10 +61,11 @@ export GIT_SSL_NO_VERIFY=1
 
 # --- fix git ESC problems for diff etc
 export LESS="-eirMX"
-#unset LESS
-#export LESS
+
+# --- ssh keys
 #alias git="SSH_ASKPASS='' git" 
-unset SSH_ASKPASS
+#unset SSH_ASKPASS
+ssh-add ~/.ssh/id_rsa_github </dev/null
 
 
 # default command line editor
