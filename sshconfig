@@ -47,8 +47,6 @@ Host github github.com
     PasswordAuthentication yes
     ForwardX11 no
     ForwardAgent yes
-    UseKeychain yes
-
 
 #
 # Note:
