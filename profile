@@ -69,13 +69,8 @@ export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFOR
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/common/foreign_packages/osg/latest/lib/$DLRRM_HOST_PLATFORM
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
 
-## set keyboard layout
-#if [ -z "${SSH_TTY}" ]
-#then
-    ##setxkbmap us -variant altgr-intl && xmodmap ~/.dotfiles/hjkl_system.xmodmap
-    #setxkbmap us -variant altgr-intl
-    ##xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY
-#fi
+# --- ssh keys
+ssh-add ~/.ssh/id_rsa_github </dev/null
 
 
 #[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'

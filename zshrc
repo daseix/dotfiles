@@ -65,7 +65,7 @@ export LESS="-eirMX"
 # --- ssh keys
 #alias git="SSH_ASKPASS='' git" 
 #unset SSH_ASKPASS
-ssh-add ~/.ssh/id_rsa_github </dev/null
+#ssh-add ~/.ssh/id_rsa_github </dev/null
 
 
 # default command line editor
@@ -160,11 +160,15 @@ alias sshtum_ff="ssh -D 9999 -C seideld@lxhalle.informatik.tu-muenchen.de"
 alias sshdlr_ff="ssh -D 9999 -C seid_da@donau.robotic.dlr.de" # -N"
 alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de" # -N"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
-alias sshdlr_git="ssh -D 5555 -N  seid_da@donau.robotic.dlr.de"
+
+# --- dlr git acces through ssh
+#alias sshdlr_git="ssh -D 5555 -N  seid_da@donau.robotic.dlr.de"
 #export https_proxy=socks5h://127.0.0.1:5555
 #export GIT_SSL_NO_VERIFY=1
 #git clone https://rmc-github.robotic.dlr.de/your_user/your_repo
- 
+
+alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
+# git clone ssh://git@localhost:3333/user/repository.git
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
 
