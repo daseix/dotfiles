@@ -1,3 +1,23 @@
+Host odroid1
+    Hostname 192.168.132.11
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+
+Host odroid2
+    Hostname 192.168.132.12
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+
+Host odroid3
+    Hostname 192.168.132.13
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+
+Host e38 e38-dl-1
+    Hostname 192.168.132.6
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+
 # ssh configuration for rmc git server
 Host rmc-git rmc-github.robotic.dlr.de
     #ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
@@ -19,25 +39,6 @@ Host rmc-svn rmsvn01.robotic.dlr.de
     ForwardX11 no
     ForwardAgent yes
 
-Host e38 e38-dl-1
-    Hostname 192.168.132.6
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-
-Host odroid1
-    Hostname 192.168.132.11
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-
-Host odroid2
-    Hostname 192.168.132.12
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-
-Host odroid3
-    Hostname 192.168.132.13
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
 
 # ssh configuration for github
 Host github github.com
