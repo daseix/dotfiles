@@ -4,8 +4,6 @@
 # rwxrwx0--
 umask 007
 
-
-
 # --- additional architecture environment variables
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
 export ARCH=$DLRRM_HOST_PLATFORM
@@ -21,6 +19,7 @@ export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
 export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
 
 # --- vim 7.4
+export PATH=/home/seid_da/foreign_packages/vim/osl42-x86_64/bin:$PATH
 
 # --- maple
 export PATH=/opt/maple/latest/bin:$PATH
@@ -32,7 +31,7 @@ export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 
 # --- openjdk temporarily
 #export PATH=/automount_offline/rmnfs01/gpfs/sw/openjdk:$PATH
-export PATH=~/foreign_packages/openjdk/bin:$PATH
+#export PATH=~/foreign_packages/openjdk/bin:$PATH
 
 
 # vtk python for mayavi
@@ -52,7 +51,7 @@ export PATH=~/foreign_packages/openjdk/bin:$PATH
 # --- rmpm/pkgtool 
 export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
 
-## --- Links and Nodes
+# --- Links and Nodes
 #if [ "$DLRRM_HOST_PLATFORM" ] 
 #then
     #export LN_BASE=/volume/software/common/packages/links_and_nodes/0.11
@@ -65,12 +64,9 @@ export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFOR
 
 
 
-# --- MediView
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/common/foreign_packages/osg/latest/lib/$DLRRM_HOST_PLATFORM
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/volume/software/mirosurge/packages/mediView/latest/lib/sled11-x86-gcc4.x
 
 # --- ssh keys
-ssh-add ~/.ssh/id_rsa_github </dev/null
+#ssh-add ~/.ssh/id_rsa_github </dev/null
 
 
 #[[ $- == *i* ]] && echo 'Interactive' || echo 'Not interactive'
