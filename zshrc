@@ -71,6 +71,7 @@ export LESS="-eirMX"
 # default command line editor
 export EDITOR='gvim'      
 #export EDITOR='vim'      
+alias vi='vim'
 
 
 # keyboard settings
@@ -82,10 +83,10 @@ set_kb_rate
 
 alias show_layout='setxkbmap -query | grep layout'
 #alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
-alias layout_de='setxkbmap de -variant nodeadkeys'
+alias de_layout='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 #alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
-alias layout_us='xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+alias us_layout='xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
 
 #if [ -z ${SSH_TTY} ] # check if not ssh session
 #then
@@ -194,8 +195,7 @@ alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 #alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
 
 # fix kde login errors
-#find ~/.cache -name "*.lock" | xargs -l rm
-#rm ~/.cache/ksycoca5*
+alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca5*'
 
 
 function start_tmux() {

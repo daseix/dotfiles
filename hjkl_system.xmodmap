@@ -16,8 +16,8 @@ keysym k = k K Up NoSymbol NoSymbol NoSymbol
 keysym l = l L Right NoSymbol lstroke Lstroke
 
 ! delete and backspace
-keysym u = u U BackSpace NoSymbol NoSymbol NoSymbol  
-keysym i = i I Delete NoSymbol NoSymbol NoSymbol  
+keysym u = u U Delete NoSymbol NoSymbol NoSymbol  
+keysym i = i I BackSpace NoSymbol NoSymbol NoSymbol  
 
 ! home and end
 keysym o = o O End NoSymbol NoSymbol NoSymbol
