@@ -406,8 +406,8 @@ set lbr
 "set tw=100
 set tw=0
 
-set ai "Auto indent
-set si "Smart indent
+"set autoindent "Auto indent
+"set smartindent "Smart indent
 set wrap "Wrap lines
 if exists('+colorcolumn')
     set colorcolumn=80
