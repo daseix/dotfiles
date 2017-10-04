@@ -18,8 +18,9 @@ HISTSIZE=100000
 
 
 # pure zsh prompt
-#fpath=($fpath $HOME/foreign_packages/zsh-prompt-pure-oneline)
-fpath=($fpath $HOME/.pure-prompt)
+#fpath=($fpath $HOME/.pure-prompt)
+#fpath=($fpath $HOME/.dotfiles/pure-prompt)
+fpath=($fpath $HOME/.dotfiles/pure-prompt-twoline)
 autoload -U promptinit; promptinit
 prompt pure
 

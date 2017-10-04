@@ -23,6 +23,7 @@
 # \e[K  => clears everything after the cursor on the current line
 # \e[2K => clear everything on the current line
 
+STATUS_COLOR='green'
 
 # turns seconds into human readable time
 # 165392 => 1d 21h 56m 32s
@@ -112,24 +113,26 @@ prompt_pure_preprompt_render() {
 	local -a preprompt_parts
 
 	# Set the path.
-	preprompt_parts+=('%F{blue}%~%f')
+	preprompt_parts+=('%F{$STATUS_COLOR}%~%f')
 
 	# Add git branch and dirty status info.
 	typeset -gA prompt_pure_vcs_info
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
-		preprompt_parts+=("%F{$git_color}"'${prompt_pure_vcs_info[branch]}${prompt_pure_git_dirty}%f')
+		preprompt_parts+=("%F{$git_color}"'%F{yellow}${prompt_pure_vcs_info[branch]}%f%B${prompt_pure_git_dirty}%f')
 	fi
 	# Git pull/push arrows.
 	if [[ -n $prompt_pure_git_arrows ]]; then
-		preprompt_parts+=('%F{cyan}${prompt_pure_git_arrows}%f')
+		preprompt_parts+=('%B%F{blue}${prompt_pure_git_arrows}%f%b')
 	fi
 
 	# Username and machine, if applicable.
-	[[ -n $prompt_pure_username ]] && preprompt_parts+=('$prompt_pure_username')
+    #[[ -n $prompt_pure_username ]] && preprompt_parts+=('$prompt_pure_username')
+    #[[ -n $prompt_pure_username ]] && preprompt_parts=('$prompt_pure_username $preprompt_parts ') 
+
 	# Execution time.
 	[[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%F{yellow}${prompt_pure_cmd_exec_time}%f')
 
-	local cleaned_ps1=$PROMPT
+    local cleaned_ps1="${prompt_pure_username}${PROMPT}"
 	local -H MATCH
 	if [[ $PROMPT = *$prompt_newline* ]]; then
 		# When the prompt contains newlines, we keep everything before the first
@@ -339,8 +342,11 @@ prompt_pure_check_git_arrows() {
 	setopt localoptions noshwordsplit
 	local arrows left=${1:-0} right=${2:-0}
 
-	(( right > 0 )) && arrows+=${PURE_GIT_DOWN_ARROW:-⇣}
-	(( left > 0 )) && arrows+=${PURE_GIT_UP_ARROW:-⇡}
+	#(( right > 0 )) && arrows+=${PURE_GIT_DOWN_ARROW:-⇣}
+	#(( left > 0 )) && arrows+=${PURE_GIT_UP_ARROW:-⇡}
+
+    (( right > 0 )) && arrows+=${PURE_GIT_DOWN_ARROW:-⤵}
+    (( left > 0 )) && arrows+=${PURE_GIT_UP_ARROW:-⤴}
 
 	[[ -n $arrows ]] || return
 	typeset -g REPLY=$arrows
@@ -455,7 +461,9 @@ prompt_pure_setup() {
 	add-zsh-hook preexec prompt_pure_preexec
 
 	# show username@host if logged in through SSH
-	[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%F{242}%n@%m%f'
+	#[[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%F{242}%n@%m%f'
+	#prompt_pure_username='%F{242}%n@%m%f'
+    prompt_pure_username='%f%n%F{$STATUS_COLOR}@%f%m%f'
 
 	# show username@host if root, with username in white
 	[[ $UID -eq 0 ]] && prompt_pure_username='%F{white}%n%f%F{242}@%m%f'
