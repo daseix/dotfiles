@@ -104,8 +104,9 @@ alias us_layout='xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock
 #xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY
 
 # -- custom aliases --
-alias ll="ls -lh"
-alias la="ls -lha"
+alias ls="ls -rtl --color"
+alias ll="ls -lh --color"
+alias la="ls -lha --color"
 alias ..="cd .." 
 alias ...="cd ../.."
 
