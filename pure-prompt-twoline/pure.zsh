@@ -118,7 +118,7 @@ prompt_pure_preprompt_render() {
 	# Add git branch and dirty status info.
 	typeset -gA prompt_pure_vcs_info
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
-		preprompt_parts+=("%F{$git_color}"'%F{yellow}${prompt_pure_vcs_info[branch]}%f%B${prompt_pure_git_dirty}%f')
+		preprompt_parts+=("%F{$git_color}"'%F{yellow}${prompt_pure_vcs_info[branch]}%f%B${prompt_pure_git_dirty}%f%b')
 	fi
 	# Git pull/push arrows.
 	if [[ -n $prompt_pure_git_arrows ]]; then
@@ -130,7 +130,7 @@ prompt_pure_preprompt_render() {
     #[[ -n $prompt_pure_username ]] && preprompt_parts=('$prompt_pure_username $preprompt_parts ') 
 
 	# Execution time.
-	[[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%F{yellow}${prompt_pure_cmd_exec_time}%f')
+	[[ -n $prompt_pure_cmd_exec_time ]] && preprompt_parts+=('%B%F{yellow}${prompt_pure_cmd_exec_time}%f%b')
 
     local cleaned_ps1="${prompt_pure_username}${PROMPT}"
 	local -H MATCH

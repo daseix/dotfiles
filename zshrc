@@ -105,8 +105,8 @@ alias us_layout='xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock
 
 # -- custom aliases --
 alias ls="ls -rtl --color"
-alias ll="ls -lh --color"
-alias la="ls -lha --color"
+alias ll="/usr/bin/ls -lh --color --group-directories-first"
+alias la="/usr/bin/ls -lha --color --group-directories-first"
 alias ..="cd .." 
 alias ...="cd ../.."
 
