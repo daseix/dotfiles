@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/homes/dseidel/cor-lab/workspace/liblwr-vortex/build/CMakeFiles'
-let g:netrw_dirhist_2='/volume/USERSTORE/seid_da/repos/sme/sme-assembly-library/sme-assembly-library'
-let g:netrw_dirhist_3='/volume/USERSTORE/seid_da/repos/quadruped/controller_oneleg/python_control/communication'
