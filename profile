@@ -1,8 +1,8 @@
 # file-creation mask: 
 #    (full access for group is not a problem, because
 #    every user has his own private group dlr_<user>_p)
-# rwxrwx0--
-umask 007
+# rwxrwxr-x
+umask 002
 
 # --- additional architecture environment variables
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
@@ -52,12 +52,12 @@ export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
 
 # --- Links and Nodes
-#if [ "$DLRRM_HOST_PLATFORM" ] 
-#then
-    #export LN_BASE=/volume/software/common/packages/links_and_nodes/0.11
-    #source $LN_BASE/scripts/bash.rc
-    #export PATH=$LN_BASE/scripts:$PATH
-#fi
+if [ "$DLRRM_HOST_PLATFORM" ] 
+then
+    export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
+    source $LN_BASE/scripts/bash.rc
+    export PATH=$LN_BASE/scripts:$PATH
+fi
 #pkgtool --env links_and_nodes==0.11 --env-format embed_sh > links_and_nodes.env && source links_and_nodes.env && rm links_and_nodes.env
 
 
