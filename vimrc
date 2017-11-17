@@ -78,16 +78,33 @@ Plugin 'L9'
 Plugin 'FuzzyFinder'
 "Plugin 'vim-scripts/FuzzyFinder'
 
+
 Plugin 'vim-scripts/MatlabFilesEdition'
 
 Plugin 'Chiel92/vim-autoformat'
-let g:formatterpath = ['~/.local/lib/python2.7/site-packages/yapf/']
+"let g:formatterpath = ['~/.local/lib/python2.7/site-packages/yapf/']
+"let g:formatdef_yapf = 'yapf --style=''{based_on_style:google, column_limit:120}'''
+"''yapf --style=''{based_on_style:'.g:formatter_ya pf_style.',indent_width:'.&shiftwidth.'}'
+"let g:formatters_python = ['yapf']
+"let g:formatter_yapf_style = 'google'
+"'yapf --style=\"{based_on_style:'.g:formatter_yapf_style.',indent_width:'.&shiftwidth.(&textwidth ? '
+
+"let g:formatter_yapf_style = 'google'
+"let s:configfile_def   = "'yapf -l '.a:firstline.'-'.a:lastline"
+"let s:noconfigfile_def = "'yapf --style=\"{based_on_style:'.g:formatter_yapf_style.',indent_width:'.&shiftwidth.(&textwidth ? ',column_limit:'.&textwidth : '').'}\" -l '.a:firstline.'-'.a:lastline"
+"let g:formatdef_yapf   = "g:YAPFFormatConfigFileExists() ? (" . s:configfile_def . ") : (" . s:noconfigfile_def . ")"
 
 
 Plugin 'bling/vim-airline'
 
 "Plugin 'bling/vim-bufferline'
+
+" Conque Shell with error fix 
 "Plugin 'jewes/Conque-Shell'
+Plugin 'https://github.com/oplatek/Conque-Shell'
+au BufReadPre FILETYPE au! PluginNotes
+au BufReadPre FILETYPE au! PluginXoloxMisc
+
 " needs vim >= 7.3
 "Plugin  'klen/python-mode'
 Plugin 'tmhedberg/SimpylFold'
@@ -127,7 +144,7 @@ set cmdheight=1
 "set path=$PWD/**
 
 " map autoformat
-noremap <F3> :Autoformat<CR><CR>
+noremap <F3> :Autoformat<CR>
 
 " tab label with tab number
 "if has("gui_running")
@@ -259,8 +276,10 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+"let mapleader = ","
+"let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -283,13 +302,16 @@ set sessionoptions+=resize,winpos
 set so=10
 
 " Turn on the WiLd menu
-set wildmode=longest,list,full
+set wildmode=list:longest,full
 set wildmenu
+
+" full mouse support in console
+set mouse=a
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 
-"Always show current position
+" Always show current position
 set ruler
 
 " Height of the command bar
@@ -402,15 +424,17 @@ set shiftwidth=4
 set tabstop=4
 
 " Linebreak on 500 characters
-set lbr
-"set tw=100
-set tw=0
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+"set tw=0
+set tw=115
 
 "set autoindent "Auto indent
 "set smartindent "Smart indent
-set wrap "Wrap lines
+
 if exists('+colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=115
     "else
     "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
@@ -463,9 +487,10 @@ map <leader>db :Bclose<cr>
 map <F1> :ls<cr>
 
 " quck jump between buffers
-map <F2> :ls<CR>:b<Space>
-map <leader>m :ls<CR>:b<Space>
-map gb <C-^>
+"map <F2> :ls<CR>:b<Space>
+"map <leader>b :ls<CR>:b<Space>
+map <leader>B :ls<CR>:b<Space>
+"map gb <C-^>
 
 " Fuzzy Finder bindings
 map <leader>f :FufFile **/<CR>
