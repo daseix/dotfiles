@@ -2,9 +2,9 @@
 #HISTSIZE=100000
 
 # shell prompt
-#PS1TEXT='\[\033[0m\]'
-#PS1SYM='\[\033[1;31m\]'
-#PS1="$PS1SYM<$PS1TEXT""ds$PS1SYM@$PS1TEXT\h$PS1SYM|$PS1TEXT\t$PS1SYM> \w\[\033[0m\] $ "
+PS1TEXT='\[\033[0m\]'
+PS1SYM='\[\033[0;32m\]'
+PS1="$PS1TEXT""\u$PS1SYM@$PS1TEXT\h:\w$PS1SYM>\[\033[0m\] "
 
 # no beep
 xset b off

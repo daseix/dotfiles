@@ -15,7 +15,7 @@ export LC_TIME="de_DE.UTF-8"
 #export PATH=$PATH:~/.neo/    
 
 # --- ff/tb
-export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
+export PATH=/home/seid_da/foreign_packages/firefox-lin.57:$PATH
 export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
 
 # --- vim 7.4

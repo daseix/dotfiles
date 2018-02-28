@@ -40,15 +40,55 @@ PS1TEXT='green'
 ## with git info
 #PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ "
 
+unsetopt MULTIBYTE
+
+# change up key history behavior
+bindkey "[[A" history-beginning-search-backward
+
 # arrow keys fix
 bindkey "^[[1;5C" emacs-forward-word
 bindkey "^[[1;5D" backward-word
 bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 bindkey -M emacs '^[[3;5~' kill-word
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
 
-# change up key history behavior
-#bindkey "[[A" history-beginning-search-backward
+
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\ee[C" forward-word
+bindkey "\ee[D" backward-word
+bindkey "^H" backward-delete-word
+
+## for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+## for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+## for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+## completion in the middle of a line
+#bindkey '^i' expand-or-complete-prefix
+
+
+
+
+
+
+
+
+
+
+
 
 # no beep
 xset b off
@@ -139,7 +179,9 @@ alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 alias ff2="rsync -a ~/vol/profiles/firefox/ ~/vol/profiles/firefox2 && firefox -P \"2\""
 
-alias davtum="~/.davmail/davmail-linux-x86_64-4.7.2-2427/davmail.sh .davmail/tum.properties"
+alias davtum="~/foreign_packages/davmail/davmail.sh ~/data/davmail.tum.properties"
+alias davdlr="~/foreign_packages/davmail/davmail.sh ~/data/davmail.dlr.properties"
+alias dav_both="~/data/start_davmail.sh"
 
 #if $(uname -m | grep '64'); then
 #else
@@ -174,6 +216,10 @@ alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dl
 # git clone ssh://git@localhost:3333/user/repository.git
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
+alias authy="/volume/USERSTORE/seid_da/foreign_packages/chrome-linux/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
+alias googlemusic="/volume/USERSTORE/seid_da/foreign_packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
+
+alias chromium="/volume/USERSTORE/seid_da/foreign_packages/chrome-linux/chrome"
 
 alias dirsizes="du -h -d 1 | sort -h"
 
@@ -193,6 +239,7 @@ alias odroidUart='/volume/software/common/foreign_packages/picocom/latest/bin/sl
 alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 # on client: export http_proxy=http://192.168.132.2:54382
 
+alias pip='pip2.7 '
 
 #alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
 
@@ -214,3 +261,4 @@ function start_tmux() {
 
 
 #zenity --warning --text "I am in .xprofile and I RUN\! " &
+alias disableTouchpad='xinput --disable 13'

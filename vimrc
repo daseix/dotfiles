@@ -328,7 +328,7 @@ set whichwrap+=<,>,h,l
 set ignorecase
 
 " When searching try to be smart about cases
-set smartcase
+"set smartcase
 
 " Highlight search results
 set hlsearch
@@ -427,8 +427,8 @@ set tabstop=4
 set wrap
 set linebreak
 set nolist  " list disables linebreak
-"set tw=0
-set tw=115
+set tw=0
+"set tw=115
 
 "set autoindent "Auto indent
 "set smartindent "Smart indent
