@@ -7,7 +7,7 @@ PS1SYM='\[\033[0;32m\]'
 PS1="$PS1TEXT""\u$PS1SYM@$PS1TEXT\h:\w$PS1SYM>\[\033[0m\] "
 
 # no beep
-xset b off
+#xset b off
 
 # default command line editor
 #export EDITOR='gvim'      

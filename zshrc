@@ -83,18 +83,18 @@ bindkey "\e[F" end-of-line
 
 
 
-
-
-
-
-
-
-
+if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+then
 # no beep
-#xset b off
+xset b off
 
 # java double click tim
-#xrdb ~/.Xresources
+xrdb ~/.Xresources
+
+# keyboard settings
+alias set_kb_rate='xset r rate 250 50'
+set_kb_rate
+fi
 
 
 # --- fix some git problems 
@@ -115,9 +115,6 @@ export EDITOR='gvim'
 alias vi='vim'
 
 
-# keyboard settings
-#alias set_kb_rate='xset r rate 250 50'
-#set_kb_rate
 # for mapping escape to caplsock: add to .xinitrc 
 #setxkbmap -option caps:escape &
 
@@ -180,9 +177,6 @@ alias svndiff="svn diff --diff-cmd='meld'"
 alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 
-
-
-
 alias davtum="~/foreign_packages/davmail/davmail.sh ~/data/davmail.tum.properties"
 alias davdlr="~/foreign_packages/davmail/davmail.sh ~/data/davmail.dlr.properties"
 alias dav_both="~/data/start_davmail.sh"
@@ -192,8 +186,6 @@ alias dav_both="~/data/start_davmail.sh"
 #fi
 
 alias matlab2014b="/opt/matlab/2014b/bin/matlab_acad"
-alias matlab2012b="/opt/matlab/2012b/bin/matlab_acad"
-
 
 alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
 alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
