@@ -1,17 +1,81 @@
-Host odroid1
+
+
+     
+Host odroid1 odroid1-dl-1
     Hostname 192.168.132.11
     User root
-    IdentityFile ~/.ssh/id_rsa_rmc
+    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
 
-Host odroid2
+Host odroid2 odroid1-dl-2
     Hostname 192.168.132.12
     User root
-    IdentityFile ~/.ssh/id_rsa_rmc
+    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
 
-Host odroid3
+Host odroid3 odroid1-dl-3
     Hostname 192.168.132.13
     User root
-    IdentityFile ~/.ssh/id_rsa_rmc
+    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+#Host odroid1-dl-3
+    #Hostname 192.168.132.13
+    #User root
+    #IdentityFile ~/.ssh/id_dsa_ln_daemons
+    #GSSAPIAuthentication no
+    #GSSAPIKeyExchange no
+
+Host bert
+    Hostname 192.168.132.13
+    User root
+    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+Host ernie
+    Hostname 192.168.132.12
+    User root
+    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+
+
+
+
+
+#Host odroid1 odroid1-dl-1
+    #Hostname 192.168.132.11
+    #User root
+    #IdentityFile ~/.ssh/id_rsa_rmc
+
+#Host odroid2 odroid1-dl-2
+    #Hostname 192.168.132.12
+    #User root
+    #IdentityFile ~/.ssh/id_rsa_rmc
+
+#Host odroid3 odroid1-dl-3
+    #Hostname 192.168.132.13
+    #User root
+    #IdentityFile ~/.ssh/id_rsa_rmc
+
+#Host bert
+    #Hostname 192.168.132.13
+    #User root
+    #IdentityFile ~/.ssh/id_dsa_ln_daemons
+    #GSSAPIAuthentication no
+    #GSSAPIKeyExchange no
+
+#Host ernie
+    #Hostname 192.168.132.12
+    #User root
+    #IdentityFile ~/.ssh/id_dsa_ln_daemons
+    #GSSAPIAuthentication no
+    #GSSAPIKeyExchange no
 
 Host e38 e38-dl-1
     Hostname 192.168.132.6

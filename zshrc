@@ -91,10 +91,10 @@ bindkey "\e[F" end-of-line
 
 
 # no beep
-xset b off
+#xset b off
 
 # java double click tim
-xrdb ~/.Xresources
+#xrdb ~/.Xresources
 
 
 # --- fix some git problems 
@@ -116,8 +116,8 @@ alias vi='vim'
 
 
 # keyboard settings
-alias set_kb_rate='xset r rate 250 50'
-set_kb_rate
+#alias set_kb_rate='xset r rate 250 50'
+#set_kb_rate
 # for mapping escape to caplsock: add to .xinitrc 
 #setxkbmap -option caps:escape &
 
@@ -128,6 +128,9 @@ alias de_layout='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 #alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
 alias us_layout='de_layout && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+
+alias asdf=us_layout
+alias ASDF=de_layout
 
 #if [ -z ${SSH_TTY} ] # check if not ssh session
 #then
@@ -163,6 +166,8 @@ alias g=gvim
 
 alias xterm='xterm -bg black -fg grey'
 
+alias rsync='rsync --info=progress2'
+
 
 alias mampf="/home/seth_da/usr/bin/mampf"
 
@@ -177,7 +182,6 @@ alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 
 
-alias ff2="rsync -a ~/vol/profiles/firefox/ ~/vol/profiles/firefox2 && firefox -P \"2\""
 
 alias davtum="~/foreign_packages/davmail/davmail.sh ~/data/davmail.tum.properties"
 alias davdlr="~/foreign_packages/davmail/davmail.sh ~/data/davmail.dlr.properties"
@@ -216,10 +220,11 @@ alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dl
 # git clone ssh://git@localhost:3333/user/repository.git
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
-alias authy="/volume/USERSTORE/seid_da/foreign_packages/chrome-linux/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
+alias authy="/volume/USERSTORE/seid_da/foreign_packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
 alias googlemusic="/volume/USERSTORE/seid_da/foreign_packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
 
-alias chromium="/volume/USERSTORE/seid_da/foreign_packages/chrome-linux/chrome"
+alias chromium="/volume/USERSTORE/seid_da/foreign_packages/chromium/latest/chrome"
+alias vivaldi="/volume/USERSTORE/seid_da/foreign_packages/vivaldi/vivaldi64/opt/vivaldi/vivaldi"
 
 alias dirsizes="du -h -d 1 | sort -h"
 
@@ -247,17 +252,17 @@ alias pip='pip2.7 '
 alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca5*'
 
 
-function start_tmux() {
-    if type tmux &> /dev/null; then
-        #if not inside a tmux session, and if no session is started, start a new session
-        #if [[ $HOST == "laptop" && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
-        if [[ -z ${SSH_TTY} && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
-            #(tmux -2 attach || tmux -2 new-session)
-            (tmux -2 new-session)
-        fi
-    fi
-}
-#start_tmux
+#function start_tmux() {
+    #if type tmux &> /dev/null; then
+        ##if not inside a tmux session, and if no session is started, start a new session
+        ##if [[ $HOST == "laptop" && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+        #if [[ -z ${SSH_TTY} && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+            ##(tmux -2 attach || tmux -2 new-session)
+            #(tmux -2 new-session)
+        #fi
+    #fi
+#}
+##start_tmux
 
 
 #zenity --warning --text "I am in .xprofile and I RUN\! " &

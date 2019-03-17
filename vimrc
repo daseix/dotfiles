@@ -61,9 +61,9 @@ Plugin 'VundleVim/Vundle.vim'
 " My Plugin here:
 
 " plugin to autoconvert gui colorschemes to terminal
-"Plugin 'godlygeek/csapprox'
 Plugin 'vim-scripts/csapprox'
-
+let g:CSApprox_konsole=1
+ 
 " smart pane switching with awareness of tmux
 Plugin 'christoomey/vim-tmux-navigator'
 
@@ -365,7 +365,7 @@ syntax on
 set number
 
 "colorscheme zellner
-set background=light
+"set background=light
 "syntax enable
 "colorscheme slate
 colorscheme bla
