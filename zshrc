@@ -7,7 +7,10 @@ bashcompinit
 zstyle ':completion:*' special-dirs true
 
 # history size
-HISTSIZE=100000
+HISTFILE=~/.zsh_history
+HISTSIZE=20000
+SAVEHIST=20000
+setopt appendhistory
 
 # vi mode and low delay
 #bindkey -v
@@ -82,17 +85,16 @@ bindkey "\e[F" end-of-line
 
 
 
-
+alias set_kb_rate='xset r rate 250 50'
 if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
 then
 # no beep
 xset b off
 
 # java double click tim
-xrdb ~/.Xresources
+#xrdb ~/.Xresources
 
 # keyboard settings
-alias set_kb_rate='xset r rate 250 50'
 set_kb_rate
 fi
 
@@ -144,9 +146,10 @@ alias ASDF=de_layout
 #xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY
 
 # -- custom aliases --
-alias ls="ls -rtl --color"
-alias ll="/usr/bin/ls -lh --color --group-directories-first"
-alias la="/usr/bin/ls -lha --color --group-directories-first"
+LS_BIN=$(which ls)
+alias ll="$LS_BIN -lh --color --group-directories-first"
+alias la="$LS_BIN -lha --color --group-directories-first"
+alias ls="$LS_BIN -rtl --color"
 alias ..="cd .." 
 alias ...="cd ../.."
 
@@ -208,10 +211,29 @@ alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de" # -N"
 #export GIT_SSL_NO_VERIFY=1
 #git clone https://rmc-github.robotic.dlr.de/your_user/your_repo
 
-alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
+#alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
 # git clone ssh://git@localhost:3333/user/repository.git
 
-alias keepass="mono ~/keepass/program/KeePass.exe"
+alias sshdlr_git='ssh -D 8080 -N seid_da@ssh.robotic.dlr.de'
+#Repositories through https[edit | edit source]
+#
+#Start an ssh tunnel
+#
+# ssh -D 8080 -N username@ssh.robotic.dlr.de
+#
+#Cloning a repository**
+#
+# export https_proxy=socks5h://127.0.0.1:8080
+# export GIT_SSL_NO_VERIFY=1
+# git clone https://rmc-github.robotic.dlr.de/your_user/your_repo
+#
+#Once the repository is cloned, you can permanently configure the proxy for this remote
+#
+# git config remote.origin.proxy socks5h://127.0.0.1:8080
+# git config http.sslVerify false
+
+#alias keepass="mono ~/keepass/program/KeePass.exe"
+alias keepass='mono /media/exchange/Keepass2Android/program/KeePass.exe'
 alias authy="/volume/USERSTORE/seid_da/foreign_packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
 alias googlemusic="/volume/USERSTORE/seid_da/foreign_packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
 
