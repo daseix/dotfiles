@@ -400,9 +400,8 @@ prompt_pure_async_callback() {
 			else
 				prompt_pure_git_dirty="*"
                 n_untracked=$(git status --porcelain 2>/dev/null| grep "^??" | wc -l)
-                n_modified=$(git status --porcelain 2>/dev/null| grep "^ M" | wc -l)
-                n_added=$(git status --porcelain 2>/dev/null| grep "^M" | wc -l)
-
+                n_modified=$(git status --porcelain 2>/dev/null| grep "^ M\|^ D" | wc -l)
+                n_added=$(git status --porcelain 2>/dev/null| grep "^M\|^D\|^R\|^A" | wc -l)
                 if (( n_added > 0)); then
                     prompt_pure_git_dirty="%b$prompt_pure_git_dirty ${n_added}%F{green}A%f"
                 fi
