@@ -1,49 +1,49 @@
 Host bert
     Hostname 192.168.132.11
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
 Host bert11
     Hostname 192.168.132.11
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
 Host bert12
     Hostname 192.168.132.12
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
 Host bert13
     Hostname 192.168.132.13
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
 Host bert21
     Hostname 192.168.132.21
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
 Host bert22
     Hostname 192.168.132.22
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     #GSSAPIAuthentication no
     #GSSAPIKeyExchange no
 
 Host bert23
     Hostname 192.168.132.23
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
@@ -56,7 +56,7 @@ Host e38 e38-dl-1 192.168.132.6
 Host pi
          Hostname 192.168.132.10
          User pi
-         IdentityFile ~/.ssh/id_dsa_ln_daemons
+         IdentityFile ~/.ssh/id_rsa_rmc
          GSSAPIAuthentication no
      GSSAPIKeyExchange no
          
