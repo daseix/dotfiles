@@ -109,6 +109,12 @@ Host *.robotic.dlr.de
     Compression no
     FallBackToRsh no
     Protocol 2
+    ControlPath ~/.ssh/S.%r@%h:%p
+    ControlMaster auto
+    ControlPersist 120m
+
+
+
 
 #
 # others are considered to be internet hosts:
