@@ -16,6 +16,37 @@ setopt appendhistory
 #bindkey -v
 #export KEYTIMEOUT=1
 
+
+
+
+typeset -AHg FX FG BG
+
+FX=(
+    reset     "%{[00m%}"
+    bold      "%{[01m%}" no-bold      "%{[22m%}"
+    italic    "%{[03m%}" no-italic    "%{[23m%}"
+    underline "%{[04m%}" no-underline "%{[24m%}"
+    blink     "%{[05m%}" no-blink     "%{[25m%}"
+    reverse   "%{[07m%}" no-reverse   "%{[27m%}"
+)
+
+for color in {000..255}; do
+    FG[$color]="%{[38;5;${color}m%}"
+    BG[$color]="%{[48;5;${color}m%}"
+done
+
+
+ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+# Show all 256 colors with color number
+function spectrum_ls() {
+  for code in {000..255}; do
+    print -P -- "$code: %{$FG[$code]%}$ZSH_SPECTRUM_TEXT%{$reset_color%}"
+  done
+}
+
+
+
+
 # zsh git prompt
 #source ~/foreign_packages/zsh-git-prompt/zshrc.sh
 
@@ -164,7 +195,8 @@ alias untar="tar -zxvf"
 alias gvim="gvim -geom 110x80"
 alias g=gvim
 
-alias xterm='xterm -bg black -fg grey'
+#alias xterm='xterm -bg black -fg grey'
+alias xterm='xterm +cm'
 
 alias rsync='rsync --info=progress2'
 
@@ -193,6 +225,10 @@ alias matlab2014b="/opt/matlab/2014b/bin/matlab_acad"
 alias matlab_ssh_extern="ssh donau.robotic.dlr.de -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758"
 alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
+
+alias maple_ssh_extern="ssh donau.robotic.dlr.de -L 27009:129.247.189.179:27009 -L 49050:129.247.189.179:49050"
+alias maple_extern="LM_LICENSE_FILE=27009@localhost /opt/maple/latest/bin/xmaple"
+
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
@@ -214,7 +250,7 @@ alias sshdlr_svn="ssh -L 19999:rmsvn01:443 seid_da@donau.robotic.dlr.de" # -N"
 #alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
 # git clone ssh://git@localhost:3333/user/repository.git
 
-alias sshdlr_git='ssh -D 8080 -N seid_da@ssh.robotic.dlr.de'
+alias sshdlr_git="ssh -D 8080 seid_da@ssh.robotic.dlr.de" # -N  
 #Repositories through https[edit | edit source]
 #
 #Start an ssh tunnel
