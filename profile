@@ -5,6 +5,7 @@
 umask 002
 
 # --- additional architecture environment variables
+#export DLRRM_HOST_PLATFORM="osl42-x86_64" 
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
 export ARCH=$DLRRM_HOST_PLATFORM
 
@@ -15,9 +16,7 @@ export LC_TIME="de_DE.UTF-8"
 #export PATH=$PATH:~/.neo/    
 
 # --- ff/tb
-#export LD_PRELOAD=/home/seid_da/foreign_packages/avcodecs/usr/lib64/libavcodec.so.58 
 export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
-
 
 export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
 
@@ -76,15 +75,15 @@ fi
 #shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 
 #if [ ! -z ${DLRRM_HOST_PLATFORM+x} ]
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
-then
-    export SHELL=/usr/bin/zsh
+#if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+#then
+    #export SHELL=/usr/bin/zsh
 
-    # this loads zsh when in a login shell [e.g. ssh]
-    if [[ $- = *i* ]] 
-    then
-        exec /usr/bin/zsh -l
-    fi 
-fi
+    ## this loads zsh when in a login shell [e.g. ssh]
+    #if [[ $- = *i* ]] 
+    #then
+        #exec /usr/bin/zsh -l
+    #fi 
+#fi
 
 

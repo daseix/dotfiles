@@ -13,6 +13,8 @@
 #export EDITOR='gvim'      
 #export EDITOR='vim'      
 
+alias xterm="xterm +cm"
+
 
 # -- custom aliases --
 alias ll="ls -lh"

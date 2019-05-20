@@ -364,9 +364,7 @@ syntax on
 " Enable line numbers
 set number
 
-"colorscheme zellner
-"set background=light
-"syntax enable
+set termguicolors
 "colorscheme slate
 colorscheme bla
 
@@ -434,9 +432,13 @@ set tw=0
 "set smartindent "Smart indent
 
 if exists('+colorcolumn')
-    set colorcolumn=115
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=0
+    "highlight ColorColumn guibg=Black
+    highlight ColorColumn guibg=#202020
     "else
     "au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    "set colorcolumn=0
 endif
 
 
@@ -705,6 +707,15 @@ map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
+" automatically insert closing brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 
 

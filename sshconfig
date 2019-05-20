@@ -1,86 +1,69 @@
-
-
-     
-Host odroid1 odroid1-dl-1
+Host bert
     Hostname 192.168.132.11
     User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
+    IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
-Host odroid2 odroid1-dl-2
-    Hostname 192.168.132.12
-    User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
-
-Host odroid3 odroid1-dl-3
-    Hostname 192.168.132.13
-    User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
-
-#Host odroid1-dl-3
-    #Hostname 192.168.132.13
-    #User root
-    #IdentityFile ~/.ssh/id_dsa_ln_daemons
-    #GSSAPIAuthentication no
-    #GSSAPIKeyExchange no
-
-Host bert
-    Hostname 192.168.132.13
-    User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
-
-Host ernie
-    Hostname 192.168.132.12
-    User root
-    IdentityFile ~/.ssh/id_dsa_ln_daemons
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
-
-
-
-
-
-
-#Host odroid1 odroid1-dl-1
-    #Hostname 192.168.132.11
-    #User root
-    #IdentityFile ~/.ssh/id_rsa_rmc
-
-#Host odroid2 odroid1-dl-2
-    #Hostname 192.168.132.12
-    #User root
-    #IdentityFile ~/.ssh/id_rsa_rmc
-
-#Host odroid3 odroid1-dl-3
-    #Hostname 192.168.132.13
-    #User root
-    #IdentityFile ~/.ssh/id_rsa_rmc
-
-#Host bert
-    #Hostname 192.168.132.13
-    #User root
-    #IdentityFile ~/.ssh/id_dsa_ln_daemons
-    #GSSAPIAuthentication no
-    #GSSAPIKeyExchange no
-
-#Host ernie
-    #Hostname 192.168.132.12
-    #User root
-    #IdentityFile ~/.ssh/id_dsa_ln_daemons
-    #GSSAPIAuthentication no
-    #GSSAPIKeyExchange no
-
-Host e38 e38-dl-1
-    Hostname 192.168.132.6
+Host bert11
+    Hostname 192.168.132.11
     User root
     IdentityFile ~/.ssh/id_rsa_rmc
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+Host bert12
+    Hostname 192.168.132.12
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+Host bert13
+    Hostname 192.168.132.13
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+Host bert21
+    Hostname 192.168.132.21
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+Host bert22
+    Hostname 192.168.132.22
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+    #GSSAPIAuthentication no
+    #GSSAPIKeyExchange no
+
+Host bert23
+    Hostname 192.168.132.23
+    User root
+    IdentityFile ~/.ssh/id_rsa_rmc
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
+
+
+Host e38 e38-dl-1 192.168.132.6
+         Hostname 192.168.132.6
+         User root
+         IdentityFile ~/.ssh/id_rsa_git
+
+Host pi
+         Hostname 192.168.132.10
+         User pi
+         IdentityFile ~/.ssh/id_rsa_rmc
+         GSSAPIAuthentication no
+     GSSAPIKeyExchange no
+         
+Host nuc nuc-dl-1 192.168.132.8
+         Hostname 192.168.132.8
+         User root
+         IdentityFile ~/.ssh/id_rsa_git
 
 # ssh configuration for rmc git server
 Host rmc-git rmc-github.robotic.dlr.de
@@ -126,6 +109,24 @@ Host *.robotic.dlr.de
     Compression no
     FallBackToRsh no
     Protocol 2
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 240m
+
+Host dlr
+    Hostname donau.robotic.dlr.de
+    User seid_da
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    FallBackToRsh no
+    Protocol 2
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 240m
+
+
 
 #
 # others are considered to be internet hosts:

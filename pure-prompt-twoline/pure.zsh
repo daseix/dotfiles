@@ -399,6 +399,18 @@ prompt_pure_async_callback() {
 				prompt_pure_git_dirty=
 			else
 				prompt_pure_git_dirty="*"
+                n_untracked=$(git status --porcelain 2>/dev/null| grep "^??" | wc -l)
+                n_modified=$(git status --porcelain 2>/dev/null| grep "^ M\|^ D" | wc -l)
+                n_added=$(git status --porcelain 2>/dev/null| grep "^M\|^D\|^R\|^A" | wc -l)
+                if (( n_added > 0)); then
+                    prompt_pure_git_dirty="%b$prompt_pure_git_dirty ${n_added}%F{green}A%f"
+                fi
+                if (( n_modified > 0)); then
+                    prompt_pure_git_dirty="%b$prompt_pure_git_dirty ${n_modified}%F{red}M%f"
+                fi
+                if (( n_untracked > 0)); then
+                    prompt_pure_git_dirty="%b$prompt_pure_git_dirty ${n_untracked}%F{white}?%f"
+                fi
 			fi
 
 			[[ $prev_dirty != $prompt_pure_git_dirty ]] && prompt_pure_preprompt_render
