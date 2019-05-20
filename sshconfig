@@ -109,10 +109,22 @@ Host *.robotic.dlr.de
     Compression no
     FallBackToRsh no
     Protocol 2
-    ControlPath ~/.ssh/S.%r@%h:%p
+    ControlPath ~/.ssh/ssh-%r@%h:%p
     ControlMaster auto
-    ControlPersist 120m
+    ControlPersist 240m
 
+Host dlr
+    Hostname donau.robotic.dlr.de
+    User seid_da
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    FallBackToRsh no
+    Protocol 2
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 240m
 
 
 
