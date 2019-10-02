@@ -75,15 +75,27 @@ fi
 #shopt -q login_shell && echo 'Login shell' || echo 'Not login shell'
 
 #if [ ! -z ${DLRRM_HOST_PLATFORM+x} ]
-#if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
-#then
-    #export SHELL=/usr/bin/zsh
 
-    ## this loads zsh when in a login shell [e.g. ssh]
-    #if [[ $- = *i* ]] 
-    #then
-        #exec /usr/bin/zsh -l
-    #fi 
+if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+then
+    export SHELL=/usr/bin/zsh
+    # this loads zsh when in a login shell [e.g. ssh]
+    if [[ $- = *i* ]] 
+    then
+        exec /usr/bin/zsh -l
+    fi 
+fi
+
+#if [ "$HOSTNAME" = "rmc-lx0255"]
+    #xrandr --setmonitor DP-1-1 1706/399x1440/336+0+0 DP-1 
+    #xrandr --setmonitor DP-1-2 1708/399x1440/336+1706+0 none 
+    #xrandr --setmonitor DP-1-3 1706/399x1440/336+03414+0 none
+
+    #xrandr --fb 1706x1440
+    #xrandr --fb 1708x1440
+    #xrandr --fb 1706x1440
 #fi
+
+
 
 
