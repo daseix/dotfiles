@@ -1,4 +1,3 @@
-
 # zsh stuff
 autoload -Uz bashcompinit
 bashcompinit
@@ -15,8 +14,6 @@ setopt appendhistory
 # vi mode and low delay
 #bindkey -v
 #export KEYTIMEOUT=1
-
-
 
 
 typeset -AHg FX FG BG
@@ -45,10 +42,8 @@ function spectrum_ls() {
 }
 
 
-
-
 # zsh git prompt
-#source ~/foreign_packages/zsh-git-prompt/zshrc.sh
+#source /volume/USERSTORE/seid_da/packages/zsh-git-prompt/zshrc.sh
 
 
 # pure zsh prompt
@@ -129,6 +124,12 @@ xset b off
 set_kb_rate
 fi
 
+# --- git author config
+export GIT_AUTHOR_NAME="Daniel Seidel"
+export GIT_AUTHOR_EMAIL="daniel.seidel@dlr.de"
+export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
+export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
+export GIT_EDITOR=gvim
 
 # --- fix some git problems 
 export GIT_SSL_NO_VERIFY=1
@@ -145,7 +146,9 @@ export LESS="-eirMX"
 # default command line editor
 export EDITOR='gvim'      
 #export EDITOR='vim'      
-alias vi='vim'
+alias gvim="gvim -geom 120x60"
+alias g=gvim
+alias e=gvim
 
 
 # for mapping escape to caplsock: add to .xinitrc 
@@ -173,29 +176,18 @@ alias ASDF=de_layout
     #fi 
 #fi
 
-#setxkbmap us -variant altgr-intl
-#xkbcomp $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY
 
 # -- custom aliases --
-LS_BIN=$(which ls)
-alias ll="$LS_BIN -lh --color --group-directories-first"
-alias la="$LS_BIN -lha --color --group-directories-first"
-alias ls="$LS_BIN -rtl --color"
+#LS_BIN=$(which ls)
+alias ls="/usr/bin/ls -rtl --color"
+alias ll="/usr/bin/ls -lh --color --group-directories-first"
+alias la="/usr/bin/ls -lha --color --group-directories-first"
+alias llg='ll | grep'
+alias lag='la | grep'
 alias ..="cd .." 
 alias ...="cd ../.."
 
-alias llg='ll | grep'
-alias lag='la | grep'
-
-alias mv="mv -i"
-
 alias untar="tar -zxvf"
-
-# vim and gvim start
-#alias gvim="gvim -p --remote-tab-silent -geom 110x80"
-#alias g="gvim --remote-silent -geom 110x80"
-alias gvim="gvim -geom 110x80"
-alias g=gvim
 
 #alias tvim='function _tvim(){ konsole --hide-menubar --hide-tabbar --icon /usr/share/icons/HighContrast/256x256/apps/vim.png --nofork -e nvim "$@" &>/dev/null &}; _tvim'
 alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar -e nvim "$@" &>/dev/null &}; _tvim'
@@ -214,11 +206,11 @@ alias cmake_uninstall="xargs rm < install_manifest.txt"
 
 alias svndiff="svn diff --diff-cmd='meld'"
 
-alias eclipse="~/vol/foreign_packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
+alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 
-alias davtum="~/foreign_packages/davmail/davmail.sh ~/data/davmail.tum.properties"
-alias davdlr="~/foreign_packages/davmail/davmail.sh ~/data/davmail.dlr.properties"
+alias davtum="/volume/USERSTORE/seid_da/packages/davmail/davmail.sh ~/data/davmail.tum.properties"
+alias davdlr="/volume/USERSTORE/seid_da/packages/davmail/davmail.sh ~/data/davmail.dlr.properties"
 alias dav_both="~/data/start_davmail.sh"
 
 #if $(uname -m | grep '64'); then
@@ -227,7 +219,7 @@ alias dav_both="~/data/start_davmail.sh"
 
 alias matlab="/opt/matlab/2016b/bin/matlab_acad"
 
-alias matlab_extern="~/foreign_packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
+alias matlab_extern="/volume/USERSTORE/seid_da/packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
 alias maple_extern="LM_LICENSE_FILE=27009@localhost /opt/maple/latest/bin/xmaple"
 
@@ -245,6 +237,7 @@ alias sshtum_tunnel="ssh -D 9999 seideld@lxhalle.informatik.tu-muenchen.de" # -N
 #ssh -O check donau.robotic.dlr.de
 #ssh -O stop donau.robotic.dlr.de
 
+alias sshhome_tunnel="ssh -D 9999 root@daseix.duckdns.org -p 60022"
 
 #Repositories through https[edit | edit source]
 #
@@ -275,16 +268,17 @@ alias sshtum_tunnel="ssh -D 9999 seideld@lxhalle.informatik.tu-muenchen.de" # -N
 alias sshdlr_vnc="ssh -l seid_da -L 5902:rmc-orpheus:5902 donau.robotic.dlr.de"
 
 
-#alias keepass="mono ~/keepass/program/KeePass.exe"
-alias keepass='mono /media/exchange/Keepass2Android/program/KeePass.exe'
-alias authy="/volume/USERSTORE/seid_da/foreign_packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
-alias googlemusic="/volume/USERSTORE/seid_da/foreign_packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
+alias keepass="mono ~/keepass/program/KeePass.exe"
+#alias keepass='mono /media/exchange/Keepass2Android/program/KeePass.exe'
+alias authy="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
+alias googlemusic="/volume/USERSTORE/seid_da/packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
 
-alias chromium="/volume/USERSTORE/seid_da/foreign_packages/chromium/latest/chrome"
-alias vivaldi="/volume/USERSTORE/seid_da/foreign_packages/vivaldi/vivaldi64/opt/vivaldi/vivaldi"
+alias chromium="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome"
+alias vivaldi="/volume/USERSTORE/seid_da/packages/vivaldi/vivaldi64/opt/vivaldi/vivaldi"
 
 #alias dirsizes="du -h -d 1 | sort -h"
 
+alias reducepdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4  -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf druck.pdf'
 
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
@@ -296,7 +290,7 @@ alias tea="py /home/seid_da/data/tea/next_tea.py"
 alias pingHostDiscovery='function _pingHostDiscovery(){ time ( s=$1 ; for i in $(seq 1 254) ; do ( ping -n -c 1 -w 1 $s.$i 1>/dev/null 2>&1 && printf "%-16s %s\n" $s.$i responded ) & done ; wait ; echo ) }; _pingHostDiscovery'
 alias pingHostDiscoveryLoop='function _pingHostDiscoveryLoop(){ while true; do ( pingHostDiscovery $1; echo; sleep 1); done}; _pingHostDiscoveryLoop'
 
-alias odroidUart='/volume/software/common/foreign_packages/picocom/latest/bin/sled11-x86_64-gcc4.x/picocom -b 115200 /dev/ttyUSB0'
+alias odroidUart='/volume/software/common/packages/picocom/latest/bin/sled11-x86_64-gcc4.x/picocom -b 115200 /dev/ttyUSB0'
 
 alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 # on client: export http_proxy=http://192.168.132.2:54382
@@ -308,6 +302,8 @@ alias pip='pip2.7 '
 # fix kde login errors
 alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca5*'
 
+#zenity --warning --text "I am in .xprofile and I RUN\! " &
+alias disableTouchpad='xinput --disable 13'
 
 #function start_tmux() {
     #if type tmux &> /dev/null; then
@@ -322,8 +318,6 @@ alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca
 ##start_tmux
 
 
-#zenity --warning --text "I am in .xprofile and I RUN\! " &
-alias disableTouchpad='xinput --disable 13'
 
 
 
@@ -334,12 +328,6 @@ alias disableTouchpad='xinput --disable 13'
 #menuFont=Noto Sans,10,-1,0,50,0,0,0,0,0,
 #smallestReadableFont=Noto Sans,8,-1,0,50,0,0,0,0,0,
 #toolBarFont=Noto Sans,10,-1,0,50,0,0,0,0,0,
-
-
-
-
-
-
 
 
 
