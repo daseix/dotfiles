@@ -112,7 +112,8 @@ Plugin 'tmhedberg/SimpylFold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin on 
+filetype indent on    " required
 " To ignore plugin indent changes, instead use:
 " "filetype plugin on
 " "
@@ -237,7 +238,7 @@ let g:airline_section_warning = ''
 "" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 "" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 "" The following changes the default filetype back to 'tex':
-"let g:tex_flavor='latex'
+let g:tex_flavor='latex'
 
 "" settings
 "let g:Tex_Leader=','
@@ -251,6 +252,21 @@ let g:airline_section_warning = ''
 "" Okular editor command
 "" gvim --remote-silent +%l %f
 
+"let g:Tex_ViewRule_pdf = 'okular --unique'
+"function! SyncTexForward()
+"let execstr = "silent !okular --unique %:p:r.pdf\#src:".line(".")."%:p &"
+"exec execstr
+"endfunction
+"nmap f :call SyncTexForward()
+
+function! SyncTexForward()
+let s:syncfile = fnamemodify(fnameescape(Tex_GetMainFileName()), ":r").".pdf"
+let execstr = "silent !okular --unique ".s:syncfile."\\#src:".line(".").expand("%\:p").' &'
+exec execstr
+endfunction
+nnoremap <Leader>l :call SyncTexForward()<CR>
+
+" Press \ll to compile in pdf, \lv to open pdf with ocular, \ls to forward search from gvim to okular.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => python-mode
@@ -268,8 +284,8 @@ let g:airline_section_warning = ''
 set history=700
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+"filetype plugin on
+"filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -285,11 +301,12 @@ let g:mapleader = " "
 nmap <leader>w :w!<cr>
 
 " deleting
-imap <C-BS> <C-O>cb
-imap <C-B> <C-O>cb
+imap <C-BS> <C-W>
+"imap <C-BS> <C-O>cb
+"imap <C-B> <C-O>cb
 
 imap <C-Del> <C-O>dw
-imap <C-W> <C-O>dw
+"imap <C-W> <C-O>dw
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -323,6 +340,7 @@ set hid
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
+
 
 " Ignore case when searching
 set ignorecase
@@ -429,7 +447,7 @@ set tw=0
 "set tw=115
 
 "set autoindent "Auto indent
-"set smartindent "Smart indent
+set smartindent "Smart indent
 
 if exists('+colorcolumn')
     set colorcolumn=80
@@ -709,13 +727,24 @@ map <leader>q :e ~/buffer<cr>
 map <leader>pp :setlocal paste!<cr>
 
 " automatically insert closing brackets
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
+"inoremap " ""<left>
+"inoremap ' ''<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
+"inoremap { {}<left>
+"inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+"inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+"inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+
+inoremap (<TAB> ()<left>
+inoremap {<TAB> {}<left>
+inoremap [<TAB> []<left>
+inoremap '<TAB> ''<left>
+inoremap "<TAB> ""<left>
+inoremap {<CR> {<CR>}<ESC>O<TAB>
+inoremap {;<CR> {<CR>};<ESC>O<TAB>
+
+
 
 
 

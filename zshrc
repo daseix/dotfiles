@@ -209,9 +209,10 @@ alias svndiff="svn diff --diff-cmd='meld'"
 alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
 
-alias davtum="/volume/USERSTORE/seid_da/packages/davmail/davmail.sh ~/data/davmail.tum.properties"
-alias davdlr="/volume/USERSTORE/seid_da/packages/davmail/davmail.sh ~/data/davmail.dlr.properties"
-alias dav_both="~/data/start_davmail.sh"
+#alias davtum="/volume/USERSTORE/seid_da/packages/davmail/davmail ~/.dotfiles/davmail.dlr.properties"
+#alias davdlr="/volume/USERSTORE/seid_da/packages/davmail/davmail ~/.dotfiles/davmail.tum.properties"
+
+alias davmail="nohup ~/packages/davmail/davmail ~/data/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/data/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
 
 #if $(uname -m | grep '64'); then
 #else
@@ -280,6 +281,7 @@ alias vivaldi="/volume/USERSTORE/seid_da/packages/vivaldi/vivaldi64/opt/vivaldi/
 
 alias reducepdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4  -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf druck.pdf'
 
+alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -interaction=nonstopmode -src-specials $*\" -pvc" #-jobname=./build/paper
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
 #alias latexmake="latexmk -pdf -pdflatex=\"lualatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
