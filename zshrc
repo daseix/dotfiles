@@ -212,7 +212,8 @@ alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/e
 #alias davtum="/volume/USERSTORE/seid_da/packages/davmail/davmail ~/.dotfiles/davmail.dlr.properties"
 #alias davdlr="/volume/USERSTORE/seid_da/packages/davmail/davmail ~/.dotfiles/davmail.tum.properties"
 
-alias davmail="nohup ~/packages/davmail/davmail ~/data/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/data/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
+#alias davmail="nohup ~/packages/davmail/davmail ~/data/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/data/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
+alias davmail="nohup ~/packages/davmail/davmail ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
 
 #if $(uname -m | grep '64'); then
 #else
@@ -297,7 +298,7 @@ alias odroidUart='/volume/software/common/packages/picocom/latest/bin/sled11-x86
 alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 # on client: export http_proxy=http://192.168.132.2:54382
 
-alias pip='pip2.7 '
+#alias pip='pip2.7 '
 
 #alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
 
@@ -306,6 +307,10 @@ alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca
 
 #zenity --warning --text "I am in .xprofile and I RUN\! " &
 alias disableTouchpad='xinput --disable 13'
+
+alias nextcloud='/home/seid_da/downloads/nc/squashfs-root/AppRun'
+
+alias thunderbird='/home/seid_da/packages/thunderbird-lin2/thunderbird'
 
 #function start_tmux() {
     #if type tmux &> /dev/null; then
