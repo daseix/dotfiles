@@ -9,7 +9,6 @@ umask 002
 if test -f "/home/seid_da/.profile_local"; then
     source "/home/seid_da/.profile_local"
 fi
-#source "~/.profile_local"
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
 export ARCH=$DLRRM_HOST_PLATFORM
 
@@ -20,12 +19,12 @@ export LC_TIME="de_DE.UTF-8"
 #export PATH=$PATH:~/.neo/    
 
 # --- ff/tb
-#export PATH=/home/seid_da/foreign_packages/firefox-lin:$PATH
-#export PATH=/home/seid_da/foreign_packages/thunderbird-lin:$PATH
-export PATH=/home/seid_da/Downloads/firefox/:$PATH
+export PATH=/home/seid_da/packages/firefox-lin:$PATH
+
+export PATH=/home/seid_da/packages/thunderbird-lin:$PATH
 
 # --- vim 7.4
-export PATH=/home/seid_da/foreign_packages/vim/osl42-x86_64/bin:$PATH
+export PATH=/home/seid_da/packages/vim/osl42-x86_64/bin:$PATH
 
 # --- maple
 export PATH=/opt/maple/latest/bin:$PATH
