@@ -1,51 +1,27 @@
-Host bert
+Host bert11 odroid-dl-11
     Hostname 192.168.132.11
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
 
-Host bert11
-    Hostname 192.168.132.11
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
-
-Host bert12
+Host bert12 odroid-dl-12
     Hostname 192.168.132.12
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
 
-Host bert13
+Host bert13 odroid-dl-13
     Hostname 192.168.132.13
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
 
-Host bert21
+Host bert21 odroid-dl-21
     Hostname 192.168.132.21
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
 
-Host bert22
+Host bert22 odroid-dl-22
     Hostname 192.168.132.22
-    User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    #GSSAPIAuthentication no
-    #GSSAPIKeyExchange no
 
-Host bert23
+Host bert23 odroid-dl-23
     Hostname 192.168.132.23
+
+Host bert* odroid-dl-*
     User root
     IdentityFile ~/.ssh/id_rsa_rmc
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
+
 
 
 Host e38 e38-dl-1 192.168.132.6
@@ -53,17 +29,6 @@ Host e38 e38-dl-1 192.168.132.6
          User root
          IdentityFile ~/.ssh/id_rsa_git
 
-Host pi
-         Hostname 192.168.132.10
-         User pi
-         IdentityFile ~/.ssh/id_rsa_rmc
-         GSSAPIAuthentication no
-     GSSAPIKeyExchange no
-         
-Host nuc nuc-dl-1 192.168.132.8
-         Hostname 192.168.132.8
-         User root
-         IdentityFile ~/.ssh/id_rsa_git
 
 # ssh configuration for rmc git server
 Host rmc-git rmc-github.robotic.dlr.de
