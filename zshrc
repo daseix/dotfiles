@@ -137,6 +137,12 @@ export GIT_SSL_NO_VERIFY=1
 # --- fix git ESC problems for diff etc
 export LESS="-eirMX"
 
+
+export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
+export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+
+
 # --- ssh keys
 #alias git="SSH_ASKPASS='' git" 
 #unset SSH_ASKPASS
@@ -179,9 +185,9 @@ alias ASDF=de_layout
 
 # -- custom aliases --
 #LS_BIN=$(which ls)
-alias ls="/usr/bin/ls -rtl --color"
-alias ll="/usr/bin/ls -lh --color --group-directories-first"
-alias la="/usr/bin/ls -lha --color --group-directories-first"
+alias ls="/bin/ls -rtl --color"
+alias ll="/bin/ls -lh --color --group-directories-first"
+alias la="/bin/ls -lha --color --group-directories-first"
 alias llg='ll | grep'
 alias lag='la | grep'
 alias ..="cd .." 

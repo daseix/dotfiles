@@ -6,6 +6,9 @@ umask 002
 
 # --- additional architecture environment variables
 #export DLRRM_HOST_PLATFORM="osl42-x86_64" 
+if test -f "/home/seid_da/.profile_local"; then
+    source "/home/seid_da/.profile_local"
+fi
 export OBJ_PATH=$DLRRM_HOST_PLATFORM
 export ARCH=$DLRRM_HOST_PLATFORM
 
