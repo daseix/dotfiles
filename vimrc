@@ -97,7 +97,6 @@ Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'bling/vim-airline'
 
-"Plugin 'bling/vim-bufferline'
 
 " Conque Shell with error fix 
 "Plugin 'jewes/Conque-Shell'
@@ -109,6 +108,8 @@ au BufReadPre FILETYPE au! PluginXoloxMisc
 "Plugin  'klen/python-mode'
 Plugin 'tmhedberg/SimpylFold'
 
+Plugin 'tpope/vim-eunuch'
+"Plugin 'vim-scripts/vim-eunuch'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -382,7 +383,15 @@ syntax on
 " Enable line numbers
 set number
 
-set termguicolors
+set background=dark
+set t_Co=256
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+"set termguicolors
 "colorscheme slate
 colorscheme bla
 

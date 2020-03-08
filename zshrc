@@ -314,9 +314,13 @@ alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca
 #zenity --warning --text "I am in .xprofile and I RUN\! " &
 alias disableTouchpad='xinput --disable 13'
 
-alias nextcloud='/home/seid_da/downloads/nc/squashfs-root/AppRun'
+alias nextcloud='/home/seid_da/Downloads/nc/squashfs-root/AppRun'
 
-alias thunderbird='/home/seid_da/packages/thunderbird-lin2/thunderbird'
+#alias thunderbird='/home/seid_da/packages/thunderbird-lin2/thunderbird'
+
+alias arbeitszeit='python /home/seid_da/git/arbeitszeit/arbeitsZeit.py -f /home/seid_da/git/arbeitszeit/tmp 1> /dev/null 2> /dev/null &'
+
+alias citrix='/opt/Citrix/ICAClient/selfservice'
 
 #function start_tmux() {
     #if type tmux &> /dev/null; then
@@ -330,6 +334,7 @@ alias thunderbird='/home/seid_da/packages/thunderbird-lin2/thunderbird'
 #}
 ##start_tmux
 
+alias ktmux='konsole -e tmux'
 
 
 

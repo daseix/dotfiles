@@ -23,34 +23,40 @@ export PATH=/home/seid_da/packages/firefox-lin:$PATH
 
 export PATH=/home/seid_da/packages/thunderbird-lin:$PATH
 
-# --- vim 7.4
-export PATH=/home/seid_da/packages/vim/osl42-x86_64/bin:$PATH
+# --- vim 8.0
+if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+then
+    export PATH=/home/seid_da/packages/vim/osl42-x86_64/bin:$PATH
+fi
 
 # --- maple
 export PATH=/opt/maple/latest/bin:$PATH
 
 
 # --- Pip etc
-export PATH=$HOME/.local/bin:$PATH
-export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
+#export PATH=$HOME/.local/bin:$PATH
+#export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 
 # --- openjdk temporarily
 #export PATH=/automount_offline/rmnfs01/gpfs/sw/openjdk:$PATH
-#export PATH=~/foreign_packages/openjdk/bin:$PATH
+#export PATH=~/packages/openjdk/bin:$PATH
 
 
 # vtk python for mayavi
-#export LD_LIBRARY_PATH=/volume/software/common/foreign_packages/vtk/6.3.0/lib/:$PYTHONPATH
-#export PYTHONPATH=/volume/software/common/foreign_packages/vtk/6.3.0/python/osl42-x86_64:$PYTHONPATH
-#export PYTHONPATH=/volume/software/common/foreign_packages/vtk/6.3.0/python/osl42-x86_64/vtk:$PYTHONPATH
+#export LD_LIBRARY_PATH=/volume/software/common/packages/vtk/6.3.0/lib/:$PYTHONPATH
+#export PYTHONPATH=/volume/software/common/packages/vtk/6.3.0/python/osl42-x86_64:$PYTHONPATH
+#export PYTHONPATH=/volume/software/common/packages/vtk/6.3.0/python/osl42-x86_64/vtk:$PYTHONPATH
 
-#export LD_LIBRARY_PATH=/home/seid_da/foreign_packages/vtk/osl42-x86_64/lib/:$PYTHONPATH
-#export PYTHONPATH=/home/seid_da/foreign_packages/vtk/osl42-x86_64/lib/python2.7/site-packages:$PYTHONPATH
-#export PYTHONPATH=/home/seid_da/foreign_packages/vtk/osl42-x86_64/lib/python2.7/site-packages/vtk:$PYTHONPATH
+#export LD_LIBRARY_PATH=/home/seid_da/packages/vtk/osl42-x86_64/lib/:$PYTHONPATH
+#export PYTHONPATH=/home/seid_da/packages/vtk/osl42-x86_64/lib/python2.7/site-packages:$PYTHONPATH
+#export PYTHONPATH=/home/seid_da/packages/vtk/osl42-x86_64/lib/python2.7/site-packages/vtk:$PYTHONPATH
 
 # --- PyBrain / sklearn
-#export PYTHONPATH=$PYTHONPATH:/home/seid_da/foreign_packages/pybrain
-#export PYTHONPATH=$PYTHONPATH:/home/seid_da/foreign_packages/scikit-learn
+#export PYTHONPATH=$PYTHONPATH:/home/seid_da/packages/pybrain
+#export PYTHONPATH=$PYTHONPATH:/home/seid_da/packages/scikit-learn
+
+
+export PYTHONPATH=$PYTHONPATH:/home/seid_da/dev/python/getch
 
 
 # --- rmpm/pkgtool 
@@ -79,7 +85,7 @@ fi
 
 #if [ ! -z ${DLRRM_HOST_PLATFORM+x} ]
 
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ] || [ "$DLRRM_HOST_PLATFORM" = "osl15-x86_64" ];
 then
     export SHELL=/usr/bin/zsh
     # this loads zsh when in a login shell [e.g. ssh]

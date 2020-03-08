@@ -25,10 +25,17 @@ Host bert* odroid-dl-*
 
 
 Host e38 e38-dl-1 192.168.132.6
-         Hostname 192.168.132.6
-         User root
-         IdentityFile ~/.ssh/id_rsa_git
+    Hostname 192.168.132.6
+    User root
+    IdentityFile ~/.ssh/id_rsa_git
 
+
+Host up 192.168.132.41
+    Hostname 192.168.132.41
+    User root
+    #IdentityFile ~/.ssh/id_rsa_git
+    GSSAPIAuthentication no
+    GSSAPIKeyExchange no
 
 # ssh configuration for rmc git server
 Host rmc-git rmc-github.robotic.dlr.de
@@ -61,12 +68,22 @@ Host github github.com
     ForwardX11 no
     ForwardAgent yes
 
+# ssh configuration for TUM github
+Host gitlab.lrz.de
+    HostName gitlab.lrz.de
+    IdentityFile ~/.ssh/id_rsa_rmc
+    PreferredAuthentications publickey
+    PasswordAuthentication yes
+    ForwardX11 no
+    ForwardAgent yes
+
 #
 # Note:
 #    pattern matching in 'host' field: first match overrides others
 #
 # host names containing dots:
 #
+
 Host *.robotic.dlr.de
     #ForwardAgent no
     ForwardX11 yes
@@ -91,6 +108,16 @@ Host dlr
     ControlMaster auto
     ControlPersist 240m
 
+Host *.daseix.duckdns.org
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    FallBackToRsh no
+    Protocol 2
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 240m
 
 
 #
