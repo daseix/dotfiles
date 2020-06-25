@@ -107,16 +107,19 @@ alias shellhotkeys='echo -e "
 
 
 alias set_kb_rate='xset r rate 250 50'
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+if [ -z ${SSH_TTY} ] # check if not ssh session
 then
-# no beep
-xset b off
+    if [ "$DLRRM_HOST_PLATFORM" = "osl*" ];
+    then
+    # no beep
+    xset b off
 
-# java double click tim
-#xrdb ~/.Xresources
+    # java double click tim
+    #xrdb ~/.Xresources
 
-# keyboard settings
-set_kb_rate
+    # keyboard settings
+    set_kb_rate
+    fi
 fi
 
 
@@ -228,7 +231,7 @@ alias svndiff="svn diff --diff-cmd='meld'"
 
 alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
-alias clion="/home/seid_da/foreign_packages/clion-2019.3.5/bin/clion.sh"
+#alias clion="/home/seid_da/foreign_packages/clion-2019.3.5/bin/clion.sh"
 
 alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
 #alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &"
