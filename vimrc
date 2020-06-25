@@ -822,3 +822,15 @@ endfunction
 " if !exists(":RemoveTrSpace")
 command! RemoveTrSpace :%s/\s\+$//
 " endif
+
+
+" function for naturl sorting
+func MyCompare(i1, i2)
+return (a:i1 + 0) - (a:i2 + 0)
+endfunc
+"let sortedlist = sort(mylist, "MyCompare")
+
+
+
+
+
