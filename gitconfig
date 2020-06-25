@@ -55,5 +55,14 @@
     untracked = "magenta normal bold"
     header = "cyan normal dim"
     branch = "normal normal bold"
+
 [merge]
-	tool = meld
+    tool = meld
+
+[mergetool "meld"]
+    # Choose one of these 2 lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED" # auto-merged file in middle
+    ;cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED" # common ancestor in middle
+
+[http "https://rmc-github.robotic.dlr.de"]
+    proxy = socks5h://127.0.0.1:30000
