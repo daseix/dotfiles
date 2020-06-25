@@ -9,8 +9,8 @@ umask 002
 if test -f "/home/seid_da/.profile_local"; then
     source "/home/seid_da/.profile_local"
 fi
-export OBJ_PATH=$DLRRM_HOST_PLATFORM
-export ARCH=$DLRRM_HOST_PLATFORM
+#export OBJ_PATH=$DLRRM_HOST_PLATFORM
+#export ARCH=$DLRRM_HOST_PLATFORM
 
 # --- locale settings variable
 export LC_TIME="de_DE.UTF-8"
@@ -24,10 +24,12 @@ export PATH=/home/seid_da/packages/firefox-lin:$PATH
 export PATH=/home/seid_da/packages/thunderbird-lin:$PATH
 
 # --- vim 8.0
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ] || [ "$DLRRM_HOST_PLATFORM" = "osl15-x86_64" ];
 then
     export PATH=/home/seid_da/packages/vim/osl42-x86_64/bin:$PATH
 fi
+
+
 
 # --- maple
 export PATH=/opt/maple/latest/bin:$PATH
