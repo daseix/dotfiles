@@ -37,15 +37,15 @@ Host up 192.168.132.41
     GSSAPIAuthentication no
     GSSAPIKeyExchange no
 
-# ssh configuration for rmc git server
-Host rmc-git rmc-github.robotic.dlr.de
-    #ProxyCommand ssh -q seid_da@donau.robotic.dlr.de nc %h %p
+
+#------------- git server etc -------------------------------------------------
+# rmc git server
+Host rmc-github.robotic.dlr.de
+    ProxyCommand ssh -q -W %h:%p ssh.robotic.dlr.de
     HostName rmc-github.robotic.dlr.de
-    IdentityFile ~/.ssh/id_rsa_rmc
-    PreferredAuthentications publickey
-    PasswordAuthentication no
     ForwardX11 no
-    ForwardAgent yes
+    IdentityFile ~/.ssh/id_rsa_rmc
+    PubkeyAuthentication yes
 
 
 # ssh configuration for rmc svn access from outside
@@ -77,36 +77,33 @@ Host gitlab.lrz.de
     ForwardX11 no
     ForwardAgent yes
 
-#
-# Note:
-#    pattern matching in 'host' field: first match overrides others
-#
-# host names containing dots:
-#
 
-Host *.robotic.dlr.de
-    #ForwardAgent no
-    ForwardX11 yes
-    ForwardX11Trusted yes
-    Compression no
-    FallBackToRsh no
-    Protocol 2
-    ControlPath ~/.ssh/ssh-%r@%h:%p
-    ControlMaster auto
-    ControlPersist 240m
 
-Host dlr
-    Hostname donau.robotic.dlr.de
-    User seid_da
-    #ForwardAgent no
-    ForwardX11 yes
-    ForwardX11Trusted yes
-    Compression no
-    FallBackToRsh no
+
+
+#------------- rmc access/ssh tunnel ------------------------------------------
+
+Host dlr donau rmc-donau donau.robotic.dlr.de ssh.robotic.dlr.de
+    HostName ssh.robotic.dlr.de
     Protocol 2
-    ControlPath ~/.ssh/ssh-%r@%h:%p
+    Compression yes
+    ForwardX11 no
+    ForwardAgent yes
+    ControlPath ~/.ssh/%l_%r@%h:%p.sock
     ControlMaster auto
-    ControlPersist 240m
+    ControlPersist 0 
+    PubkeyAuthentication no
+    FallBackToRsh no
+    LocalForward 3128 rmc-mobilproxy:3128
+    LocalForward 19999 rmsvn01:443
+    LocalForward 27009 rmc-lic01:27009
+    LocalForward 49050 rmc-lic01:49050
+
+
+Host rmc-* *.robotic.dlr.de !ssh.robotic.dlr.de
+    ProxyCommand ssh ssh.robotic.dlr.de -W %h:%p
+    IdentityFile ~/.ssh/id_rsa_rmc
+
 
 Host *.daseix.duckdns.org
     #ForwardAgent no
@@ -117,12 +114,10 @@ Host *.daseix.duckdns.org
     Protocol 2
     ControlPath ~/.ssh/ssh-%r@%h:%p
     ControlMaster auto
-    ControlPersist 240m
+    ControlPersist 0
 
 
-#
-# others are considered to be internet hosts:
-#
+#------------- ohters/internet hosts ------------------------------------------
 Host *.*
     #ForwardAgent no
     ForwardX11 yes
