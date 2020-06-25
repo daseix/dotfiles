@@ -112,16 +112,19 @@ bindkey "\e[F" end-of-line
 
 
 alias set_kb_rate='xset r rate 250 50'
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+if [ -z ${SSH_TTY} ] # check if not ssh session
 then
-# no beep
-xset b off
+    if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ];
+    then
+    # no beep
+    xset b off
 
-# java double click tim
-#xrdb ~/.Xresources
+    # java double click tim
+    #xrdb ~/.Xresources
 
-# keyboard settings
-set_kb_rate
+    # keyboard settings
+    set_kb_rate
+    fi
 fi
 
 # --- git author config
@@ -273,7 +276,8 @@ alias sshhome_tunnel="ssh -D 9999 root@daseix.duckdns.org -p 60022"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
 
 #vncviewer localhost:2 -geometry 1600x1200 
-alias sshdlr_vnc="ssh -l seid_da -L 5902:rmc-orpheus:5902 donau.robotic.dlr.de"
+#alias sshdlr_vnc="ssh -l seid_da -L 5902:rmc-orpheus:5902 donau.robotic.dlr.de"
+alias sshdlr_vnc="ssh -l seid_da -L 5902:rmc-lx0255:5902 donau.robotic.dlr.de"
 
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
