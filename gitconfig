@@ -19,8 +19,8 @@
     dc   = diff --cached
     lg   = log -p
     who  = shortlog -s --
-    ;slog = !git --no-pager log --format=oneline --abbrev-commit
-    ;clog  = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
+    slog = !git --no-pager log --format=oneline --abbrev-commit
+    clog  = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
     ;ncclog  = log --pretty=tformat:'%h %ai %an -> %d %s'
     ;dlog = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' --graph
     ;dfnp = !git --no-pager diff
@@ -45,8 +45,8 @@
     ;fchanged = !git diff --name-only $(git upstream)
     unstash = stash pop
 
-[push]
-    default = simple
+;[push]
+    ;default = simple
 
 
 [color "status"]
@@ -60,9 +60,9 @@
     tool = meld
 
 [mergetool "meld"]
-    # Choose one of these 2 lines (not both!) explained below.
+    ; Choose one of these 2 lines (not both!) explained below.
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED" # auto-merged file in middle
     ;cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED" # common ancestor in middle
 
-[http "https://rmc-github.robotic.dlr.de"]
-    proxy = socks5h://127.0.0.1:30000
+;[http "https://rmc-github.robotic.dlr.de"]
+    ;proxy = socks5h://127.0.0.1:30000
