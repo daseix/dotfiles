@@ -11,10 +11,6 @@ HISTSIZE=20000
 SAVEHIST=20000
 setopt appendhistory
 
-# vi mode and low delay
-#bindkey -v
-#export KEYTIMEOUT=1
-
 
 typeset -AHg FX FG BG
 
@@ -69,44 +65,43 @@ PS1TEXT='green'
 ## with git info
 #PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %b$(git_super_status)$ "
 
-unsetopt MULTIBYTE
+
+
+# ctrl-r starts searching history backward
+bindkey '^R' history-incremental-search-backward
+
+# Emacs mode (default)
+bindkey -e
+# Vi mode and low mode switching delay
+#bindkey -v
+#export KEYTIMEOUT=1
+
 
 # change up key history behavior
-bindkey "[[A" history-beginning-search-backward
+#bindkey "[[A" history-beginning-search-backward
 
 # arrow keys fix
-bindkey "^[[1;5C" emacs-forward-word
+bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
-bindkey -M emacs '^[[3;5~' kill-word
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
 
-
-bindkey "\e[5~" beginning-of-history
-bindkey "\e[6~" end-of-history
-bindkey "\e[3~" delete-char
-bindkey "\e[2~" quoted-insert
-bindkey "\e[5C" forward-word
-bindkey "\eOc" emacs-forward-word
-bindkey "\e[5D" backward-word
-bindkey "\eOd" emacs-backward-word
-bindkey "\ee[C" forward-word
-bindkey "\ee[D" backward-word
+# alt-backspace delete word
 bindkey "^H" backward-delete-word
 
-## for rxvt
-bindkey "\e[8~" end-of-line
-bindkey "\e[7~" beginning-of-line
-## for non RH/Debian xterm, can't hurt for RH/DEbian xterm
-bindkey "\eOH" beginning-of-line
-bindkey "\eOF" end-of-line
-## for freebsd console
-bindkey "\e[H" beginning-of-line
-bindkey "\e[F" end-of-line
-## completion in the middle of a line
-#bindkey '^i' expand-or-complete-prefix
+
+alias shellhotkeys='echo -e "
+[Ctrl][A] move to the beginning of the current line
+[Ctrl][E] move to the end of the current line
+[Ctrl][F] move the cursor forward one character
+[Ctrl][B] move the cursor backwards one character
+[Alt][F]  move the cursor forward one word
+[Alt][B]  move the cursor backwards one word
+[Ctrl][U] clear the characters on the line before the current cursor position
+[Ctrl][K] clear the characters on the line after the current cursor position
+[Ctrl][W] delete the word in front of the cursor
+[Alt][D]  delete the word after the cursor
+[Ctrl][P] history up
+[Ctrl][N] history down"'
+
 
 
 
@@ -124,6 +119,10 @@ xset b off
 set_kb_rate
 fi
 
+
+
+
+
 # --- git author config
 export GIT_AUTHOR_NAME="Daniel Seidel"
 export GIT_AUTHOR_EMAIL="daniel.seidel@dlr.de"
@@ -136,6 +135,21 @@ export GIT_SSL_NO_VERIFY=1
 
 # --- fix git ESC problems for diff etc
 export LESS="-eirMX"
+
+# some usefull git commands
+# fix conflict using theirs
+# git checkout --theirs path/to/file
+#
+# overwrite master with branch [only local changes, not pushed to remote]
+# git branch -f master dev_branch will rewrite local master branch.
+# git push remote +dev_branch:master will rewrite remote branch.
+#
+# Make the current Git branch a master branch [also remote master needs to be changed]
+# The new master doesn't have the old master as an ancestor, so when you push it, everyone else will get messed up. This is what you want to do:
+# git checkout better_branch
+# git merge --strategy=ours master    # keep the content of this branch, but record a merge
+# git checkout master
+# git merge better_branch             # fast-forward master up to the merge
 
 
 export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
@@ -152,7 +166,7 @@ export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 # default command line editor
 export EDITOR='gvim'      
 #export EDITOR='vim'      
-alias gvim="gvim -geom 120x60"
+alias gvim="gvim -geom 100x40"
 alias g=gvim
 alias e=gvim
 
@@ -214,12 +228,10 @@ alias svndiff="svn diff --diff-cmd='meld'"
 
 alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
+alias clion="/home/seid_da/foreign_packages/clion-2019.3.5/bin/clion.sh"
 
-#alias davtum="/volume/USERSTORE/seid_da/packages/davmail/davmail ~/.dotfiles/davmail.dlr.properties"
-#alias davdlr="/volume/USERSTORE/seid_da/packages/davmail/davmail ~/.dotfiles/davmail.tum.properties"
-
-#alias davmail="nohup ~/packages/davmail/davmail ~/data/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/data/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
-alias davmail="nohup ~/packages/davmail/davmail ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
+alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
+#alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &"
 
 #if $(uname -m | grep '64'); then
 #else
@@ -234,18 +246,29 @@ alias maple_extern="LM_LICENSE_FILE=27009@localhost /opt/maple/latest/bin/xmaple
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
-alias sshtum="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
-alias sshdlr="ssh -tt seid_da@donau.robotic.dlr.de ssh rmc-lx0255"
+alias tumssh="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
+alias dlrssh="ssh -tt seid_da@donau.robotic.dlr.de ssh rmc-lx0255"
 
 # git port: -D 8080
-# firefox socks5 port: -D 9999
-# rmc licence server: -L 27000:129.247.166.179:27000 -L 34758:129.247.166.179:34758
-alias sshdlr_tunnel="ssh -D 8080 -D 9999 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 seid_da@donau.robotic.dlr.de " # -N
-alias sshtum_tunnel="ssh -D 9999 seideld@lxhalle.informatik.tu-muenchen.de" # -N
+# firefox socks5 port: -D 30000
+# rmc licence server: -L27000:129.247.166.179:27000 -L34758:129.247.166.179:34758
+# rmc mobilproxy: -L3128:rmc-mobilproxy.robotic.dlr.de:3128
+
+#alias sshdlr_tunnel="ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 seid_da@ssh.robotic.dlr.de"
+alias tumsshtunnel="ssh -N -D 30000 seideld@lxhalle.informatik.tu-muenchen.de"
+
 #ssh -O check donau.robotic.dlr.de
 #ssh -O stop donau.robotic.dlr.de
 
-alias sshhome_tunnel="ssh -D 9999 root@daseix.duckdns.org -p 60022"
+alias homesshtunnel="ssh -D 30000 root@daseix.duckdns.org -p 60022"
+
+#alias sshdlr_tunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 -L3128:rmc-mobilproxy.robotic.dlr.de:3128 dlr"
+alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000  dlr echo 'connection established'; sleep infinity"
+
+alias mobilproxy_set="export {http,https,ftp}_proxy=http://localhost:3128"
+alias mobilproxy_unset="unset {http,https,ftp}_proxy"
+# rsync with multihop to another host within rmc network
+#rsync -azv -e 'ssh -A -J rmc-vosl151-x8664-01' dlr:dir target
 
 #Repositories through https[edit | edit source]
 #
@@ -273,7 +296,14 @@ alias sshhome_tunnel="ssh -D 9999 root@daseix.duckdns.org -p 60022"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
 
 #vncviewer localhost:2 -geometry 1600x1200 
-alias sshdlr_vnc="ssh -l seid_da -L 5902:rmc-orpheus:5902 donau.robotic.dlr.de"
+#alias dlrsshvnc="ssh -l seid_da -L 5902:rmc-lx0255:5902 donau.robotic.dlr.de"
+#590x display number of started vncserver
+alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -o ProxyJump=dlr rmc-lx0255"
+
+
+
+
+
 
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
@@ -348,7 +378,9 @@ alias ktmux='konsole -e tmux'
 #toolBarFont=Noto Sans,10,-1,0,50,0,0,0,0,0,
 
 
-
-
-
+#completely reinstall audio
+#https://askubuntu.com/questions/994003/pulseaudio-integration-with-kde-is-broken-in-ubuntu-17-10
+#sudo apt-get remove --purge alsa-base pulseaudio
+#sudo apt-get install alsa-base pulseaudio
+#sudo alsa force-reload
 
