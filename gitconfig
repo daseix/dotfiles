@@ -13,16 +13,19 @@
     st   = status -s
     sts  = status --ignore-submodules
     ci   = commit --verbose
-    br   = branch
+    br   = branch --all
     co   = checkout
     df   = diff
     dc   = diff --cached
-    lg   = log -p
+    undo = reset HEAD~
+    last = log -1 HEAD
     who  = shortlog -s --
-    slog = !git --no-pager log --format=oneline --abbrev-commit
-    clog  = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
-    ;ncclog  = log --pretty=tformat:'%h %ai %an -> %d %s'
-    ;dlog = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' --graph
+    ;slog = !git --no-pager log --format=oneline --abbrev-commit
+	lg = log -n 20 --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+    ;lg2 = log -n 20 --graph --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' 
+    lg2 = log -n 20 --graph --pretty=tformat:'%C(yellow)%h%C(green) %ai %C(blue)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' 
+    lg3  = log -n 20 --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
+    ;lg  = log --pretty=tformat:'%h %ai %an -> %d %s'
     ;dfnp = !git --no-pager diff
     ;fuckoff = clean -fdx
     ;see = "!f() { git show --format=fuller \"$@\" | view - -c \"set fdm=syntax\"; }; f"
@@ -44,6 +47,7 @@
     ;upstream = !git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null
     ;fchanged = !git diff --name-only $(git upstream)
     unstash = stash pop
+	unstage = "reset HEAD -- "
 
 ;[push]
     ;default = simple
@@ -66,3 +70,14 @@
 
 ;[http "https://rmc-github.robotic.dlr.de"]
     ;proxy = socks5h://127.0.0.1:30000
+[cola]
+	spellcheck = false
+[core]
+	pager = less -FRXS
+[diff]
+	submodule = log
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

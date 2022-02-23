@@ -50,3 +50,7 @@ alias untar="tar -zxvf"
 
 #alias tea="py /home/seid_da/data/tea/next_tea.py"
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+ source /opt/rmc-build-tools/sourceme.sh

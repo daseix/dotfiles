@@ -5,12 +5,14 @@ bashcompinit
 # ./.. tab completion
 zstyle ':completion:*' special-dirs true
 
+
+
 # history size
 HISTFILE=~/.zsh_history
 HISTSIZE=20000
 SAVEHIST=20000
 setopt appendhistory
-
+#setopt share_history
 
 typeset -AHg FX FG BG
 
@@ -103,9 +105,6 @@ alias shellhotkeys='echo -e "
 [Ctrl][N] history down"'
 
 
-
-
-
 alias set_kb_rate='xset r rate 250 50'
 if [ -z ${SSH_TTY} ] # check if not ssh session
 then
@@ -123,15 +122,12 @@ then
 fi
 
 
-
-
-
 # --- git author config
 export GIT_AUTHOR_NAME="Daniel Seidel"
 export GIT_AUTHOR_EMAIL="daniel.seidel@dlr.de"
 export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
 export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
-export GIT_EDITOR=gvim
+export GIT_EDITOR=vim
 
 # --- fix some git problems 
 export GIT_SSL_NO_VERIFY=1
@@ -155,15 +151,13 @@ export LESS="-eirMX"
 # git merge better_branch             # fast-forward master up to the merge
 
 
-export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
-export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+#export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
+#export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
+#export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 
+# --- cissy
+#export PATH=/opt/rmc-build-tools/any/cissy/bin/linux:$PATH
 
-# --- ssh keys
-#alias git="SSH_ASKPASS='' git" 
-#unset SSH_ASKPASS
-#ssh-add ~/.ssh/id_rsa_github </dev/null
 
 
 # default command line editor
@@ -171,22 +165,20 @@ export EDITOR='gvim'
 #export EDITOR='vim'      
 alias gvim="gvim -geom 100x40"
 alias g=gvim
-alias e=gvim
 
+#alias tvim='function _tvim(){ konsole --hide-menubar --hide-tabbar --icon /usr/share/icons/HighContrast/256x256/apps/vim.png --nofork -e nvim "$@" &>/dev/null &}; _tvim'
+#alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar -e nvim "$@" &>/dev/null &}; _tvim'
+#alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar --nofork --icon /usr/share/icons/HighContrast/256x256/apps/vim.png -e vim "$@" &>/dev/null &}; _tvim'
 
 # for mapping escape to caplsock: add to .xinitrc 
 #setxkbmap -option caps:escape &
 
-
 alias show_layout='setxkbmap -query | grep layout'
-#alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
-alias de_layout='setxkbmap de -variant nodeadkeys'
+alias ASDF='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 #alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
-alias us_layout='de_layout && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+alias asdf='setxkbmap de && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY && xset r rate 250 50'
 
-alias asdf=us_layout
-alias ASDF=de_layout
 
 #if [ -z ${SSH_TTY} ] # check if not ssh session
 #then
@@ -212,18 +204,12 @@ alias ...="cd ../.."
 
 alias untar="tar -zxvf"
 
-#alias tvim='function _tvim(){ konsole --hide-menubar --hide-tabbar --icon /usr/share/icons/HighContrast/256x256/apps/vim.png --nofork -e nvim "$@" &>/dev/null &}; _tvim'
-alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar -e nvim "$@" &>/dev/null &}; _tvim'
-
 #alias xterm='xterm -bg black -fg grey'
 alias xterm='xterm +cm'
 
 alias rsync='rsync --info=progress2'
 
-
 alias mampf="/home/seth_da/usr/bin/mampf"
-
-alias py="python"
 
 alias cmake_uninstall="xargs rm < install_manifest.txt"
 
@@ -231,45 +217,44 @@ alias svndiff="svn diff --diff-cmd='meld'"
 
 alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
 
-#alias clion="/home/seid_da/foreign_packages/clion-2019.3.5/bin/clion.sh"
-
-alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
-#alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &"
+alias _davmail="nohup ~/packages/davmail/davmail ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
+alias davmail="if ! pgrep -f "davmail" >/dev/null; then _davmail; fi;"
 
 #if $(uname -m | grep '64'); then
 #else
 #fi
 
-alias matlab="/opt/matlab/2016b/bin/matlab_acad"
+#export PATH=/home/seid_da/packages/firefox-lin:$PATH
+
+#alias blender='cissy run -kp blender/2.82a@3rdparty/unstable blender'
+alias blender='cissy run -kp blender/2.91.0@sewt-ma/snapshot blender'
+
+
+
+#alias matlab="/opt/matlab/2016b/bin/matlab_acad"
 
 alias matlab_extern="/volume/USERSTORE/seid_da/packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
 alias maple_extern="LM_LICENSE_FILE=27009@localhost /opt/maple/latest/bin/xmaple"
+alias maple="/opt/maple/latest/bin/xmaple"
 
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
-alias tumssh="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
-alias dlrssh="ssh -tt seid_da@donau.robotic.dlr.de ssh rmc-lx0255"
+alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -D 8080 -D 30000 dlr echo 'connection established'; sleep infinity"
+alias dlrssh="ssh -tt seid_da@ssh.robotic.dlr.de ssh rmc-lx0255"
 
-# git port: -D 8080
-# firefox socks5 port: -D 30000
-# rmc licence server: -L27000:129.247.166.179:27000 -L34758:129.247.166.179:34758
-# rmc mobilproxy: -L3128:rmc-mobilproxy.robotic.dlr.de:3128
-
-#alias sshdlr_tunnel="ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 seid_da@ssh.robotic.dlr.de"
-alias tumsshtunnel="ssh -N -D 30000 seideld@lxhalle.informatik.tu-muenchen.de"
-
-#ssh -O check donau.robotic.dlr.de
-#ssh -O stop donau.robotic.dlr.de
+alias tumsshtunnel="echo \"starting connection to TUM\"; ssh -D 30000 seideld@tum echo 'connection established'; sleep infinity" # lxhalle.informatik.tu-muenchen.de
+alias tumssh="ssh seideld@tum -C" # lxhalle.informatik.tu-muenchen.de
 
 alias homesshtunnel="ssh -D 30000 root@daseix.duckdns.org -p 60022"
 
-#alias sshdlr_tunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 -L3128:rmc-mobilproxy.robotic.dlr.de:3128 dlr"
-alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000  dlr echo 'connection established'; sleep infinity"
+#ssh -O check ssh.robotic.dlr.de
+#ssh -O stop ssh.robotic.dlr.de
 
 alias mobilproxy_set="export {http,https,ftp}_proxy=http://localhost:3128"
 alias mobilproxy_unset="unset {http,https,ftp}_proxy"
+
 # rsync with multihop to another host within rmc network
 #rsync -azv -e 'ssh -A -J rmc-vosl151-x8664-01' dlr:dir target
 
@@ -277,7 +262,7 @@ alias mobilproxy_unset="unset {http,https,ftp}_proxy"
 #
 #Start an ssh tunnel
 #
-# ssh -D 8080 -N username@donau.robotic.dlr.de -> see alias sshdlr_tunnel
+# ssh -D 8080 -N username@ssh.robotic.dlr.de -> see alias sshdlr_tunnel
 #
 #Cloning a repository**
 #
@@ -291,35 +276,29 @@ alias mobilproxy_unset="unset {http,https,ftp}_proxy"
 # git config http.sslVerify false
 
 # alternative method using ssh keys 
-# alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@donau.robotic.dlr.de'
+# alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
 # git clone ssh://git@localhost:3333/user/repository.git
 
-# svn relocate to ssh tunnel on port 19999
-# http://ubuntuforums.org/showthread.php?t=723025
-# svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
-
 #vncviewer localhost:2 -geometry 1600x1200 
-#alias dlrsshvnc="ssh -l seid_da -L 5902:rmc-lx0255:5902 donau.robotic.dlr.de"
+#alias dlrsshvnc="ssh -l seid_da -L 5902:rmc-lx0255:5902 ssh.robotic.dlr.de"
 #590x display number of started vncserver
-alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -o ProxyJump=dlr rmc-lx0255"
+alias dlrsshvnc="ssh -l seid_da -L 5901:localhost:5901 -L 5902:localhost:5902 -o ProxyJump=dlr rmc-lx0255"
 
-
-
-
-
-
+#alias startvncserver='export XAUTHORITY=/run/user/${UID}/.Xauthority.vnc; /usr/bin/vncserver -auth $XAUTHORITY'
+#alias addvncusers='vncconfig -set plainusers=seid_da,burger_r,f_quadru'
 
 alias keepass="mono ~/keepass/program/KeePass.exe"
-#alias keepass='mono /media/exchange/Keepass2Android/program/KeePass.exe'
 alias authy="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
-alias googlemusic="/volume/USERSTORE/seid_da/packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
+alias ytmusic="/volume/USERSTORE/seid_da/packages/YTM/squashfs-root/youtube-music-desktop-app"
+alias nextcloud='/home/seid_da/Downloads/nc/app/AppRun'
+
 
 alias chromium="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome"
 alias vivaldi="/volume/USERSTORE/seid_da/packages/vivaldi/vivaldi64/opt/vivaldi/vivaldi"
 
 #alias dirsizes="du -h -d 1 | sort -h"
 
-alias reducepdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4  -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf druck.pdf'
+alias reducepdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf druck.pdf'
 
 alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -interaction=nonstopmode -src-specials $*\" -pvc" #-jobname=./build/paper
 #alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
@@ -337,7 +316,12 @@ alias odroidUart='/volume/software/common/packages/picocom/latest/bin/sled11-x86
 alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 # on client: export http_proxy=http://192.168.132.2:54382
 
-#alias pip='pip2.7 '
+alias pip='/home/seid_da/.local/bin/pip2'
+alias pip3='/home/seid_da/.local/bin/pip3'
+alias pipinstall='pip install --user --trusted-host pypi.org --trusted-host files.pythonhosted.org '
+alias pip3install='pip3 install --user --trusted-host pypi.org --trusted-host files.pythonhosted.org '
+
+
 
 #alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
 
@@ -347,9 +331,8 @@ alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca
 #zenity --warning --text "I am in .xprofile and I RUN\! " &
 alias disableTouchpad='xinput --disable 13'
 
-alias nextcloud='/home/seid_da/Downloads/nc/squashfs-root/AppRun'
-
-#alias thunderbird='/home/seid_da/packages/thunderbird-lin2/thunderbird'
+#alias thunderbird='davmail; /home/seid_da/packages/thunderbird-lin/thunderbird -p'
+alias thunderbird='/home/seid_da/packages/thunderbird-lin/thunderbird -p'
 
 alias arbeitszeit='python /home/seid_da/git/arbeitszeit/arbeitsZeit.py -f /home/seid_da/git/arbeitszeit/tmp 1> /dev/null 2> /dev/null &'
 
@@ -370,6 +353,7 @@ alias citrix='/opt/Citrix/ICAClient/selfservice'
 alias ktmux='konsole -e tmux'
 
 
+alias reduce_git_size="git reflog expire --all --expire=now && git gc --prune=now --aggressive"
 
 
 # konsole bold fix:
@@ -387,3 +371,49 @@ alias ktmux='konsole -e tmux'
 #sudo apt-get install alsa-base pulseaudio
 #sudo alsa force-reload
 
+
+# fix firefox opening wrong file manager for "open containing folder
+#- Close firefox
+#- Go to your file manager (Thunar in my case), right click on a folder and click on "open as"
+#- Mark "use this app as default" and choose your file manager
+#- Open firefox and see if it worked
+
+# start ssh agent
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)" > /dev/null && ssh-add -q ~/.ssh/id_rsa 
+
+
+
+
+
+#pavucontrol
+alias zerf="~seth_da/usr/bin/zerf --interactive"
+
+alias cura="/home/seid_da/packages/cura/Ultimaker_Cura-4.7.1/AppRun"
+#alias cleanup_conan='conan remove "*" -s -b -f'
+alias cleanup_conan="cd /volume/conan_cache/$USER/.conan/data
+for d in */ ; do
+    echo $d
+    conan remove -f $d
+done"
+
+
+
+alias pip3='pip3 install --user --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org '
+alias local_conan='echo conan install . -u; conan build . -c; make' 
+
+#alias cissy_info='cissy info -a -s ln_msgdef'
+
+#alias meld='bash -c "/opt/python/deactivate && meld "'
+#alias retext='bash -c "/opt/python/deactivate && retext "'
+
+#todo: take input and pump it into todo.txt somehwere
+alias todo='echo '
+
+#alias pyblack='cissy run -opt python_version=3 -kp black black -l 127'
+alias black='~/packages/black/black -l 127 '
+
+
+# fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias kate='QT_SCREEN_SCALE_FACTORS=1 /usr/bin/kate'
+alias mattermost="~/conan_cache/mattermost-desktop/5.0.2/3rdparty/stable/package/35396a9b897db7bcdc1c99d92ba7b3482fa1694b/bin/mattermost-desktop &"

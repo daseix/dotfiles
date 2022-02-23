@@ -1,51 +1,59 @@
-Host bert11 odroid-dl-11
-    Hostname 192.168.132.11
+AddKeysToAgent yes
 
-Host bert12 odroid-dl-12
-    Hostname 192.168.132.12
 
-Host bert13 odroid-dl-13
-    Hostname 192.168.132.13
-
-Host bert21 odroid-dl-21
+Host bert21 rmc-up-01
     Hostname 192.168.132.21
 
-Host bert22 odroid-dl-22
+Host bert22 rmc-up-02
     Hostname 192.168.132.22
 
-Host bert23 odroid-dl-23
+Host bert23 rmc-up-03
     Hostname 192.168.132.23
 
-Host bert* odroid-dl-*
+Host bert31 rmc-up2-03
+    Hostname 192.168.132.33
+
+Host testbed01 rmc-up2-01
+    Hostname 192.168.128.198
+
+Host testbed02 rmc-up2-02
+    Hostname 192.168.128.68 	
+
+Host testbed04 rmc-up2-04
+    Hostname 192.168.128.2
+
+Host testbed05 rmc-up2-05
+    Hostname 192.168.128.171 	
+
+Host testbed06 rmc-up2-06
+    Hostname 192.168.128.222 	
+
+Host bert* rmc-up-01 rmc-up-02 rmc-up-03 rmc-up2-03
     User root
-    IdentityFile ~/.ssh/id_rsa_rmc
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
+    IdentityFile ~/.ssh/id_rsa
+    ProxyCommand ssh rmc-kermit -W %h:%p 
+    #ProxyCommand ssh rmc-lx0100 -W %h:%p 
+    #ControlPath ~/.ssh/ssh-%r@%h:%p
+    #ControlMaster auto
+    #ControlPersist 0
 
-
-
-Host e38 e38-dl-1 192.168.132.6
-    Hostname 192.168.132.6
+Host testbed* rmc-up2-01 rmc-up2-02 rmc-up2-04 rmc-up2-05 rmc-up2-06
     User root
-    IdentityFile ~/.ssh/id_rsa_git
-
-
-Host up 192.168.132.41
-    Hostname 192.168.132.41
-    User root
-    #IdentityFile ~/.ssh/id_rsa_git
-    GSSAPIAuthentication no
-    GSSAPIKeyExchange no
+    IdentityFile ~/.ssh/id_rsa
+    ProxyCommand ssh rmc-mobilproxy.robotic.dlr.de -W %h:%p
+    #ControlPath ~/.ssh/ssh-%r@%h:%p
+    #ControlMaster auto
+    #ControlPersist 0
 
 
 #------------- git server etc -------------------------------------------------
 # rmc git server
-Host rmc-github.robotic.dlr.de
-    ProxyCommand ssh -q -W %h:%p ssh.robotic.dlr.de
-    HostName rmc-github.robotic.dlr.de
-    ForwardX11 no
-    IdentityFile ~/.ssh/id_rsa_rmc
-    PubkeyAuthentication yes
+#Host rmc-github.robotic.dlr.de
+    #ProxyCommand ssh -q -W %h:%p ssh.robotic.dlr.de
+    #HostName rmc-github.robotic.dlr.de
+    #ForwardX11 no
+    #IdentityFile ~/.ssh/id_rsa
+    #PubkeyAuthentication yes
 
 
 # ssh configuration for rmc svn access from outside
@@ -71,19 +79,41 @@ Host github github.com
 # ssh configuration for TUM github
 Host gitlab.lrz.de
     HostName gitlab.lrz.de
-    IdentityFile ~/.ssh/id_rsa_rmc
+    IdentityFile ~/.ssh/id_rsa
     PreferredAuthentications publickey
     PasswordAuthentication yes
     ForwardX11 no
     ForwardAgent yes
 
-
+# ssh configuration for home server
+Host *.daseix.duckdns.org
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    Protocol 2
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 0
 
 
 
 #------------- rmc access/ssh tunnel ------------------------------------------
 
-#Host dlr donau rmc-donau donau.robotic.dlr.de ssh.robotic.dlr.de
+Host tum lxhalle.informatik.tu-muenchen.de
+    HostName lxhalle.informatik.tu-muenchen.de
+    User seideld
+    #IdentityFile ~/.ssh/id_rsa
+    PubkeyAuthentication no
+    Protocol 2
+    Compression yes
+    ForwardX11 no
+    ForwardAgent yes
+    ControlPath ~/.ssh/%l_%r@%h:%p.sock
+    ControlMaster auto
+    ControlPersist 0 
+
+#Host dlr donau.robotic.dlr.de ssh.robotic.dlr.de
     #HostName ssh.robotic.dlr.de
     #Protocol 2
     #Compression yes
@@ -93,37 +123,27 @@ Host gitlab.lrz.de
     #ControlMaster auto
     #ControlPersist 0 
     #PubkeyAuthentication no
-    #FallBackToRsh no
     #LocalForward 3128 rmc-mobilproxy:3128
     #LocalForward 19999 rmsvn01:443
     #LocalForward 27009 rmc-lic01:27009
     #LocalForward 49050 rmc-lic01:49050
 
 
-#Host rmc-* *.robotic.dlr.de !ssh.robotic.dlr.de
+#Host rmc-* *.robotic.dlr.de !ssh.robotic.dlr.de !donau.robotic.dlr.de
     #ProxyCommand ssh ssh.robotic.dlr.de -W %h:%p
-    #IdentityFile ~/.ssh/id_rsa_rmc
+    #IdentityFile ~/.ssh/id_rsa
 
-
-Host *.daseix.duckdns.org
-    #ForwardAgent no
+Host rmc-* *.robotic.dlr.de !ssh.robotic.dlr.de !donau.robotic.dlr.de
+    User seid_da
+    IdentityFile ~/.ssh/id_rsa
+    ForwardAgent yes
     ForwardX11 yes
-    ForwardX11Trusted yes
     Compression no
-    FallBackToRsh no
     Protocol 2
-    ControlPath ~/.ssh/ssh-%r@%h:%p
-    ControlMaster auto
-    ControlPersist 0
+
 
 
 #------------- ohters/internet hosts ------------------------------------------
-Host *.*
-    #ForwardAgent no
-    ForwardX11 yes
-    FallBackToRsh no
-    Protocol 2
-    Compression no
 
 #
 # special treatment of localhost: 
@@ -131,20 +151,21 @@ Host *.*
 #
 Host localhost
     NoHostAuthenticationForLocalhost yes
-    #ForwardAgent no
+    PreferredAuthentications publickey
+    PasswordAuthentication yes
+    ForwardAgent yes
     ForwardX11 yes
-    ForwardX11Trusted yes
     Compression no
-    FallBackToRsh no
     Protocol 2
+    IdentityFile ~/.ssh/id_rsa
 
 #
 # everything else which does not need a dot to be resolved:
 #
 Host *
-    #ForwardAgent no
+    ForwardAgent yes
     ForwardX11 yes
-    ForwardX11Trusted yes
-    FallBackToRsh no
     Protocol 2
     Compression no
+
+
