@@ -552,7 +552,7 @@ autocmd BufReadPost *
             \   exe "normal! g`\"" |
             \ endif
 " Remember info about open buffers on close
-set viminfo^=%
+"set viminfo^=%
 "set viminfo=%,'100,<500,s10,h
 
 function! LucCheckIfBufferIsNew(...)
