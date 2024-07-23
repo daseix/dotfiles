@@ -67,7 +67,7 @@ let g:CSApprox_konsole=1
 " smart pane switching with awareness of tmux
 Plugin 'christoomey/vim-tmux-navigator'
 
-Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'fholgado/minibufexpl.vim'
 
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'scrooloose/nerdtree'
@@ -75,13 +75,16 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-latex/vim-latex'
 
 Plugin 'L9'
-Plugin 'FuzzyFinder'
+"Plugin 'FuzzyFinder'
 "Plugin 'vim-scripts/FuzzyFinder'
-
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'vim-scripts/MatlabFilesEdition'
 
 Plugin 'Chiel92/vim-autoformat'
+let g:formatterpath = ['/home/seid_da/packages/black']
+let g:formatters_python = ['black']
+
 "let g:formatterpath = ['~/.local/lib/python2.7/site-packages/yapf/']
 "let g:formatdef_yapf = 'yapf --style=''{based_on_style:google, column_limit:120}'''
 "''yapf --style=''{based_on_style:'.g:formatter_ya pf_style.',indent_width:'.&shiftwidth.'}'
@@ -97,6 +100,7 @@ Plugin 'Chiel92/vim-autoformat'
 
 Plugin 'bling/vim-airline'
 
+Plugin 'ericcurtin/CurtineIncSw.vim'
 
 " Conque Shell with error fix 
 "Plugin 'jewes/Conque-Shell'
@@ -148,6 +152,10 @@ set cmdheight=1
 " map autoformat
 noremap <F3> :Autoformat<CR>
 
+" switch between source/header: https://www.vim.org/scripts/script.php?script_id=5545
+map <C-_> :call CurtineIncSw() <CR> 
+"map <F5> :call CurtineIncSw() <CR> 
+
 " tab label with tab number
 "if has("gui_running")
     "set gtl=[%N]\ %t\ %M
@@ -176,27 +184,18 @@ endfunction
 "set clipboard=unnamed
 set clipboard=unnamedplus
 
-" paste in visual mode without updating the default register:
-vnoremap <C-P> "_dP
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
 
+" replace currently selected text with default register
+" without yanking it
+"vnoremap <C-P> "_dP
+vnoremap <leader>p "_dP
 
-"remap d to delete and y to yank to unnamed
-"noremap  y "+y
-"noremap  yy "+yy
-"noremap  Y "+Y
-"vnoremap y "+y
-"vnoremap yy "+yy
-"vnoremap Y "+Y
-
-"vnoremap p "+p
-"vnoremap P "+P
-
-"noremap  d "_d
-"noremap  dd "_dd
-"noremap  D "_D
-"vnoremap d "_d
-"vnoremap dd "_dd
-"vnoremap D "_D
+" yank/delete without linebreak
+noremap <C-Y> 0vg_y
+noremap <C-D> 0vg_d
 
 " minibufexplorer MBE
 let g:miniBufExplSplitBelow=0
@@ -242,31 +241,25 @@ let g:airline_section_warning = ''
 let g:tex_flavor='latex'
 
 "" settings
-"let g:Tex_Leader=','
-"let g:tex_flavor='latex'
-"let g:Tex_DefaultTargetFormat = 'pdf'
-"let g:Tex_ViewRule_pdf = 'okular --unique'
-""let g:Tex_CompileRule_pdf = 'pdflatex -synctex=-1 -src-specials -interaction=nonstopmode $*'
-"let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -synctex=-1 -file-line-error -src-specials -interaction=nonstopmode $*" -silent `grep -l "\documentclass" *tex`'
-"set iskeyword+=:
+let g:Tex_Leader=','
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_ViewRule_pdf = 'okular --unique'
+let g:Tex_CompileRule_pdf = 'latexmk -pdf -pdflatex="pdflatex -synctex=-1 -file-line-error -src-specials -interaction=nonstopmode $*" -silent `grep -l "\documentclass" *tex`'
 
 "" Okular editor command
 "" gvim --remote-silent +%l %f
 
-"let g:Tex_ViewRule_pdf = 'okular --unique'
-"function! SyncTexForward()
-"let execstr = "silent !okular --unique %:p:r.pdf\#src:".line(".")."%:p &"
-"exec execstr
-"endfunction
-"nmap f :call SyncTexForward()
-
+" forward search that uses the Tex_GetMainFileName function to use the correct
+" main file pdf name for include/input files
 function! SyncTexForward()
 let s:syncfile = fnamemodify(fnameescape(Tex_GetMainFileName()), ":r").".pdf"
 let execstr = "silent !okular --unique ".s:syncfile."\\#src:".line(".").expand("%\:p").' &'
 exec execstr
 endfunction
-nnoremap <Leader>l :call SyncTexForward()<CR>
+nnoremap <Leader>ls :call SyncTexForward()<CR>
 
+
+" Tex_GetMainFileName requries a <main_tex_file>.latexmain file to be present to find the correct file
 " Press \ll to compile in pdf, \lv to open pdf with ocular, \ls to forward search from gvim to okular.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -496,10 +489,10 @@ map <UP> gk
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map <C-h> <C-W>h
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-l> <C-W>l
+"map <C-h> <C-W>h
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-l> <C-W>l
 
 " open split panes to the right and to bottom (more naturally)
 set splitbelow
@@ -516,14 +509,19 @@ map <leader>db :Bclose<cr>
 map <F1> :ls<cr>
 
 " quck jump between buffers
-"map <F2> :ls<CR>:b<Space>
+map <F2> :ls<CR>:b<Space>
 "map <leader>b :ls<CR>:b<Space>
 map <leader>B :ls<CR>:b<Space>
 "map gb <C-^>
 
 " Fuzzy Finder bindings
-map <leader>f :FufFile **/<CR>
-map <leader>b :FufBuffer<C-M>
+"map <leader>f :FufFile **/<CR>
+"map <leader>b :FufBuffer<C-M>
+
+" CtrlP bindings
+map <leader>f :CtrlP **/<CR>
+map <leader>b :CtrlPBuffer<C-M>
+
 
 " Useful mappings for managing tabs
 "map <leader>tn :tabnew<cr>
@@ -698,13 +696,13 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 "map <leader>cc :botright cope<cr>
 "map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+map <leader>o :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Pressing <leader>ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
@@ -745,16 +743,18 @@ map <leader>pp :setlocal paste!<cr>
 "inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 "inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
-inoremap (<TAB> ()<left>
-inoremap {<TAB> {}<left>
-inoremap [<TAB> []<left>
-inoremap '<TAB> ''<left>
-inoremap "<TAB> ""<left>
-inoremap {<CR> {<CR>}<ESC>O<TAB>
-inoremap {;<CR> {<CR>};<ESC>O<TAB>
+"inoremap (<TAB> ()<left>
+"inoremap {<TAB> {}<left>
+"inoremap [<TAB> []<left>
+"inoremap '<TAB> ''<left>
+"inoremap "<TAB> ""<left>
+"inoremap {<CR> {<CR>}<ESC>O<TAB>
+"inoremap {;<CR> {<CR>};<ESC>O<TAB>
 
 
-
+"use 2-space yaml indentation
+"autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yaml,yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -825,12 +825,13 @@ command! RemoveTrSpace :%s/\s\+$//
 
 
 " function for naturl sorting
-func MyCompare(i1, i2)
+function! MyCompare(i1, i2)
 return (a:i1 + 0) - (a:i2 + 0)
 endfunc
 "let sortedlist = sort(mylist, "MyCompare")
 
 
 
-
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
 

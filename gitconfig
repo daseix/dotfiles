@@ -13,14 +13,15 @@
     st   = status -s
     sts  = status --ignore-submodules
     ci   = commit --verbose
-    br   = branch
+    br   = branch --all
     co   = checkout
     df   = diff
     dc   = diff --cached
-    lg   = log -p
+    undo = reset HEAD~
+    last = log -1 HEAD
     who  = shortlog -s --
     ;slog = !git --no-pager log --format=oneline --abbrev-commit
-        lg = log -n 20 --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+    lg = log -n 20 --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     ;lg2 = log -n 20 --graph --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' 
     lg2 = log -n 20 --graph --pretty=tformat:'%C(yellow)%h%C(green) %ai %C(blue)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' 
     lg3  = log -n 20 --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
@@ -46,9 +47,10 @@
     ;upstream = !git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null
     ;fchanged = !git diff --name-only $(git upstream)
     unstash = stash pop
+	unstage = "reset HEAD -- "
 
-[push]
-    default = simple
+;[push]
+    ;default = simple
 
 
 [color "status"]
@@ -62,7 +64,7 @@
     tool = meld
 
 [mergetool "meld"]
-    # Choose one of these 2 lines (not both!) explained below.
+    ; Choose one of these 2 lines (not both!) explained below.
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED" # auto-merged file in middle
     ;cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED" # common ancestor in middle
 
@@ -70,3 +72,14 @@
     ;proxy = socks5h://127.0.0.1:30000
 [init]
 	defaultBranch = master
+[cola]
+	spellcheck = false
+[core]
+	pager = less -FRXS
+[diff]
+	submodule = log
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

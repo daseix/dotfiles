@@ -10,7 +10,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=20000
 SAVEHIST=20000
 setopt appendhistory
-
+#setopt share_history
 
 typeset -AHg FX FG BG
 
@@ -163,9 +163,10 @@ export LESS="-eirMX"
 # git merge better_branch             # fast-forward master up to the merge
 
 
-export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
-export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+#export MANPATH=/usr/local/texlive/2019/texmf-dist/doc/man:$MANPATH
+#export INFOPATH=/usr/local/texlive/2019/texmf-dist/doc/info:$INFOPATH
+#export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+
 
 
 # --- ssh keys
@@ -181,6 +182,9 @@ alias gvim="gvim -geom 130x60"
 alias g=gvim
 alias e=gvim
 
+#alias tvim='function _tvim(){ konsole --hide-menubar --hide-tabbar --icon /usr/share/icons/HighContrast/256x256/apps/vim.png --nofork -e nvim "$@" &>/dev/null &}; _tvim'
+#alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar -e nvim "$@" &>/dev/null &}; _tvim'
+#alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar --nofork --icon /usr/share/icons/HighContrast/256x256/apps/vim.png -e vim "$@" &>/dev/null &}; _tvim'
 
 # for mapping escape to caplsock: add to .xinitrc 
 #setxkbmap -option caps:escape &
@@ -188,7 +192,6 @@ alias e=gvim
 alias set_kb_rate='xset r rate 250 60'
 
 alias show_layout='setxkbmap -query | grep layout'
-#alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
 alias de_layout='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 #alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
@@ -251,7 +254,10 @@ alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.prope
 #else
 #fi
 
-alias matlab="/opt/matlab/2016b/bin/matlab_acad"
+#alias blender='cissy run -kp blender/2.82a@3rdparty/unstable blender'
+alias blender='cissy run -kp blender/2.91.0@sewt-ma/snapshot blender'
+
+
 
 alias matlab_extern="/volume/USERSTORE/seid_da/packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
 
@@ -260,7 +266,6 @@ alias maple_extern="LM_LICENSE_FILE=27009@localhost /opt/maple/latest/bin/xmaple
 alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
-alias tumssh="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
 alias dlrssh="ssh -tt seid_da@ssh.robotic.dlr.de ssh rmc-lx0255"
 
 # git port: -D 8080
@@ -276,7 +281,6 @@ alias tumsshtunnel="ssh -N -D 30000 seideld@lxhalle.informatik.tu-muenchen.de"
 
 alias homesshtunnel="ssh -D 30000 root@daseix.duckdns.org -p 60022"
 
-#alias sshdlr_tunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 -L3128:rmc-mobilproxy.robotic.dlr.de:3128 dlr"
 alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -D 8080 -D 30000 dlr echo 'connection established'; sleep infinity"
 
 alias mobilproxy_set="export {http,https,ftp}_proxy=http://localhost:3128"
@@ -305,10 +309,6 @@ alias mobilproxy_unset="unset {http,https,ftp}_proxy"
 # alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
 # git clone ssh://git@localhost:3333/user/repository.git
 
-# svn relocate to ssh tunnel on port 19999
-# http://ubuntuforums.org/showthread.php?t=723025
-# svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
-
 #vncviewer localhost:2 -geometry 1600x1200 
 #590x display number of started vncserver
 alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -L 5903:localhost:5903 -L 5904:localhost:5904 -o ProxyJump=dlr"
@@ -318,15 +318,14 @@ alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -
 
 
 
+#alias startvncserver='export XAUTHORITY=/run/user/${UID}/.Xauthority.vnc; /usr/bin/vncserver -auth $XAUTHORITY'
+#alias addvncusers='vncconfig -set plainusers=seid_da,burger_r,f_quadru'
 
 #alias keepass="mono ~/keepass/program/KeePass.exe"
-#alias keepass='mono /media/exchange/Keepass2Android/program/KeePass.exe'
-#alias authy="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
 alias keepass="keepassxc ~/keepass/datenbank.kdbx --keyfile ~/data/holodeck --pw-stdin"
 
 alias googlemusic="/volume/USERSTORE/seid_da/packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
 
-#alias chromium="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome"
 alias vivaldi="/volume/USERSTORE/seid_da/packages/vivaldi/vivaldi64/opt/vivaldi/vivaldi"
 
 #alias dirsizes="du -h -d 1 | sort -h"
@@ -349,8 +348,6 @@ alias odroidUart='/volume/software/common/packages/picocom/latest/bin/sled11-x86
 alias tinyproxy='/home/schm_fl/packages/tm -c ~/.tm.conf'
 # on client: export http_proxy=http://192.168.132.2:54382
 
-#alias pip='pip2.7 '
-
 #alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
 
 # fix kde login errors
@@ -360,8 +357,6 @@ alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca
 alias disableTouchpad='xinput --disable 13'
 
 alias nextcloud='/home/seid_da/Downloads/nc/squashfs-root/AppRun'
-
-#alias thunderbird='/home/seid_da/packages/thunderbird-lin2/thunderbird'
 
 alias arbeitszeit='python /home/seid_da/git/arbeitszeit/arbeitsZeit.py -f /home/seid_da/git/arbeitszeit/tmp 1> /dev/null 2> /dev/null &'
 
@@ -382,6 +377,7 @@ alias citrix='/opt/Citrix/ICAClient/selfservice'
 alias ktmux='konsole -e tmux'
 
 
+alias reduce_git_size="git reflog expire --all --expire=now && git gc --prune=now --aggressive"
 
 
 # konsole bold fix:
@@ -401,7 +397,7 @@ alias ktmux='konsole -e tmux'
 
 # init cissy
 #export {http,https,ftp,all}_proxy=socks5h://localhost:30000
-export CISSY_HOSTNAME=rmc-lx0521
+#export CISSY_HOSTNAME=rmc-lx0521
 . /opt/rmc-build-tools/sourceme.dash > /dev/null 2> /dev/null
 
 

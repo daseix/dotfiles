@@ -90,6 +90,18 @@ Host github github.com
     ForwardAgent yes
 
 
+# ssh configuration for home server
+Host *.daseix.duckdns.org
+    #ForwardAgent no
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    Compression no
+    Protocol 2
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 0
+
+
 
 #------------- rmc access/ssh tunnel ------------------------------------------
 
