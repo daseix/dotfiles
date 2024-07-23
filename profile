@@ -19,20 +19,19 @@ export LC_TIME="de_DE.UTF-8"
 #export PATH=$PATH:~/.neo/    
 
 # --- ff/tb
-export PATH=/home/seid_da/packages/firefox-lin:$PATH
-
-export PATH=/home/seid_da/packages/thunderbird-lin:$PATH
+#export PATH=/home/seid_da/packages/firefox-lin:$PATH
+#export PATH=/home/seid_da/packages/thunderbird-lin:$PATH
 
 # --- vim 8.0
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ] || [ "$DLRRM_HOST_PLATFORM" = "osl15-x86_64" ];
-then
-    export PATH=/home/seid_da/packages/vim/osl42-x86_64/bin:$PATH
-fi
+#if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ] || [ "$DLRRM_HOST_PLATFORM" = "osl15-x86_64" ];
+#then
+    #export PATH=/home/seid_da/packages/vim/osl42-x86_64/bin:$PATH
+#fi
 
 
 
 # --- maple
-export PATH=/opt/maple/latest/bin:$PATH
+#export PATH=/opt/maple/latest/bin:$PATH
 
 
 # --- Pip etc
@@ -58,19 +57,19 @@ export PATH=/opt/maple/latest/bin:$PATH
 #export PYTHONPATH=$PYTHONPATH:/home/seid_da/packages/scikit-learn
 
 
-export PYTHONPATH=$PYTHONPATH:/home/seid_da/dev/python/getch
+#export PYTHONPATH=$PYTHONPATH:/home/seid_da/dev/python/getch
 
 
 # --- rmpm/pkgtool 
-export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
+#export PATH=/volume/software/common/packages/rmpm/latest/bin/$DLRRM_HOST_PLATFORM:$PATH
 
 # --- Links and Nodes
-if [ "$DLRRM_HOST_PLATFORM" ] 
-then
-    export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
-    source $LN_BASE/scripts/bash.rc
-    export PATH=$LN_BASE/scripts:$PATH
-fi
+#if [ "$DLRRM_HOST_PLATFORM" ] 
+#then
+    #export LN_BASE=/volume/software/common/packages/links_and_nodes/latest
+    #source $LN_BASE/scripts/bash.rc
+    #export PATH=$LN_BASE/scripts:$PATH
+#fi
 #pkgtool --env links_and_nodes==0.11 --env-format embed_sh > links_and_nodes.env && source links_and_nodes.env && rm links_and_nodes.env
 
 
@@ -87,26 +86,29 @@ fi
 
 #if [ ! -z ${DLRRM_HOST_PLATFORM+x} ]
 
-if [ "$DLRRM_HOST_PLATFORM" = "osl42-x86_64" ] || [ "$DLRRM_HOST_PLATFORM" = "osl15-x86_64" ];
-then
-    export SHELL=/usr/bin/zsh
-    # this loads zsh when in a login shell [e.g. ssh]
-    if [[ $- = *i* ]] 
-    then
-        exec /usr/bin/zsh -l
-    fi 
-fi
-
-#if [ "$HOSTNAME" = "rmc-lx0255"]
-    #xrandr --setmonitor DP-1-1 1706/399x1440/336+0+0 DP-1 
-    #xrandr --setmonitor DP-1-2 1708/399x1440/336+1706+0 none 
-    #xrandr --setmonitor DP-1-3 1706/399x1440/336+03414+0 none
-
-    #xrandr --fb 1706x1440
-    #xrandr --fb 1708x1440
-    #xrandr --fb 1706x1440
+#if [ "$DLRRM_HOST_PLATFORM" = "osl154-x86_64" ] || [ "$DLRRM_HOST_PLATFORM" = "osl154-x86_64" ];
+#if [[ "$DLRRM_HOST_PLATFORM" == "osl"* ]]; 
+#then
+    #export SHELL=`which zsh`
+    ## this loads zsh when in an interactive shell
+    #if [[ $- = *i* ]] 
+    #then
+        #exec "$SHELL" -l
+    #fi 
+    ##[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
 #fi
 
+#[ ! "`which zsh | egrep "^no"`" ] && [ -z $ZSH ] && exec zsh --login
 
-
+#case $- in
+  #*i*)
+    ## Interactive session. Try switching to zsh.
+    #if [ -z "$ZSH" ]; then # do nothing if running under zsh already
+      #zsh=$(command -v zsh)
+      #if [ -x "$zsh" ]; then
+        #export SHELL="$zsh"
+        #exec "$zsh"
+      #fi
+    #fi
+#esac
 
