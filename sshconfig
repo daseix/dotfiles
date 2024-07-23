@@ -72,12 +72,12 @@ Host rmc-up2-01 rmc-up2-02 rmc-up2-04 rmc-up2-05 rmc-up2-07 rmc-up2-08 rmc-up2-0
 
 #------------- git server etc -------------------------------------------------
 # rmc git server
-Host rmc-github.robotic.dlr.de
-    #ProxyCommand ssh -q -W %h:%p ssh.robotic.dlr.de
-    HostName rmc-github.robotic.dlr.de
-    ForwardX11 no
-    IdentityFile ~/.ssh/id_rsa
-    PubkeyAuthentication yes
+#Host rmc-github.robotic.dlr.de
+    ##ProxyCommand ssh -q -W %h:%p ssh.robotic.dlr.de
+    #HostName rmc-github.robotic.dlr.de
+    #ForwardX11 no
+    #IdentityFile ~/.ssh/id_rsa
+    #PubkeyAuthentication yes
 
 
 # ssh configuration for github
@@ -142,15 +142,14 @@ Host *.daseix.duckdns.org
 #
 Host localhost
     NoHostAuthenticationForLocalhost yes
+    PubkeyAuthentication yes
+    #PreferredAuthentications publickey
+    PasswordAuthentication yes
     ForwardAgent yes
     ForwardX11 yes
-    ForwardX11Trusted yes
-    #Compression no
-    #FallBackToRsh no
-    #Protocol 2
+    Compression no
+    Protocol 2
     IdentityFile ~/.ssh/id_rsa
-    #PubkeyAuthentication yes
-    #PreferredAuthentications publickey
 
 #
 # everything else which does not need a dot to be resolved:
