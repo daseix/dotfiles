@@ -24,29 +24,9 @@ alias ...="cd ../.."
 
 alias untar="tar -zxvf"
 
-# vim and gvim start
-#alias gvim="gvim -p --remote-tab-silent -geom 110x80"
-#alias g="gvim --remote-silent -geom 110x80"
-#alias gvim="gvim -geom 110x80"
-#alias g=gvim
 
-#alias py="python"
 
 #alias cmake_uninstall="xargs rm < install_manifest.txt"
 
-#alias windows="wfica"
 
-#alias svndiff="svn diff --diff-cmd='meld'"
-
-#alias eclipse="~/vol/opt/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
-
-#alias blender="/volume/USERSTORE/f_moro/blender-2.69/blender"
-
-#alias git="SSH_ASKPASS='' git" 
-
-#alias keepass="mono ~/keepass/program/KeePass.exe"
-
-#alias dirsizes="du -h -d 1 | sort -h"
-
-#alias tea="py /home/seid_da/data/tea/next_tea.py"
-
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
