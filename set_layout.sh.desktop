@@ -1,0 +1,17 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=/home/seid_da/.dotfiles/set_layout.sh
+GenericName[en_US]=
+GenericName=
+Icon=
+MimeType=
+Name[en_US]=set_layout.sh
+Name=set_layout.sh
+Path=
+StartupNotify=true
+Terminal=true
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
