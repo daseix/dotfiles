@@ -29,8 +29,8 @@ for color in {000..255}; do
 done
 
 
-ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
 # Show all 256 colors with color number
+ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
 function spectrum_ls() {
   for code in {000..255}; do
     print -P -- "$code: %{$FG[$code]%}$ZSH_SPECTRUM_TEXT%{$reset_color%}"
@@ -38,20 +38,32 @@ function spectrum_ls() {
 }
 
 
-# zsh git prompt
-#source /volume/USERSTORE/seid_da/packages/zsh-git-prompt/zshrc.sh
-
-
-# pure zsh prompt
-#fpath=($fpath $HOME/.pure-prompt)
-#fpath=($fpath $HOME/.dotfiles/pure-prompt)
-fpath=($fpath $HOME/.dotfiles/pure-prompt-twoline)
+# zsh git pure prompt
+fpath=($fpath $HOME/.dotfiles/pure-prompt)
 autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:stash show yes
+
+zstyle :prompt:pure:path color green
+zstyle :prompt:pure:git:branch color 208
+zstyle :prompt:pure:git:dirty color white
+zstyle :prompt:pure:git:arrow color blue
+zstyle :prompt:pure:git:execution_time color yellow
+
+zstyle :prompt:pure:user color white
+zstyle :prompt:pure:host color white
+
+zstyle :prompt:pure:prompt:error color white
+zstyle :prompt:pure:prompt:success color white
+zstyle :prompt:pure:prompt:continuation color white
+
+export PURE_GIT_UP_ARROW=⤴
+export PURE_GIT_DOWN_ARROW=⤵
+export PURE_PROMPT_SYMBOL=⋗
 prompt pure
 
 # shell prompt
-autoload -U colors && colors
-PS1TEXT='green'
+#autoload -U colors && colors
+#PS1TEXT='green'
 
 # prompt with time
 #PROMPT="%{$fg[$PS1TEXT]%}<%{$reset_color%}%n%{$fg[$PS1TEXT]%}@%{$reset_color%}%m%{$fg[$PS1TEXT]%}|%{$reset_color%}%*%{$fg[$PS1TEXT]%}>%{$reset_color%} %{$fg[$PS1TEXT]%}%5~ %{$reset_color%}$ "
@@ -68,7 +80,7 @@ PS1TEXT='green'
 
 
 # ctrl-r starts searching history backward
-bindkey '^R' history-incremental-search-backward
+#bindkey '^R' history-incremental-search-backward
 
 # Emacs mode (default)
 bindkey -e
@@ -103,10 +115,6 @@ alias shellhotkeys='echo -e "
 [Ctrl][N] history down"'
 
 
-
-
-
-alias set_kb_rate='xset r rate 250 50'
 if [ -z ${SSH_TTY} ] # check if not ssh session
 then
     if [ "$DLRRM_HOST_PLATFORM" = "osl*" ];
@@ -114,7 +122,7 @@ then
     # no beep
     xset b off
 
-    # java double click tim
+    # java double click time
     #xrdb ~/.Xresources
 
     # keyboard settings
@@ -123,8 +131,8 @@ then
 fi
 
 
-
-
+# --- fix ssh error "/usr/bin/manpath: can't set the locale; make sure $LC_* and $LANG are correct"
+export LC_ALL=C.UTF-8
 
 # --- git author config
 export GIT_AUTHOR_NAME="Daniel Seidel"
@@ -169,7 +177,7 @@ export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 # default command line editor
 export EDITOR='gvim'      
 #export EDITOR='vim'      
-alias gvim="gvim -geom 100x40"
+alias gvim="gvim -geom 130x60"
 alias g=gvim
 alias e=gvim
 
@@ -177,13 +185,16 @@ alias e=gvim
 # for mapping escape to caplsock: add to .xinitrc 
 #setxkbmap -option caps:escape &
 
+alias set_kb_rate='xset r rate 250 60'
 
 alias show_layout='setxkbmap -query | grep layout'
 #alias layout_de='setxkbmap de -variant nodeadkeys && xmodmap ~/.dotfiles/hjkl_system.xmodmap'
 alias de_layout='setxkbmap de -variant nodeadkeys'
 #alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
 #alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
-alias us_layout='de_layout && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+#alias us_layout='de_layout && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+alias us_layout='setxkbmap us && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY && xset r rate 250 60'
+
 
 alias asdf=us_layout
 alias ASDF=de_layout
@@ -250,7 +261,7 @@ alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge
 alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
 
 alias tumssh="ssh seideld@lxhalle.informatik.tu-muenchen.de -C"
-alias dlrssh="ssh -tt seid_da@donau.robotic.dlr.de ssh rmc-lx0255"
+alias dlrssh="ssh -tt seid_da@ssh.robotic.dlr.de ssh rmc-lx0255"
 
 # git port: -D 8080
 # firefox socks5 port: -D 30000
@@ -260,13 +271,13 @@ alias dlrssh="ssh -tt seid_da@donau.robotic.dlr.de ssh rmc-lx0255"
 #alias sshdlr_tunnel="ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 seid_da@ssh.robotic.dlr.de"
 alias tumsshtunnel="ssh -N -D 30000 seideld@lxhalle.informatik.tu-muenchen.de"
 
-#ssh -O check donau.robotic.dlr.de
-#ssh -O stop donau.robotic.dlr.de
+#ssh -O check ssh.robotic.dlr.de
+#ssh -O stop ssh.robotic.dlr.de
 
 alias homesshtunnel="ssh -D 30000 root@daseix.duckdns.org -p 60022"
 
 #alias sshdlr_tunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 -L3128:rmc-mobilproxy.robotic.dlr.de:3128 dlr"
-alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -N -D 8080 -D 30000  dlr echo 'connection established'; sleep infinity"
+alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -D 8080 -D 30000 dlr echo 'connection established'; sleep infinity"
 
 alias mobilproxy_set="export {http,https,ftp}_proxy=http://localhost:3128"
 alias mobilproxy_unset="unset {http,https,ftp}_proxy"
@@ -277,7 +288,7 @@ alias mobilproxy_unset="unset {http,https,ftp}_proxy"
 #
 #Start an ssh tunnel
 #
-# ssh -D 8080 -N username@donau.robotic.dlr.de -> see alias sshdlr_tunnel
+# ssh -D 8080 -N username@ssh.robotic.dlr.de -> see alias sshdlr_tunnel
 #
 #Cloning a repository**
 #
@@ -291,7 +302,7 @@ alias mobilproxy_unset="unset {http,https,ftp}_proxy"
 # git config http.sslVerify false
 
 # alternative method using ssh keys 
-# alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@donau.robotic.dlr.de'
+# alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
 # git clone ssh://git@localhost:3333/user/repository.git
 
 # svn relocate to ssh tunnel on port 19999
@@ -299,9 +310,8 @@ alias mobilproxy_unset="unset {http,https,ftp}_proxy"
 # svn switch --relocate https://rmsvn01.robotic.dlr.de/users/<user>/<repo> https://localhost:19999/users/<user>/<repo>
 
 #vncviewer localhost:2 -geometry 1600x1200 
-#alias dlrsshvnc="ssh -l seid_da -L 5902:rmc-lx0255:5902 donau.robotic.dlr.de"
 #590x display number of started vncserver
-alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -o ProxyJump=dlr rmc-lx0255"
+alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -L 5903:localhost:5903 -L 5904:localhost:5904 -o ProxyJump=dlr"
 
 
 
@@ -309,12 +319,14 @@ alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -
 
 
 
-alias keepass="mono ~/keepass/program/KeePass.exe"
+#alias keepass="mono ~/keepass/program/KeePass.exe"
 #alias keepass='mono /media/exchange/Keepass2Android/program/KeePass.exe'
-alias authy="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
+#alias authy="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome --profile-directory=Default --app-id=gaedmjdfmmahhbjefcbgaolhhanlaolb"
+alias keepass="keepassxc ~/keepass/datenbank.kdbx --keyfile ~/data/holodeck --pw-stdin"
+
 alias googlemusic="/volume/USERSTORE/seid_da/packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
 
-alias chromium="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome"
+#alias chromium="/volume/USERSTORE/seid_da/packages/chromium/latest/chrome"
 alias vivaldi="/volume/USERSTORE/seid_da/packages/vivaldi/vivaldi64/opt/vivaldi/vivaldi"
 
 #alias dirsizes="du -h -d 1 | sort -h"
@@ -387,3 +399,35 @@ alias ktmux='konsole -e tmux'
 #sudo apt-get install alsa-base pulseaudio
 #sudo alsa force-reload
 
+# init cissy
+#export {http,https,ftp,all}_proxy=socks5h://localhost:30000
+export CISSY_HOSTNAME=rmc-lx0521
+. /opt/rmc-build-tools/sourceme.dash > /dev/null 2> /dev/null
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+
+function view_urdf {
+  source /opt/rmc-build-tools/sourceme.sh
+  cissy run -k -as -p urdf_tutorial/0.5.0@3rdparty/unstable roslaunch urdf_tutorial display.launch model:=$1 gui:=true
+}
+
+#alias conan="which conan >/dev/null 2>&1 || . ~/source-conan.sh; unalias conan 2>/dev/null; conan"
+#alias cissy="which conan >/dev/null 2>&1 || . ~/source-conan.sh; unalias cissy 2>/dev/null; cissy"
+
+#alias cissy2="which cissy2 2>/dev/null || . ~/source-conan2.sh; unalias cissy2 2>/dev/null; unalias cissy; alias cissy2=cissy; cissy"
+#alias conan2="which conan 2>/dev/null | grep -q -e conan/2 || . ~/source-conan2.sh; unalias conan2 2>/dev/null; unalias conan 2>/dev/null; alias conan2=conan; conan"
+
+alias xosview="xosview +net -xrm xosview*cpuGraph:True -xrm xosview*background:black -xrm xosview*usedLabelColor:white -xrm xosview*meterLabelColor:white -xrm xosview*foreground:white -geometry 415x498 "
+alias tags="find ./ -name \"*.cpp\" -or -name \"*.[ch]\" | xargs gnuctags"
+
+#alias vpn_activate='nmcli con up id RMC-VPN-ZERT'
+#alias vpn_status='nmcli con show --active'
+#alias vpn_deactivate='nmcli con down id RMC-VPN-ZERT'
+
+alias python=python3
+
+alias git-ssh='git remote set-url origin "$(git remote get-url origin | sed -E '\''s,^https://([^/]*)/(.*)$,git@\1:\2,'\'')"'
+alias git-https='git remote set-url origin "$(git remote get-url origin | sed -E '\''s,^git@([^:]*):/*(.*)$,https://\1/\2,'\'')"'
