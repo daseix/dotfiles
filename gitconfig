@@ -20,9 +20,11 @@
     lg   = log -p
     who  = shortlog -s --
     ;slog = !git --no-pager log --format=oneline --abbrev-commit
-    ;clog  = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
-    ;ncclog  = log --pretty=tformat:'%h %ai %an -> %d %s'
-    ;dlog = log -n 20  --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' --graph
+        lg = log -n 20 --graph --pretty=format:'%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+    ;lg2 = log -n 20 --graph --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' 
+    lg2 = log -n 20 --graph --pretty=tformat:'%C(yellow)%h%C(green) %ai %C(blue)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s' 
+    lg3  = log -n 20 --pretty=tformat:'%C(yellow)%h%Creset %ai %C(green)%an%Creset %C(bold cyan)->%Creset%C(bold blue)%d%Creset %s'
+    ;lg  = log --pretty=tformat:'%h %ai %an -> %d %s'
     ;dfnp = !git --no-pager diff
     ;fuckoff = clean -fdx
     ;see = "!f() { git show --format=fuller \"$@\" | view - -c \"set fdm=syntax\"; }; f"
@@ -64,5 +66,7 @@
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED" # auto-merged file in middle
     ;cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED" # common ancestor in middle
 
-[http "https://rmc-github.robotic.dlr.de"]
-    proxy = socks5h://127.0.0.1:30000
+;[http "https://rmc-github.robotic.dlr.de"]
+    ;proxy = socks5h://127.0.0.1:30000
+[init]
+	defaultBranch = master
