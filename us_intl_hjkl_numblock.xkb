@@ -1250,7 +1250,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
     key <AC10> {
         type[group1]= "FOUR_LEVEL",
         type[group2]= "FOUR_LEVEL",
-        symbols[Group1]= [       semicolon,           colon,       paragraph,          degree ],
+        symbols[Group1]= [       semicolon,           colon,       period,          degree ],
         symbols[Group2]= [      odiaeresis,      Odiaeresis,     doubleacute,     doubleacute ]
     };
     key <AC11> {
@@ -1309,7 +1309,7 @@ xkb_symbols "pc+us(altgr-intl)+inet(evdev)+terminate(ctrl_alt_bksp)" {
     };
     key <AB10> {
         type= "FOUR_LEVEL",
-        symbols[Group1]= [           slash,        question,    questiondown,       dead_hook ]
+        symbols[Group1]= [           slash,        question,    comma,       dead_hook ]
     };
     key <RTSH> {         [         Shift_R ] };
     key <KPMU> {
