@@ -65,12 +65,22 @@ Plugin 'vim-scripts/csapprox'
 let g:CSApprox_konsole=1
  
 " smart pane switching with awareness of tmux
-Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'christoomey/vim-tmux-navigator'
 
 "Plugin 'fholgado/minibufexpl.vim'
 
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std') | NERDTree | endif
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
 
 Plugin 'vim-latex/vim-latex'
 
@@ -79,18 +89,14 @@ Plugin 'L9'
 "Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'ctrlpvim/ctrlp.vim'
 
-Plugin 'vim-scripts/MatlabFilesEdition'
+"Plugin 'vim-scripts/MatlabFilesEdition'
 
 Plugin 'Chiel92/vim-autoformat'
-let g:formatterpath = ['/home/seid_da/packages/black']
+"let g:formatterpath = ['/home/seid_da/packages/black']
+"let g:formatterpath = ['/opt/python/$DLRRM_HOST_PLATFORM/python3/default/bin/black']
+let g:formatterpath = ['/opt/python/osl155-x86_64/python3/default/bin']
 let g:formatters_python = ['black']
-
-"let g:formatterpath = ['~/.local/lib/python2.7/site-packages/yapf/']
-"let g:formatdef_yapf = 'yapf --style=''{based_on_style:google, column_limit:120}'''
-"''yapf --style=''{based_on_style:'.g:formatter_ya pf_style.',indent_width:'.&shiftwidth.'}'
-"let g:formatters_python = ['yapf']
-"let g:formatter_yapf_style = 'google'
-"'yapf --style=\"{based_on_style:'.g:formatter_yapf_style.',indent_width:'.&shiftwidth.(&textwidth ? '
+"let g:formatdef_black = 'black -l 127'
 
 "let g:formatter_yapf_style = 'google'
 "let s:configfile_def   = "'yapf -l '.a:firstline.'-'.a:lastline"
@@ -104,15 +110,15 @@ Plugin 'ericcurtin/CurtineIncSw.vim'
 
 " Conque Shell with error fix 
 "Plugin 'jewes/Conque-Shell'
-Plugin 'https://github.com/oplatek/Conque-Shell'
-au BufReadPre FILETYPE au! PluginNotes
-au BufReadPre FILETYPE au! PluginXoloxMisc
+"Plugin 'https://github.com/oplatek/Conque-Shell'
+"au BufReadPre FILETYPE au! PluginNotes
+"au BufReadPre FILETYPE au! PluginXoloxMisc
 
 " needs vim >= 7.3
 "Plugin  'klen/python-mode'
 Plugin 'tmhedberg/SimpylFold'
 
-Plugin 'tpope/vim-eunuch'
+"Plugin 'tpope/vim-eunuch'
 "Plugin 'vim-scripts/vim-eunuch'
 
 " All of your Plugins must be added before the following line
@@ -130,6 +136,37 @@ filetype indent on    " required
 " "
 " " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sets how many lines of history VIM has to remember
+set history=700
+
+" Enable filetype plugins
+"filetype plugin on
+"filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+"let mapleader = ","
+"let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+" deleting
+imap <C-BS> <C-W>
+"imap <C-BS> <C-O>cb
+"imap <C-B> <C-O>cb
+
+imap <C-Del> <C-O>dw
+"imap <C-W> <C-O>dw
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,36 +308,6 @@ nnoremap <Leader>ls :call SyncTexForward()<CR>
 "let g:pymode_rope_complete_on_dot = 0
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Enable filetype plugins
-"filetype plugin on
-"filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-"let mapleader = ","
-"let g:mapleader = ","
-let mapleader = " "
-let g:mapleader = " "
-
-" Fast saving
-nmap <leader>w :w!<cr>
-
-" deleting
-imap <C-BS> <C-W>
-"imap <C-BS> <C-O>cb
-"imap <C-B> <C-O>cb
-
-imap <C-Del> <C-O>dw
-"imap <C-W> <C-O>dw
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -824,7 +831,7 @@ command! RemoveTrSpace :%s/\s\+$//
 " endif
 
 
-" function for naturl sorting
+" function for natural sorting
 function! MyCompare(i1, i2)
 return (a:i1 + 0) - (a:i2 + 0)
 endfunc

@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+#set otp [exec ./ssh_generate_otp.sh]
+set otp [lindex $argv 0]
+spawn ssh dlr
+#spawn echo "Your OTP:"
+
+expect {
+    "Your OTP:" {
+        send "$otp\n";
+    }
+    "Last login"{
+    }
+}
+interact

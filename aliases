@@ -1,0 +1,323 @@
+
+# ----- variables etc ------------------------------------------------------------------------------
+
+# --- fix ssh error "/usr/bin/manpath: can't set the locale; make sure $LC_* and $LANG are correct"
+export LC_ALL=C.UTF-8
+
+# --- git author config
+export GIT_AUTHOR_NAME="Daniel Seidel"
+export GIT_AUTHOR_EMAIL="daniel.seidel@dlr.de"
+export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
+export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
+export GIT_EDITOR=gvim
+
+# --- fix some git problems 
+export GIT_SSL_NO_VERIFY=1
+
+# --- fix git ESC problems for diff etc
+export LESS="-eirMX"
+
+# some usefull git commands
+# fix conflict using theirs
+# git checkout --theirs path/to/file
+#
+# overwrite master with branch [only local changes, not pushed to remote]
+# git branch -f master dev_branch will rewrite local master branch.
+# git push remote +dev_branch:master will rewrite remote branch.
+#
+# Make the current Git branch a master branch [also remote master needs to be changed]
+# The new master doesn't have the old master as an ancestor, so when you push it, everyone else will get messed up. This is what you want to do:
+# git checkout better_branch
+# git merge --strategy=ours master    # keep the content of this branch, but record a merge
+# git checkout master
+# git merge better_branch             # fast-forward master up to the merge
+
+
+
+# ----- aliases ------------------------------------------------------------------------------
+
+# --- ssh keys
+alias git="SSH_ASKPASS='' git" 
+#unset SSH_ASKPASS
+#ssh-add ~/.ssh/id_rsa_github </dev/null
+
+
+# default command line editor
+export EDITOR='gvim'      
+#export EDITOR='vim'      
+alias gvim="gvim -geom 130x60"
+alias g=gvim
+alias e=gvim
+
+
+# for mapping escape to caplsock: add to .xinitrc 
+#setxkbmap -option caps:escape &
+
+alias set_kb_rate='xset r rate 250 60'
+
+alias show_layout='setxkbmap -query | grep layout'
+alias de_layout='setxkbmap de -variant nodeadkeys'
+#alias layout_us='setxkbmap us -variant altgr-intl -option caps:escape'
+#alias layout_us='setxkbmap us -variant altgr-intl && xmodmap $HOME/.dotfiles/hjkl_system.xmodmap'
+#alias us_layout='de_layout && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+alias us_layout='setxkbmap us && xkbcomp -I$HOME/.dotfiles $HOME/.dotfiles/us_intl_hjkl_numblock.xkb $DISPLAY'
+
+
+alias asdf=us_layout
+alias ASDF=de_layout
+
+
+# -- custom aliases --
+#LS_BIN=$(which ls)
+alias ls="/bin/ls -rtl --color"
+alias ll="/bin/ls -lh --color --group-directories-first"
+alias la="/bin/ls -lha --color --group-directories-first"
+alias llg='ll | grep'
+alias lag='la | grep'
+alias ..="cd .." 
+alias ...="cd ../.."
+
+alias untar="tar -zxvf"
+
+#alias tvim='function _tvim(){ konsole --hide-menubar --hide-tabbar --icon /usr/share/icons/HighContrast/256x256/apps/vim.png --nofork -e nvim "$@" &>/dev/null &}; _tvim'
+#alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar -e nvim "$@" &>/dev/null &}; _tvim'
+alias tvim='function _tvim(){nohup konsole --hide-menubar --hide-tabbar -e vim "$@" &>/dev/null &}; _tvim'
+
+#alias xterm='xterm -bg black -fg grey'
+alias xterm='xterm +cm'
+
+alias rsync='rsync --info=progress2'
+
+
+alias mampf="/home/seth_da/usr/bin/mampf"
+
+alias py="python"
+
+alias cmake_uninstall="xargs rm < install_manifest.txt"
+
+alias svndiff="svn diff --diff-cmd='meld'"
+
+alias eclipse="/volume/USERSTORE/seid_da/packages/eclipse/$DLRRM_HOST_PLATFORM/eclipse"
+
+#alias clion="/home/seid_da/foreign_packages/clion-2019.3.5/bin/clion.sh"
+
+alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &; nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.tum.properties > /dev/null 2> /dev/null < /dev/null &"
+#alias davmail="nohup ~/packages/davmail/davmail.sh ~/.dotfiles/davmail.dlr.properties > /dev/null 2> /dev/null < /dev/null &"
+
+#alias blender='cissy run -k -p blender/2.82a@3rdparty/unstable blender'
+alias blender='cissy run -k -p blender/4.0.1@3rdparty/unstable blender'
+
+alias matlab_extern="/volume/USERSTORE/seid_da/packages/matlab_latest/bin/matlab_acad -c 27000@localhost"
+
+alias maple_extern="LM_LICENSE_FILE=27009@localhost /opt/maple/latest/bin/xmaple"
+
+alias mediview="MEDIVIEW_EVENT_HANDLING_MODE=inventor /volume/software/mirosurge/packages/mediView/0.1.0/bin/sled11-x86-gcc4.x/MediView --to 50000"
+alias snConfigure="/home/laser-sc/packages/SensorNet/latest/bin/sled11-x86-gcc4.x/snConfigure"
+
+alias dlrssh="ssh -tt seid_da@ssh.robotic.dlr.de ssh rmc-lx0255"
+
+# git port: -D 8080
+# firefox socks5 port: -D 30000
+# rmc licence server: -L27000:129.247.166.179:27000 -L34758:129.247.166.179:34758
+# rmc mobilproxy: -L3128:rmc-mobilproxy.robotic.dlr.de:3128
+
+#alias sshdlr_tunnel="ssh -N -D 8080 -D 30000 -L 19999:rmsvn01:443 -L 27009:rmc-lic01:27009 -L 49050:rmc-lic01:49050 seid_da@ssh.robotic.dlr.de"
+alias tumsshtunnel="ssh -N -D 30000 seideld@lxhalle.informatik.tu-muenchen.de"
+
+#ssh -O check ssh.robotic.dlr.de
+#ssh -O stop ssh.robotic.dlr.de
+
+alias homesshtunnel="ssh -D 30000 manfred@seidels.duckdns.org -p 60022"
+
+#alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh -D 8080 -D 30000 dlr echo 'connection established'; sleep infinity"
+alias dlrsshtunnel="echo \"starting connection to rmc\"; ssh dlr echo 'connection established'; sleep infinity"
+
+alias mobilproxy_set="export {http,https,ftp}_proxy=http://localhost:3128"
+alias mobilproxy_unset="unset {http,https,ftp}_proxy"
+# rsync with multihop to another host within rmc network
+#rsync -azv -e 'ssh -A -J rmc-vosl151-x8664-01' dlr:dir target
+
+#Repositories through https[edit | edit source]
+#
+#Start an ssh tunnel
+#
+# ssh -D 8080 -N username@ssh.robotic.dlr.de -> see alias sshdlr_tunnel
+#
+#Cloning a repository**
+#
+# export https_proxy=socks5h://127.0.0.1:8080
+# export GIT_SSL_NO_VERIFY=1
+# git clone https://rmc-github.robotic.dlr.de/your_user/your_repo
+#
+#Once the repository is cloned, you can permanently configure the proxy for this remote
+#
+# git config remote.origin.proxy socks5h://127.0.0.1:8080
+# git config http.sslVerify false
+
+# alternative method using ssh keys 
+# alias sshdlr_git='ssh -L3333:rmc-github.robotic.dlr.de:22 seid_da@ssh.robotic.dlr.de'
+# git clone ssh://git@localhost:3333/user/repository.git
+
+#vncviewer localhost:2 -geometry 1600x1200 
+#590x display number of started vncserver
+alias dlrsshvnc="ssh -l seid_da  -L 5901:localhost:5901 -L 5902:localhost:5902 -L 5903:localhost:5903 -L 5904:localhost:5904 -o ProxyJump=dlr"
+
+#alias startvncserver='export XAUTHORITY=/run/user/${UID}/.Xauthority.vnc; /usr/bin/vncserver -auth $XAUTHORITY'
+#alias addvncusers='vncconfig -set plainusers=seid_da,burger_r,f_quadru'
+
+#alias keepass="mono ~/keepass/program/KeePass.exe"
+#alias keepass="keepassxc ~/keepass/db.kdbx --pw-stdin --config ~/.cache/keepassxc/keepassxc.ini"
+alias keepass="keepassxc ~/keepass/db.kdbx --config ~/.cache/keepassxc/keepassxc.ini"
+
+alias googlemusic="/volume/USERSTORE/seid_da/packages/Google-Play-Music-Desktop-Player/bin/google-play-music-desktop-player"
+
+#alias dirsizes="du -h -d 1 | sort -h"
+
+alias reducepdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4  -dNOPAUSE -dQUIET -dBATCH -sOutputFile=small.pdf druck.pdf'
+
+alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -interaction=nonstopmode -src-specials $*\" -pvc" #-jobname=./build/paper
+#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc -silent"
+#alias latexmake="latexmk -pdf -pdflatex=\"pdflatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
+#alias latexmake="latexmk -pdf -pdflatex=\"lualatex -synctex=-1 -src-specials $*\" -pvc \`grep -l '\documentclass' *tex\`"
+#alias latexmake="latexmk -pdf -silent -pvc \`grep -l '\documentclass' *tex\`"
+
+alias tea="py /home/seid_da/data/tea/next_tea.py"
+
+# ping IP range
+# nmap -sn 192.168.128.1-254
+alias bert_net_ping='nmap -sn 192.168.132.1-254' 
+
+#alias delete_ip_route='ip addr del 192.168.132.13/24 dev eth0'
+
+# fix kde login errors
+alias fix_kde='find ~/.cache -name "*.lock" | xargs -l rm && rm ~/.cache/ksycoca5*'
+
+#zenity --warning --text "I am in .xprofile and I RUN\! " &
+alias disableTouchpad='xinput --disable 13'
+
+alias nextcloud='/home_local/seid_da/nc/program/AppRun'
+
+alias arbeitszeit='python /home/seid_da/git/arbeitszeit/arbeitsZeit.py -f /home/seid_da/git/arbeitszeit/tmp 1> /dev/null 2> /dev/null &'
+
+alias citrix='/opt/Citrix/ICAClient/selfservice'
+
+#function start_tmux() {
+    #if type tmux &> /dev/null; then
+        ##if not inside a tmux session, and if no session is started, start a new session
+        ##if [[ $HOST == "laptop" && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+        #if [[ -z ${SSH_TTY} && -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
+            ##(tmux -2 attach || tmux -2 new-session)
+            #(tmux -2 new-session)
+        #fi
+    #fi
+#}
+##start_tmux
+
+alias ktmux='konsole -e tmux'
+
+alias reduce_git_size="git reflog expire --all --expire=now && git gc --prune=now --aggressive"
+
+
+# konsole bold fix:
+# this needs to be placed under [general] in ~/.config/kdeglobals
+#fixed=Hack,9,-1,0,50,0,0,0,0,0,
+#font=Noto Sans,10,-1,0,50,0,0,0,0,0,
+#menuFont=Noto Sans,10,-1,0,50,0,0,0,0,0,
+#smallestReadableFont=Noto Sans,8,-1,0,50,0,0,0,0,0,
+#toolBarFont=Noto Sans,10,-1,0,50,0,0,0,0,0,
+
+
+#completely reinstall audio
+#https://askubuntu.com/questions/994003/pulseaudio-integration-with-kde-is-broken-in-ubuntu-17-10
+#sudo apt-get remove --purge alsa-base pulseaudio
+#sudo apt-get install alsa-base pulseaudio
+#sudo alsa force-reload
+
+countdown() {
+    start="$(( $(date +%s) + $1))"
+    while [ "$start" -ge $(date +%s) ]; do
+        ## Is this more than 24h away?
+        days="$(($(($(( $start - $(date +%s) )) * 1 )) / 86400))"
+        time="$(( $start - `date +%s` ))"
+        printf '%s day(s) and %s\r' "$days" "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
+
+stopwatch() {
+    start=$(date +%s)
+    while true; do
+        days="$(($(( $(date +%s) - $start )) / 86400))"
+        time="$(( $(date +%s) - $start ))"
+        printf '%s day(s) and %s\r' "$days" "$(date -u -d "@$time" +%H:%M:%S)"
+        sleep 0.1
+    done
+}
+
+
+function view_urdf {
+  source /opt/rmc-build-tools/sourceme.sh
+  cissy run -k -as -p urdf_tutorial/0.5.0@3rdparty/unstable roslaunch urdf_tutorial display.launch model:=$1 gui:=true
+}
+
+#alias conan="which conan >/dev/null 2>&1 || . ~/source-conan.sh; unalias conan 2>/dev/null; conan"
+#alias cissy="which conan >/dev/null 2>&1 || . ~/source-conan.sh; unalias cissy 2>/dev/null; cissy"
+
+#alias cissy2="which cissy2 2>/dev/null || . ~/source-conan2.sh; unalias cissy2 2>/dev/null; unalias cissy; alias cissy2=cissy; cissy"
+#alias conan2="which conan 2>/dev/null | grep -q -e conan/2 || . ~/source-conan2.sh; unalias conan2 2>/dev/null; unalias conan 2>/dev/null; alias conan2=conan; conan"
+
+alias xosview="xosview +net -xrm xosview*cpuGraph:True -xrm xosview*background:black -xrm xosview*usedLabelColor:white -xrm xosview*meterLabelColor:white -xrm xosview*foreground:white -geometry 415x498 "
+alias tags="find ./ -name \"*.cpp\" -or -name \"*.[ch]\" | xargs gnuctags"
+
+#alias vpn_activate='nmcli con up id RMC-VPN-ZERT'
+#alias vpn_status='nmcli con show --active'
+#alias vpn_deactivate='nmcli con down id RMC-VPN-ZERT'
+
+alias python=python3
+
+alias git-ssh='git remote set-url origin "$(git remote get-url origin | sed -E '\''s,^https://([^/]*)/(.*)$,git@\1:\2,'\'')"'
+alias git-https='git remote set-url origin "$(git remote get-url origin | sed -E '\''s,^git@([^:]*):/*(.*)$,https://\1/\2,'\'')"'
+
+alias thunderbird="/home/seid_da/packages/thunderbird/thunderbird"
+
+cissyd(){
+   ARGS=$@
+   bash -c """
+   source /opt/rmc-build-tools/sourceme-devel.sh --cissy /opt/rmc-build-tools/any/cissy_develop/ && cissy $ARGS
+   """
+}
+
+cissyu(){
+   ARGS=$@
+   bash -c """
+   source /opt/rmc-build-tools/sourceme-devel.sh --cissy /opt/rmc-build-tools/any/cissy_release/ && cissy $ARGS
+   """
+}
+
+cissy2(){
+   ARGS=$@
+   bash -c """
+   source /opt/rmc-build-tools/sourceme-devel.sh --cissy /opt/rmc-build-tools/any/cissy2/ && cissy $ARGS
+   """
+}
+
+conan2(){
+   ARGS=$@
+   bash -c """
+   source /opt/rmc-build-tools/sourceme-devel.sh --cissy /opt/rmc-build-tools/any/cissy2/ && conan2 $ARGS
+   """
+}
+
+alias startup="thunderbird&; asdf; keepass"
+
+alias proxy="/volume/USERSTORE/project_quadruped/rthost/checkandrunproxy_localhost.sh"
+
+#alias togglebt="rfkill toggle bluetooth"
+alias togglebt="rfkill block bluetooth; sleep 1; rfkill unblock bluetooth"
+
+#https://karl-voit.at/2019/03/03/oathtool-otp/
+alias otp="oathtool -b --totp `python3 -c 'import keyring; print(keyring.get_credential(\"RMC\", None).password)'`"
+alias otpssh="/home/seid_da/.dotfiles/ssh_otp.sh"
+
+
+alias setdisplays="xrandr --output DP-1-1-2 --mode 2560x1440 --rate 60"

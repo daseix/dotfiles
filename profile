@@ -16,12 +16,9 @@
 umask 002
 
 # --- additional architecture environment variables
-#export DLRRM_HOST_PLATFORM="osl42-x86_64" 
 if test -f "/home/seid_da/.profile_local"; then
     source "/home/seid_da/.profile_local"
 fi
-#export OBJ_PATH=$DLRRM_HOST_PLATFORM
-#export ARCH=$DLRRM_HOST_PLATFORM
 
 # --- locale settings variable
 export LC_TIME="de_DE.UTF-8"
@@ -31,30 +28,10 @@ export PATH=/home/seid_da/usr/bin:$PATH
 
 # --- ff/tb
 #export PATH=/home/seid_da/packages/firefox-lin:$PATH
-#export PATH=/home/seid_da/packages/thunderbird-lin:$PATH
+export PATH=/home/seid_da/packages/thunderbird:$PATH
 
 
-# --- Pip etc
-#export PATH=$HOME/.local/bin:$PATH
-#export PYTHONPATH=~/.local/lib/python2.7/site-packages:$PYTHONPATH
 
-# --- openjdk temporarily
-#export PATH=/automount_offline/rmnfs01/gpfs/sw/openjdk:$PATH
-#export PATH=~/packages/openjdk/bin:$PATH
-
-
-# vtk python for mayavi
-#export LD_LIBRARY_PATH=/volume/software/common/packages/vtk/6.3.0/lib/:$PYTHONPATH
-#export PYTHONPATH=/volume/software/common/packages/vtk/6.3.0/python/osl42-x86_64:$PYTHONPATH
-#export PYTHONPATH=/volume/software/common/packages/vtk/6.3.0/python/osl42-x86_64/vtk:$PYTHONPATH
-
-#export LD_LIBRARY_PATH=/home/seid_da/packages/vtk/osl42-x86_64/lib/:$PYTHONPATH
-#export PYTHONPATH=/home/seid_da/packages/vtk/osl42-x86_64/lib/python2.7/site-packages:$PYTHONPATH
-#export PYTHONPATH=/home/seid_da/packages/vtk/osl42-x86_64/lib/python2.7/site-packages/vtk:$PYTHONPATH
-
-# --- PyBrain / sklearn
-#export PYTHONPATH=$PYTHONPATH:/home/seid_da/packages/pybrain
-#export PYTHONPATH=$PYTHONPATH:/home/seid_da/packages/scikit-learn
 
 
 
@@ -84,3 +61,6 @@ export PATH=/home/seid_da/usr/bin:$PATH
       #fi
     #fi
 #esac
+
+
+sh /volume/USERSTORE/project_quadruped/rthost/_checkandrunproxy.sh

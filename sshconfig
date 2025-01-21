@@ -40,8 +40,10 @@ Host rmc-up2-09
 Host rmc-up2-10
     Hostname 192.168.128.14 
 
+
 Host snake
     Hostname 192.168.132.34 
+
 
 # --- bert net hosts
 Host greybert bert23 bert31 ebert rmc-up-01 rmc-up-02 rmc-up2-03  snake
@@ -62,12 +64,19 @@ Host norbert bert21 rmc-up2-06
 
 # --- mobilnetz hosts
 Host rmc-up2-01 rmc-up2-02 rmc-up2-04 rmc-up2-05 rmc-up2-07 rmc-up2-08 rmc-up2-09 rmc-up2-10
-    ProxyCommand ssh rmc-mobilproxy.robotic.dlr.de -W %h:%p
+    #ProxyCommand ssh rmc-mobilproxy.robotic.dlr.de -W %h:%p
+    ProxyCommand ssh localhost -W %h:%p
     User root
     IdentityFile ~/.ssh/id_rsa
     ForwardX11 no
     ForwardX11Trusted no
 
+Host rmc-up2-new
+    Hostname 192.168.128.100 
+    User root
+    IdentityFile ~/.ssh/id_rsa
+    ForwardX11 no
+    ForwardX11Trusted no
 
 
 #------------- git server etc -------------------------------------------------
@@ -101,6 +110,18 @@ Host *.daseix.duckdns.org
     ControlMaster auto
     ControlPersist 0
 
+Host 192.168.178.37 ds9
+    HostName 192.168.178.37
+    User manfred
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    ControlPath ~/.ssh/ssh-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 0
+    IdentityFile ~/.ssh/id_rsa
+    PreferredAuthentications publickey
+    PasswordAuthentication yes
+    DynamicForward 30001
 
 
 #------------- rmc access/ssh tunnel ------------------------------------------
@@ -115,29 +136,16 @@ Host dlr donau rmc-donau donau.robotic.dlr.de ssh.robotic.dlr.de
     ControlMaster auto
     ControlPersist 0 
     PubkeyAuthentication no
-    #FallBackToRsh no
-    LocalForward 3128 rmc-mobilproxy:3128
     LocalForward 27009 rmc-lic01:27009
     LocalForward 49050 rmc-lic01:49050
     DynamicForward 8080
     DynamicForward 30000
 
 
-Host rmc-* *.robotic.dlr.de !ssh.robotic.dlr.de
+Host rmc-* *.robotic.dlr.de !ssh.robotic.dlr.de !rmc-up*
     ProxyCommand ssh ssh.robotic.dlr.de -W %h:%p
     IdentityFile ~/.ssh/id_rsa
 
-
-Host *.daseix.duckdns.org
-    #ForwardAgent no
-    ForwardX11 yes
-    ForwardX11Trusted yes
-    #Compression no
-    #FallBackToRsh no
-    #Protocol 2
-    ControlPath ~/.ssh/ssh-%r@%h:%p
-    ControlMaster auto
-    ControlPersist 0
 
 
 #------------- ohters/internet hosts ------------------------------------------
