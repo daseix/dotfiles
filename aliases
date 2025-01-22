@@ -316,8 +316,13 @@ alias proxy="/volume/USERSTORE/project_quadruped/rthost/checkandrunproxy_localho
 alias togglebt="rfkill block bluetooth; sleep 1; rfkill unblock bluetooth"
 
 #https://karl-voit.at/2019/03/03/oathtool-otp/
-alias otp="oathtool -b --totp `python3 -c 'import keyring; print(keyring.get_credential(\"RMC\", None).password)'`"
-alias otpssh="/home/seid_da/.dotfiles/ssh_otp.sh"
+#alias otp="oathtool -b --totp `keyring -b keyring.backends.libsecret.Keyring get otp seid_da`"
+alias otp="/home/seid_da/.dotfiles/otp_generate.sh"
+alias otpssh="/home/seid_da/.dotfiles/otp_ssh.exp"
 
 
-alias setdisplays="xrandr --output DP-1-1-2 --mode 2560x1440 --rate 60"
+alias setdisplays="xrandr --output DP-1-1-1 --primary --mode 2560x1440 --rate 60 --output DP-1-1-2 --mode 2560x1440 --rate 60 --right-of DP-1-1-1"
+alias zerf="~/packages/zeitnachweis/zerf.pl"
+alias zerfin="~/packages/zeitnachweis/zerf.pl --check-in"
+alias zerfout="~/packages/zeitnachweis/zerf.pl --check-out"
+
