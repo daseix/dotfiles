@@ -92,7 +92,7 @@ Host rmc-up2-new
 # ssh configuration for github
 Host github github.com
     HostName github.com
-    IdentityFile ~/.ssh/id_rsa_github
+    IdentityFile ~/.ssh/id_rsa
     PreferredAuthentications publickey
     PasswordAuthentication yes
     ForwardX11 no
