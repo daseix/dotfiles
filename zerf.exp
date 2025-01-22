@@ -1,0 +1,12 @@
+#!/usr/bin/expect
+
+set pw [exec keyring -b keyring.backends.libsecret.Keyring get DLR seid_da]
+set option [lindex $argv 0]
+spawn /home/seid_da/packages/zeitnachweis/zerf.pl $option
+
+expect {
+    "enter password (will not be echoed):" {
+        send "$pw\n";
+    }
+}
+interact
