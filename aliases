@@ -323,6 +323,10 @@ alias otpssh="/home/seid_da/.dotfiles/otp_ssh.exp"
 
 alias setdisplays="xrandr --output DP-1-1-1 --primary --mode 2560x1440 --rate 60 --output DP-1-1-2 --mode 2560x1440 --rate 60 --right-of DP-1-1-1"
 alias zerf="~/packages/zeitnachweis/zerf.pl"
-alias zerfin="~/packages/zeitnachweis/zerf.pl --check-in"
-alias zerfout="~/packages/zeitnachweis/zerf.pl --check-out"
+#alias zerfin="~/packages/zeitnachweis/zerf.pl --check-in"
+#alias zerfout="~/packages/zeitnachweis/zerf.pl --check-out"
+alias zerfin="/home/seid_da/.dotfiles/zerf.exp --check-in"
+alias zerfout="/home/seid_da/.dotfiles/zerf.exp --check-out"
+alias zerfst="/home/seid_da/.dotfiles/zerf.exp --interactive='s;q'"
+
 
